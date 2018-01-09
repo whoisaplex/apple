@@ -317,7 +317,7 @@ start = {
   lat: 59.300727,
   lng: 17.995181};
 // Google maps
-const googleMaps = new google.maps.Map(map, {zoom: 10, center: start, styles: mapStyles});
+const googleMaps = new google.maps.Map(map, {zoom: 17, center: start, styles: mapStyles});
 
 // Gets user position
 navigator.geolocation.watchPosition(onSuccess, onError)
@@ -327,6 +327,7 @@ function onSuccess(position){
   console.log('position updated', position);
   user.coords.lat = position.coords.latitude;
   user.coords.lng = position.coords.longitude;
+  googleMaps.setCenter(user.coords);
 
   // Clears marker
   if(user.marker) {
