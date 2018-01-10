@@ -350,7 +350,41 @@ function renderQuestMarkers(){
   questPositions.forEach(position => {
     const marker = newMarker(position, 'img/placeholder.png');
     questMarkers.push(marker);
+    var cityCircle = new google.maps.Circle({
+     strokeColor: '#FF0000',
+     strokeOpacity: 0.8,
+     strokeWeight: 2,
+     fillColor: '#FF0000',
+     fillOpacity: 0.35,
+     map: googleMaps,
+     center: position,
+     radius: 10
+   });
+    marker.addListener('click', function(){
+      if(inRange(this.position)) {
+        console.log('in range');
+      } else {
+        console.log('not in range');
+      }
+    })
   })
+}
+
+function inRange(questPosition){
+  const range = 0.0001;
+  const quest = {
+    lat: questPosition.lat(),
+    lng: questPosition.lng()
+  }
+
+  if(user.coords.lat < quest.lat + range &&
+    user.coords.lat > quest.lat - range
+    && user.coords.lng < quest.lng + range &&
+    user.coords.lng > quest.lng - range) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 renderQuestMarkers();
