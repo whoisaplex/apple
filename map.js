@@ -314,20 +314,25 @@ const questPositions = [
 // Map element
 const map = document.getElementById('map');
 start = {
-  lat: 59.300727,
-  lng: 17.995181};
+  lat: 59.332401,
+  lng: 18.064442};
 // Google maps
-const googleMaps = new google.maps.Map(map, {zoom: 17, center: start, styles: mapStyles});
+const googleMaps = new google.maps.Map(map, {zoom: 13, center: start, styles: mapStyles});
 
 // Gets user position
 navigator.geolocation.watchPosition(onSuccess, onError)
 
 // Fires when position is updated
+let foundCoords = false;
 function onSuccess(position){
   console.log('position updated', position);
   user.coords.lat = position.coords.latitude;
   user.coords.lng = position.coords.longitude;
-  googleMaps.setCenter(user.coords);
+
+  if(!foundCoords) {
+    centerZoomMap();
+    foundCoords = true;
+  }
 
   // Clears marker
   if(user.marker) {
@@ -344,6 +349,10 @@ function onError(error){
   console.log(error);
 }
 
+function centerZoomMap(){
+  googleMaps.setCenter(user.coords);
+  googleMaps.setZoom(17);
+}
 // Creates quest markers
 const questMarkers = [];
 function renderQuestMarkers(){
