@@ -350,16 +350,7 @@ function renderQuestMarkers(){
   questPositions.forEach(position => {
     const marker = newMarker(position, 'img/placeholder.png');
     questMarkers.push(marker);
-    var cityCircle = new google.maps.Circle({
-     strokeColor: '#FF0000',
-     strokeOpacity: 0.8,
-     strokeWeight: 2,
-     fillColor: '#FF0000',
-     fillOpacity: 0.35,
-     map: googleMaps,
-     center: position,
-     radius: 10
-   });
+    newQuestCircle(position);
     marker.addListener('click', function(){
       if(inRange(this.position)) {
         alert('in range');
@@ -369,7 +360,7 @@ function renderQuestMarkers(){
     })
   })
 }
-
+// Check if player is in range
 function inRange(questPosition){
   const range = 0.0001;
   const quest = {
@@ -393,3 +384,16 @@ renderQuestMarkers();
 function newMarker(pos, icon = undefined){
   return new google.maps.Marker({position: pos, map: googleMaps, icon: icon});
 };
+// Create quest cirlcles
+function newQuestCircle(position){
+ return new google.maps.Circle({
+   strokeColor: '#FF0000',
+   strokeOpacity: 0.8,
+   strokeWeight: 2,
+   fillColor: '#FF0000',
+   fillOpacity: 0.35,
+   map: googleMaps,
+   center: position,
+   radius: 11
+  });
+}
