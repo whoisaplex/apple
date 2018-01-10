@@ -362,9 +362,9 @@ function renderQuestMarkers(){
    });
     marker.addListener('click', function(){
       if(inRange(this.position)) {
-        console.log('in range');
+        alert('in range');
       } else {
-        console.log('not in range');
+        alert('not in range');
       }
     })
   })
