@@ -2,29 +2,87 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Map Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/flaticon.css">
   </head>
   <body>
-    <div id="map">
+    <div id="map"></div>
+
+    <div id="menu-list">
+        
+        <div class="menu-container">
+            <div class="menu-title">
+                <p>Quests list</p>
+            </div>
+
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="flaticon-021-globe"></span> Hack this shit</a>
+                </li>
+            </ul>
+        </div>
     </div>
+
+    <div id="menu-site">
+        <object data="framed.html" type="text/html"><p>This is the fallback code!</p></object>            
+    </div>
+
     <div id="menu-bar">
         <div id="menu" class="menu-item">
             <a href="#">
-                <span class="flaticon-010-hacker"></span>
+                <span class="flaticon-010-hacker menu-buttons"></span>
             </a>
         </div>
-        <div id="logo" class="menu-item">
+        <div id="logo">
             StreetHack
         </div>
+
+        <div id="compass">
+            <i class="fa fa-compass fa-3x menu-buttons" aria-hidden="true"></i>
+        </div>
+
         <div id="site-menu" class="menu-item">
             <a href="#">
-                <span class="flaticon-009-browser"></span>
+                <span class="flaticon-009-browser menu-buttons"></span>
             </a>
         </div>
     </div>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-asKbHoJKTtGt8rWJ35ebHT3j7sVKUBA"></script>
+    <script src="menu.js"></script>
     <script src="map.js"></script>
   </body>
 </html>
