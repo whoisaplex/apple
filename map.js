@@ -304,22 +304,6 @@ const user = {
   marker: null
 }
 
-// Quest posiions
-const questPositions = [
-  {lat: 59.313393, lng: 18.110012},
-  {lat: 59.312775, lng: 18.109838},
-  {lat: 59.313044 , lng: 18.10862},
-  {lat: 59.331307 , lng: 17.998706},
-  {lat: 59.330984 , lng: 17.999951},
-  {lat: 59.331141 , lng: 17.999464},
-  {lat: 59.298719 , lng: 17.996614},
-  {lat: 59.300198 , lng: 17.995423},
-  {lat: 59.300751 , lng: 17.995144},
-  {lat: 59.447881 , lng: 18.081537},
-  {lat: 59.449642 , lng: 18.079338},
-  {lat: 59.448595 , lng: 18.076334}
-]
-
 // Map element
 const map = document.getElementById('map');
 start = {
@@ -365,7 +349,7 @@ function centerZoomMap(){
 // Creates quest markers
 const questMarkers = [];
 function renderQuestMarkers(){
-  questPositions.forEach(position => {
+  positions.forEach(position => {
     const marker = newMarker(position, 'img/placeholder.png');
     questMarkers.push(marker);
     newQuestCircle(position);
@@ -375,12 +359,13 @@ function renderQuestMarkers(){
       } else {
         alert('not in range');
       }
+      console.log(this.title);
     })
   })
 }
 // Check if player is in range
 function inRange(questPosition){
-  const range = 0.0001;
+  const range = 0.0011;
   const quest = {
     lat: questPosition.lat(),
     lng: questPosition.lng()
@@ -396,11 +381,11 @@ function inRange(questPosition){
   }
 }
 
-renderQuestMarkers();
+//renderQuestMarkers();
 
 // Returns new marker
 function newMarker(pos, icon = undefined){
-  return new google.maps.Marker({position: pos, map: googleMaps, icon: icon});
+  return new google.maps.Marker({position: pos, map: googleMaps, icon: icon, title: pos.name});
 };
 // Create quest cirlcles
 function newQuestCircle(position){
