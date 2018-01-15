@@ -329,7 +329,7 @@ start = {
 const googleMaps = new google.maps.Map(map, {zoom: 13, center: start, styles: mapStyles});
 
 // Gets user position
-navigator.geolocation.watchPosition(onSuccess, onError)
+navigator.geolocation.watchPosition(onSuccess, onError,{timeout: 0, enableHighAccuracy: true, maximumAge: Infinity})
 
 // Fires when position is updated
 let foundCoords = false;
