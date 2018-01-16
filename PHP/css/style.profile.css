@@ -14,11 +14,9 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: #fff;
     background: #000;
+    font-size: 14px
 }
 
-i {
-    color: #315d6b
-}
 
 #main-content {
     display: flex;
@@ -49,13 +47,16 @@ i {
     width: calc(100% - 120px);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    font-size: 1.2em
+    font-size: 1.2em;
 }
 
 #profile-header #user-id {
     font-weight: bold;
     overflow-wrap: break-word;
+    width: calc(100% - 6em);
+    font-size: 1.5em
 }
 
 #profile-header #user-level {
@@ -64,10 +65,11 @@ i {
     border: 1px solid #fff;
     border-radius: 50%;
     /* text-align: center; */
-    margin-left: .5em;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    color: red
 }
 
 #profile-header #user-level div {
@@ -76,14 +78,44 @@ i {
     font-weight: bold;
 }
 
+#profile-header #user-level:after {
+    content: "Level";
+    position: absolute;
+    right: 2.5em;
+    color: #fff
+}
+
+
 #profile-header #user-xp progress {
-    max-width: 100%;
-    min-width: 100px
+    width: 100%;
+}
+
+progress[value] {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    width: 250px;
+    height: 20px;
+    background: red
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: #fff;
+}
+
+progress[value]::-webkit-progress-value {
+    /* background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0, 0, 0, .1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)), -webkit-linear-gradient(left, #09c, #f44);
+    background-size: 35px 20px, 100% 100%, 100% 100%; */
+    background: #rgb(123, 255, 0)
 }
 
 #profile-header #user-xp {
     width: calc(100% - 100px);
     padding: 0.5em 0;
+}
+
+#profile-header #user-xp {
+    width: 100%;
 }
 
 #profile-header #user-cash {
@@ -94,11 +126,56 @@ i {
     color: gold
 }
 
+#group-members,
+#user-positions {
+    list-style-type:decimal;
+    list-style-position: inside
+}
+
+#group-members li,
+#user-positions li {
+    padding: 1em 1em;
+    position: relative
+}
+#group-members li:nth-child(odd),
+#user-positions li:nth-child(odd) {
+    background: #131313
+}
+
+
+#group-members li .delete,
+#user-positions li .cooldown {
+    position: absolute;
+    right: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+}
+
+
+
+
+@media screen and (max-width: 400px) {
+    #profile-header #user-id {
+        font-weight: bold;
+        overflow-wrap: break-word;
+        width: calc(100% - 3em);
+    }
+    #profile-header #user-level:after {
+        display: none
+    }
+}
 @media screen and (min-width: 768px) {
+    #profile-header #user-xp {
+        width: 100%;
+        max-width: 200px
+    }
     /*
     Flex Grid
 */
-    .grid {
+    .grid-flex {
         display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
@@ -112,22 +189,22 @@ i {
         -ms-flex-direction: row;
         flex-direction: row;
     }
-    .col-2 {
+    .grid-flex .col-flex-2 {
         width: 50%;
     }
-    .col-3 {
+    .grid-flex .col-flex-3 {
         width: 33.33333%;
     }
-    .grid.space .col-2:first-child {
+    .grid-flex.space .col-flex-2:first-child {
         margin-right: .5em;
     }
-    .grid.space .col-2:last-child {
+    .grid-flex.space .col-flex-2:last-child {
         margin-left: .5em;
     }
-    .grid.space .col-3:first-child {
+    .grid-flex.space .col-flex-3:first-child {
         margin-right: .5em;
     }
-    .grid.space .col-3:last-child {
+    .grid-flex.space .col-flex-3:last-child {
         margin-left: .5em;
     }
 }
