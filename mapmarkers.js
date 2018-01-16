@@ -8,3 +8,8 @@ function getMarkers(){
     renderQuestMarkers();
   });
 }
+getMarkers();
+
+socket.on('updateMarker', (data) => {
+  updateMarker(data);
+});

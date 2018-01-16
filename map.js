@@ -373,21 +373,48 @@ function renderQuestMarkers(){
   for(let objectData in positions){
     const marker = newMarker(positions[objectData], objectData, 'img/placeholder.png');
     questMarkers.push(marker);
-    newQuestCircle(positions[objectData]);
+    marker.CircleOverlay = newQuestCircle(positions[objectData]);
     marker.addListener('click', function(){
       if(inRange(this.position)) {
         alert('in range');
         socket.emit('changePosition', {id: this.title, change: false});
+        questMarkers.forEach((data, index, object) => {
+          if(data.title === this.title){
+            //Setting the questmarker and circle to null, and Removing the instance of it from questmarker variable
+            data.CircleOverlay.setMap(null);
+            data.setMap(null);
+            object.splice(index, 1);
+          }
+        });
       } else {
         alert('not in range');
       }
-      //console.log(this.title);
     });
   }
 }
+
+function updateMarker(data){
+  /*Function is triggered when a player starts a quest, so every other
+  player also get called from socket.io to update the specific quest marker
+  first checks if the updated quest's ID is inside questmarker variable.
+  if that is true, erease it and create a new questmarker.
+  */
+  questMarkers.forEach(info => {
+    if(data.id === info.title){
+      info.CircleOverlay.setMap(null);
+      info.setMap(null);
+    }
+  });
+
+  const marker = newMarker(data.data, data.id, 'img/placeholder.png');
+  questMarkers.push(marker);
+  marker.CircleOverlay = newQuestCircle(data.data);
+}
+
+
 // Check if player is in range
 function inRange(questPosition){
-  const range = 0.0011;
+  const range = 0.0111;
   const quest = {
     lat: questPosition.lat(),
     lng: questPosition.lng()
@@ -411,14 +438,28 @@ function newMarker(pos, id, icon = undefined){
 };
 // Create quest cirlcles
 function newQuestCircle(position){
- return new google.maps.Circle({
-   strokeColor: '#FF0000',
-   strokeOpacity: 0.8,
-   strokeWeight: 2,
-   fillColor: '#FF0000',
-   fillOpacity: 0.35,
-   map: googleMaps,
-   center: position,
-   radius: 11
-  });
+  if(position.isAvailable === true){
+     return new google.maps.Circle({
+       strokeColor: '#FF0000',
+       strokeOpacity: 0.8,
+       strokeWeight: 2,
+       fillColor: '#FF0000',
+       fillOpacity: 0.35,
+       map: googleMaps,
+       center: position,
+       radius: 11
+      });
+  }else{
+    //Creates a yellow cirlce that indicates that the zone is unavailable
+    return new google.maps.Circle({
+      strokeColor: '#c9b100',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#ffe100',
+      fillOpacity: 0.35,
+      map: googleMaps,
+      center: position,
+      radius: 11
+     });
+  }
 }
