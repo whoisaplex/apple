@@ -294,6 +294,11 @@ const mapStyles = [
   }
 ]
 
+// Compas button, centers map
+const compass = document.querySelector('#compass'); 
+
+compass.addEventListener('click', centerZoomMap); 
+
 // User object
 const user = {
   coords: {
