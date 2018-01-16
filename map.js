@@ -399,10 +399,11 @@ function updateMarker(data){
   first checks if the updated quest's ID is inside questmarker variable.
   if that is true, erease it and create a new questmarker.
   */
-  questMarkers.forEach(info => {
+  questMarkers.forEach((info, index, object) => {
     if(data.id === info.title){
       info.CircleOverlay.setMap(null);
       info.setMap(null);
+      object.splice(index, 1);
     }
   });
 
