@@ -1,6 +1,7 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+let users = {};
 
 const questPositions = [
   {lat: 59.313393, lng: 18.110012, name: 'bankomat'},
@@ -15,22 +16,11 @@ const questPositions = [
   {lat: 59.447881 , lng: 18.081537},
   {lat: 59.449642 , lng: 18.079338},
   {lat: 59.448595 , lng: 18.076334}
-]
-
-
-app.use(function(req, res, next) {
- res.header("Access-Control-Allow-Origin", "*");
- res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
- next();
-});
-
-app.get('/', function(req, res){
-  res.send(questPositions);
-});
+];
 
 io.on('connection', function(socket){
-  console.log(socket.id);
-  socket.emit('hello', 'can you hear me?', 1, 2, 'abc');
+  users[socket.id] = socket;
+  users[socket.id].emit('sendData', questPositions);
 });
 
 http.listen(3000, function(){
