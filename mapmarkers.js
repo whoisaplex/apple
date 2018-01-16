@@ -1,6 +1,8 @@
 let positions;
+let socket;
+
 function getMarkers(){
-  const socket = io('http://localhost:3000');
+  socket = io('http://localhost:3000');
   socket.on('sendData', (data) => {
     positions = data;
     renderQuestMarkers();

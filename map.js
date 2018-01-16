@@ -295,9 +295,9 @@ const mapStyles = [
 ]
 
 // Compas button, centers map
-const compass = document.querySelector('#compass'); 
+const compass = document.querySelector('#compass');
 
-compass.addEventListener('click', centerZoomMap); 
+compass.addEventListener('click', centerZoomMap);
 
 // User object
 const user = {
@@ -338,7 +338,7 @@ function onSuccess(position){
   }
 
   // Adds new marker
-  const playerMarker = newMarker(user.coords, 'img/playerIcon.png');
+  const playerMarker = newMarker(user.coords, 'Player', 'img/playerIcon.png');
   user.marker = playerMarker;
 }
 
@@ -354,7 +354,9 @@ function centerZoomMap(){
 // Creates quest markers
 const questMarkers = [];
 function renderQuestMarkers(){
+  /*
   positions.forEach(position => {
+    console.log(position);
     const marker = newMarker(position, 'img/placeholder.png');
     questMarkers.push(marker);
     newQuestCircle(position);
@@ -367,6 +369,21 @@ function renderQuestMarkers(){
       console.log(this.title);
     })
   })
+  */
+  for(let objectData in positions){
+    const marker = newMarker(positions[objectData], objectData, 'img/placeholder.png');
+    questMarkers.push(marker);
+    newQuestCircle(positions[objectData]);
+    marker.addListener('click', function(){
+      if(inRange(this.position)) {
+        alert('in range');
+        socket.emit('changePosition', {id: this.title, change: false});
+      } else {
+        alert('not in range');
+      }
+      //console.log(this.title);
+    });
+  }
 }
 // Check if player is in range
 function inRange(questPosition){
@@ -389,8 +406,8 @@ function inRange(questPosition){
 //renderQuestMarkers();
 
 // Returns new marker
-function newMarker(pos, icon = undefined){
-  return new google.maps.Marker({position: pos, map: googleMaps, icon: icon, title: pos.name});
+function newMarker(pos, id, icon = undefined){
+  return new google.maps.Marker({position: pos, map: googleMaps, icon: icon, title: id});
 };
 // Create quest cirlcles
 function newQuestCircle(position){
