@@ -1,0 +1,262 @@
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    background: #000;
+    font-size: 14px
+}
+
+
+#main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1em;
+}
+
+#profile-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between
+}
+
+#profile-header #user-avatar {
+    width: 100px;
+    border: 1px solid #fff;
+    overflow: hidden;
+}
+
+#profile-header #user-avatar img {
+    width: 100px;
+    height: auto
+}
+
+#profile-header #user-id-container {
+    width: calc(100% - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 1.2em;
+}
+
+#profile-header #user-id {
+    font-weight: bold;
+    overflow-wrap: break-word;
+    width: calc(100% - 6em);
+    font-size: 1.5em
+}
+
+#profile-header #user-level {
+    width: 2.1em;
+    height: 2.1em;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: red
+}
+
+#profile-header #user-level div {
+    text-align: center;
+    margin-left: -1px;
+    font-weight: bold;
+}
+
+#profile-header #user-level:after {
+    content: "Level";
+    position: absolute;
+    right: 2.5em;
+    color: #fff
+}
+
+
+#profile-header #user-xp progress {
+    width: 100%;
+}
+
+progress[value] {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    width: 250px;
+    height: 20px;
+    background: red
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: #fff;
+}
+
+progress[value]::-webkit-progress-value {
+    /* background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0, 0, 0, .1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)), -webkit-linear-gradient(left, #09c, #f44);
+    background-size: 35px 20px, 100% 100%, 100% 100%; */
+    background: #rgb(123, 255, 0)
+}
+
+#profile-header #user-xp {
+    width: calc(100% - 100px);
+    padding: 0.5em 0;
+}
+
+#profile-header #user-xp {
+    width: 100%;
+}
+
+#profile-header #user-cash {
+    width: 100%;
+}
+
+#user-cash .fa-bitcoin {
+    color: gold
+}
+
+#group-members,
+#user-positions {
+    list-style-type:decimal;
+    list-style-position: inside
+}
+
+#group-members li,
+#user-positions li {
+    padding: 1em 1em;
+    position: relative
+}
+#group-members li:nth-child(odd),
+#user-positions li:nth-child(odd) {
+    background: #131313
+}
+
+
+#group-members li .delete,
+#user-positions li .cooldown {
+    position: absolute;
+    right: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+}
+
+
+
+
+@media screen and (max-width: 400px) {
+    #profile-header #user-id {
+        font-weight: bold;
+        overflow-wrap: break-word;
+        width: calc(100% - 3em);
+    }
+    #profile-header #user-level:after {
+        display: none
+    }
+}
+@media screen and (min-width: 768px) {
+    #profile-header #user-xp {
+        width: 100%;
+        max-width: 200px
+    }
+    /*
+    Flex Grid
+*/
+    .grid-flex {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -moz-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -moz-box-direction: normal;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+    .grid-flex .col-flex-2 {
+        width: 50%;
+    }
+    .grid-flex .col-flex-3 {
+        width: 33.33333%;
+    }
+    .grid-flex.space .col-flex-2:first-child {
+        margin-right: .5em;
+    }
+    .grid-flex.space .col-flex-2:last-child {
+        margin-left: .5em;
+    }
+    .grid-flex.space .col-flex-3:first-child {
+        margin-right: .5em;
+    }
+    .grid-flex.space .col-flex-3:last-child {
+        margin-left: .5em;
+    }
+}
+
+
+/*
+    Sematnic CSS
+*/
+
+a {
+    color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: .5rem 0 1rem 0;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 2.33333em;
+}
+
+h3 {
+    font-size: 2.07692em;
+}
+
+h4 {
+    font-size: 1.85714em;
+}
+
+h5 {
+    font-size: 1.66667em;
+}
+
+h6 {
+    font-size: 1.5em;
+}
+
+u,
+p {
+    margin: .5em 0 1em 0;
+    line-height: 1.5em;
+}
+
+strong {
+    font-weight: 700;
+}
