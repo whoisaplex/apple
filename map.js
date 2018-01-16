@@ -374,7 +374,11 @@ function renderQuestMarkers(){
     const marker = newMarker(positions[objectData], objectData, 'img/placeholder.png');
     questMarkers.push(marker);
     marker.CircleOverlay = newQuestCircle(positions[objectData]);
+    marker.isAvailable = positions[objectData].isAvailable;
     marker.addListener('click', function(){
+      addClickEvent(this);
+      /*
+      console.log(this);
       if(inRange(this.position)) {
         alert('in range');
         socket.emit('changePosition', {id: this.title, change: false});
@@ -389,6 +393,7 @@ function renderQuestMarkers(){
       } else {
         alert('not in range');
       }
+      */
     });
   }
 }
@@ -410,9 +415,31 @@ function updateMarker(data){
   const marker = newMarker(data.data, data.id, 'img/placeholder.png');
   questMarkers.push(marker);
   marker.CircleOverlay = newQuestCircle(data.data);
+  marker.isAvailable = data.data.isAvailable;
+  marker.addListener('click', function() {
+    addClickEvent(this);
+  });
 }
 
-
+function addClickEvent(positionObject){
+  if(!positionObject.isAvailable){
+    console.log('You cannot take this quest at the moment');
+  }else{
+    console.log(positionObject);
+    if(inRange(positionObject.position)) {
+      alert('in range');
+      socket.emit('changePosition', {id: positionObject.title, change: false});
+      questMarkers.forEach((data, index, object) => {
+        if(data.title === positionObject.title){
+          //Setting the questmarker and circle to null, and Removing the instance of it from questmarker variable
+          data.CircleOverlay.setMap(null);
+          data.setMap(null);
+          object.splice(index, 1);
+        }
+      });
+    } else {  alert('not in range');}
+  }
+}
 // Check if player is in range
 function inRange(questPosition){
   const range = 0.0111;
@@ -420,7 +447,6 @@ function inRange(questPosition){
     lat: questPosition.lat(),
     lng: questPosition.lng()
   }
-
   if(user.coords.lat < quest.lat + range &&
     user.coords.lat > quest.lat - range
     && user.coords.lng < quest.lng + range &&
