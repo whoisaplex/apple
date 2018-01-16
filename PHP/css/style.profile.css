@@ -16,11 +16,15 @@ body {
     background: #000;
 }
 
+i {
+    color: #315d6b
+}
+
 #main-content {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 2em;
+    padding: 1em;
 }
 
 #profile-header {
@@ -32,7 +36,8 @@ body {
 
 #profile-header #user-avatar {
     width: 100px;
-    border: 1px solid #fff
+    border: 1px solid #fff;
+    overflow: hidden;
 }
 
 #profile-header #user-avatar img {
@@ -40,30 +45,53 @@ body {
     height: auto
 }
 
+#profile-header #user-id-container {
+    width: calc(100% - 120px);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 1.2em
+}
+
 #profile-header #user-id {
-    width: calc(100% - 100px)
+    font-weight: bold;
+    overflow-wrap: break-word;
 }
 
 #profile-header #user-level {
-    padding: .3em .5em;
-    width: auto;
-    display: inline-block;
+    width: 2.1em;
+    height: 2.1em;
     border: 1px solid #fff;
     border-radius: 50%;
+    /* text-align: center; */
+    margin-left: .5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profile-header #user-level div {
     text-align: center;
+    margin-left: -1px;
+    font-weight: bold;
 }
 
 #profile-header #user-xp progress {
     max-width: 100%;
     min-width: 100px
 }
+
 #profile-header #user-xp {
-    width: calc(100% - 100px)
+    width: calc(100% - 100px);
+    padding: 0.5em 0;
 }
 
-
 #profile-header #user-cash {
-    width: 100%
+    width: 100%;
+}
+
+#user-cash .fa-bitcoin {
+    color: gold
 }
 
 @media screen and (min-width: 768px) {
@@ -110,7 +138,7 @@ body {
 */
 
 a {
-    color: #000000;
+    color: #fff;
 }
 
 h1,
@@ -120,31 +148,30 @@ h4,
 h5,
 h6 {
     margin: .5rem 0 1rem 0;
-    color: #000000;
 }
 
 h1 {
-    font-size: 4em;
+    font-size: 2em;
 }
 
 h2 {
-    font-size: 3.33333em;
+    font-size: 2.33333em;
 }
 
 h3 {
-    font-size: 3.07692em;
+    font-size: 2.07692em;
 }
 
 h4 {
-    font-size: 2.85714em;
+    font-size: 1.85714em;
 }
 
 h5 {
-    font-size: 2.66667em;
+    font-size: 1.66667em;
 }
 
 h6 {
-    font-size: 2.5em;
+    font-size: 1.5em;
 }
 
 u,
