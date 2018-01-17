@@ -54,23 +54,23 @@ io.on('connection', function(socket){
     questPositions[data.id].isAvailable = data.change;
     questPositions[data.id].captureId = socket.id;
     io.sockets.emit('updateMarker', {data: questPositions[data.id], id: data.id});
-    //Start timer
+//Start timer
     questPositions[data.id].timer = new Stopwatch(3000); //The time it takes to take the quest.
     questPositions[data.id].timer.start();
-    //Call function when timer is done.
+//Call function when timer is done.
     questPositions[data.id].timer.onDone(function(){
-        //Change data before sending it
-        //***What happens when the player completes the quest***
+//Change data before sending it
+//***What happens when the player completes the quest***
         questPositions[data.id].timer.stop();
         questPositions[data.id].isAvailable = 'red';
         questPositions[data.id].captureId = socket.id;
         io.sockets.emit('updateMarker', {data: questPositions[data.id], id: data.id});
-        //Sets the cooldown timer for the quest to true.
+//Sets the cooldown timer for the quest to true.
         questPositions[data.id].cooldownIsActive = true;
         questPositions[data.id].cooldown = new Stopwatch(10000); //The time that the quest should not be available for anyone.
         questPositions[data.id].cooldown.start();
         questPositions[data.id].cooldown.onDone(function(){
-          //Set the cooldown timer for the quest to false.
+//Set the cooldown timer for the quest to false.
           questPositions[data.id].cooldown.stop();
           questPositions[data.id].isAvailable = 'yellow';
           questPositions[data.id].captureId = '';
