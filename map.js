@@ -416,30 +416,43 @@ function updateMarker(data){
   questMarkers.push(marker);
   marker.CircleOverlay = newQuestCircle(data.data);
   marker.isAvailable = data.data.isAvailable;
+  marker.captureId = data.data.captureId;
   marker.addListener('click', function() {
     addClickEvent(this);
   });
 }
 
 function addClickEvent(positionObject){
-  if(!positionObject.isAvailable){
-    console.log('You cannot take this quest at the moment');
-  }else{
-    console.log(positionObject);
+  if(positionObject.isAvailable === 'green'){
+    if(inRange(positionObject.position)) {
+      if(positionObject.captureId === socket.id){
+        console.log('You already have this point');
+      }
+    }
+  }else if(positionObject.isAvailable === 'yellow'){
     if(inRange(positionObject.position)) {
       alert('in range');
-      socket.emit('changePosition', {id: positionObject.title, change: false});
-      questMarkers.forEach((data, index, object) => {
-        if(data.title === positionObject.title){
-          //Setting the questmarker and circle to null, and Removing the instance of it from questmarker variable
-          data.CircleOverlay.setMap(null);
-          data.setMap(null);
-          object.splice(index, 1);
-        }
-      });
+      sendUpdateMarker(positionObject);
     } else {  alert('not in range');}
+  }else{
+    if(inRange(positionObject.position)) {
+      console.log('You cannot take this quest the time');
+    }
   }
 }
+
+function sendUpdateMarker(positionObject){
+  socket.emit('changePosition', {id: positionObject.title, change: 'red'});
+  questMarkers.forEach((data, index, object) => {
+    if(data.title === positionObject.title){
+      //Setting the questmarker and circle to null, and Removing the instance of it from questmarker variable
+      data.CircleOverlay.setMap(null);
+      data.setMap(null);
+      object.splice(index, 1);
+    }
+  });
+}
+
 // Check if player is in range
 function inRange(questPosition){
   const range = 0.0111;
@@ -465,7 +478,19 @@ function newMarker(pos, id, icon = undefined){
 };
 // Create quest cirlcles
 function newQuestCircle(position){
-  if(position.isAvailable === true){
+  if(position.isAvailable === 'red'){
+    if(position.captureId === socket.id){
+      return new google.maps.Circle({
+        strokeColor: '#388E3C',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#4CAF50',
+        fillOpacity: 0.35,
+        map: googleMaps,
+        center: position,
+        radius: 11
+       });
+    }else{
      return new google.maps.Circle({
        strokeColor: '#FF0000',
        strokeOpacity: 0.8,
@@ -476,13 +501,26 @@ function newQuestCircle(position){
        center: position,
        radius: 11
       });
+    }
+  }else if(position.isAvailable === 'green'){
+    //Creates a Green circle that indicates the zone is taken.
+    return new google.maps.Circle({
+      strokeColor: '#388E3C',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#4CAF50',
+      fillOpacity: 0.35,
+      map: googleMaps,
+      center: position,
+      radius: 11
+     });
   }else{
     //Creates a yellow cirlce that indicates that the zone is unavailable
     return new google.maps.Circle({
-      strokeColor: '#c9b100',
+      strokeColor: '#FBC02D',
       strokeOpacity: 0.8,
       strokeWeight: 2,
-      fillColor: '#ffe100',
+      fillColor: '#FFEB3B',
       fillOpacity: 0.35,
       map: googleMaps,
       center: position,
