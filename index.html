@@ -15,42 +15,15 @@
     <div id="menu-list">
 
         <div class="menu-container">
-            <div class="menu-title">
-                <p>Quests list</p>
-            </div>
-
             <ul>
-                <li>
-                    <a href="#">
-                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="flaticon-010-hacker"></span> Hack this shit</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="flaticon-021-globe"></span> Hack this shit</a>
+                <!-- Quest positions renders dynimacally via JS --> 
+                <!-- ERROR message removed if connected to server sucesfully-->
+                <li class="error-message">
+                    <code>
+                        :'( <br>
+                        There was a problem with the connection to the server. 
+                        Make sure you are connecting via https.
+                    </code>
                 </li>
             </ul>
         </div>
@@ -82,9 +55,9 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="menu.js"></script>
     <script src="mapmarkers.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-asKbHoJKTtGt8rWJ35ebHT3j7sVKUBA"></script>
-    <script src="menu.js"></script>
     <script src="map.js"></script>
   </body>
 </html>

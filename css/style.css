@@ -95,11 +95,6 @@ body {
     color: #fff;
 }
 
-#menu-list li:nth-child(odd) {
-    background: rgb(201, 34, 34);
-}
-
-
 .menu-item {
     padding: .5em;
     margin: .5em;
@@ -166,10 +161,12 @@ body {
     display: block;
     text-decoration: none;
     color: #fff;
+    display: flex; 
+    align-items: center; 
 }
 
 #menu-list li:nth-child(odd) {
-    background: rgb(139, 139, 139)
+    background: rgb(29, 44, 77);
 }
 
 #menu-list ul {
@@ -188,5 +185,29 @@ body {
 }
 
 .menu-container {
-    margin: 70px 0 0 0; 
+    margin: 58px 0 0 0; 
 }
+
+.menu-container ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-container ul li .center-map{
+    margin: 0 20px 0 0; 
+}
+
+.error-message {
+    padding: 50px 10px;
+    text-align: center; 
+    line-height: 30px; 
+    width: 100vw; 
+    height: 30vh;
+    
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+}
+

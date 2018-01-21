@@ -6,6 +6,7 @@ function getMarkers(){
   socket.on('sendData', (data) => {
     positions = data;
     renderQuestMarkers();
+    renderQuestItemList(); 
   });
 }
 getMarkers();
@@ -13,3 +14,12 @@ getMarkers();
 socket.on('updateMarker', (data) => {
   updateMarker(data);
 });
+
+/* Loops trough the positions object
+   and renders HTML for each item */
+function renderQuestItemList(){
+  questItems.innerHTML = ''; 
+  for(let id in positions) {
+    questItems.innerHTML += questListItem(positions[id], id);
+  }
+}
