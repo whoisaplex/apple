@@ -78,7 +78,7 @@ class Player{
     this.marker.playerMarker();
   }
   inRange(data){
-    const range = 0.0011;
+    const range = 0.0111;
     const inLat =  data.position.lat();
     const inLng = data.position.lng();
     if(player.lat < inLat + range && player.lat > inLat - range && player.lng < inLng + range && player.lng > inLng - range){
@@ -118,12 +118,17 @@ function updateMarker(data){
   questMarkerHolder[data.id].CircleGraphics.setMap(null);
   questMarkerHolder[data.id].setMap(null);
   const TempMarker = new Markers(data.data.lat, data.data.lng, map.map, 'img/placeholder.png', data.id);
-  if(socket.id === data.data.captureId){
-    questMarkerHolder[data.id] = TempMarker.questMarker('#388E3C', data.data.isAvailable, data.data.isBeingTaken);
+  if(data.data.captureId != socket.id){
+    if(data.data.isAvailable === true){
+      questMarkerHolder[data.id] = TempMarker.questMarker('#FBC02D', data.data.isAvailable, data.data.isBeingTaken);
+    }else{
+      questMarkerHolder[data.id] = TempMarker.questMarker('#D32F2F', data.data.isAvailable, data.data.isBeingTaken);
+    }
   }else{
-    questMarkerHolder[data.id] = TempMarker.questMarker('#D32F2F', data.data.isAvailable, data.data.isBeingTaken);
+    questMarkerHolder[data.id] = TempMarker.questMarker('#388E3C', data.data.isAvailable, data.data.isBeingTaken);
   }
 }
+
 //Initialized
 const questMarkerHolder = [];
 const map = new Map(document.getElementById('map'), 59.332401, 18.064442, mapStyles);
