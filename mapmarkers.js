@@ -4,7 +4,9 @@ let socket;
 function getMarkers(){
   socket = io('http://localhost:3000');
   socket.on('sendData', (data) => {
-    renderQuestMarkers(data);
+    positions = data;
+    renderQuestMarkers();
+    renderQuestItemList();
   });
 }
 getMarkers();
@@ -13,6 +15,11 @@ socket.on('updateMarker', (data) => {
   updateMarker(data);
 });
 
-socket.on('TeamCords', (data) => {
-  console.log(data);
-});
+/* Loops trough the positions object
+   and renders HTML for each item */
+function renderQuestItemList(){
+  questItems.innerHTML = '';
+  for(let id in positions) {
+    questItems.innerHTML += questListItem(positions[id], id);
+  }
+}
