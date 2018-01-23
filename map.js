@@ -78,7 +78,7 @@ class Player{
     this.marker.playerMarker();
   }
   inRange(data){
-    const range = 0.0111;
+    const range = 0.0011;
     const inLat =  data.position.lat();
     const inLng = data.position.lng();
     if(player.lat < inLat + range && player.lat > inLat - range && player.lng < inLng + range && player.lng > inLng - range){
