@@ -12,3 +12,7 @@ getMarkers();
 socket.on('updateMarker', (data) => {
   updateMarker(data);
 });
+
+socket.on('TeamCords', (data) => {
+  console.log(data);
+});

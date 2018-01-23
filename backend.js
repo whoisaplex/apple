@@ -26,8 +26,8 @@ const questPositions = {
 };
 
 io.on('connection', function(socket){
-  users[socket.id] = socket;
-  users[socket.id].emit('sendData', questPositions);
+  users[socket.id] = {socket: socket};
+  users[socket.id].socket.emit('sendData', questPositions);
 
   socket.on('changePosition', (data) =>{
     questPositions[data].isAvailable = false;
@@ -49,39 +49,19 @@ io.on('connection', function(socket){
         io.sockets.emit('updateMarker', {data: questPositions[data], id: data});
       });
     });
+  });
 
-
-
-
-
-
+  socket.on('TeamPosUpdate', (data) => {
     /*
-    io.sockets.emit('updateMarker', {data: questPositions[data], id: data});
-//Start timer
-    questPositions[data].timer = new Stopwatch(3000); //The time it takes to take the quest.
-    questPositions[data].timer.start();
-//Call function when timer is done.
-    questPositions[data].timer.onDone(function(){
-//Change data before sending it
-//***What happens when the player completes the quest***
-        questPositions[data].timer.stop();
-        questPositions[data].isAvailable = 'red';
-        questPositions[data].captureId = socket.id;
-        io.sockets.emit('updateMarker', {data: questPositions[data], id: data});
-//Sets the cooldown timer for the quest to true.
-        questPositions[data].cooldownIsActive = true;
-        questPositions[data].cooldown = new Stopwatch(10000); //The time that the quest should not be available for anyone.
-        questPositions[data].cooldown.start();
-        questPositions[data].cooldown.onDone(function(){
-//Set the cooldown timer for the quest to false.
-          questPositions[data].cooldown.stop();
-          questPositions[data].isAvailable = true;
-          questPositions[data].captureId = '';
-          io.sockets.emit('updateMarker', {data: questPositions[data], id: data});
-
-        });
-    });
+    if(users[socket.id].teamID){
+      users[socket.id].coords = {lat: data.lat, lng: data.lng};
+    }else{
+      users[socket.id].teamID = data.teamID;
+      users[socket.id].coords = {lat: data.lat, lng: data.lng};
+      socket.join(users[socket.id].teamID);
+    }
     */
+    //io.in(users[socket.id].teamID).emit('TeamCords', 'Hello my honey');
   });
 });
 
