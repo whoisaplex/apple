@@ -75,7 +75,7 @@ class Player{
     this.lat = position.coords.latitude;
     this.lng = position.coords.longitude;
     this.marker = new Markers(this.lat, this.lng, map.map, 'img/playerIcon.png', 'Player');
-    this.marker.playerMarker();
+    this.marker = this.marker.playerMarker();
   }
   inRange(data){
     const range = 0.0011;
