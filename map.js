@@ -3,6 +3,18 @@ green #388E3C
 yellow #FBC02D
 red #D32F2F
 */
+
+/* DEBUGGING */ 
+const debugDiv = document.querySelector('#debugger'); 
+const debugBtn = document.querySelector('#debugger-icon'); 
+
+debugBtn.addEventListener('click', function(){
+    debugDiv.classList.toggle('show'); 
+})
+
+const debug = new DebugConsole(debugDiv); 
+/* /DEBUGGING */ 
+
 class Map{
   constructor(mapHolder, startX, startY, mapStyle){
     this.mapHolder = mapHolder;
@@ -45,6 +57,7 @@ class Markers{
         socket.emit('changePosition', data.title);
       }else{
         console.log('Quest could not be taken now');
+        debug.log({message: 'Quest could not be taken now', type: 'questclick'}); 
       }
     }else{
       console.log('Player is not in range');
@@ -92,8 +105,10 @@ class Player{
 function updatePlayerPos(position){
   if(player.lat || player.lng){
     player.marker.setMap(null);
+    debug.log({type: 'Marker Cleared', message: player.lat + ' ' + player.lng}); 
   }
   player.updatePlayerPos(position);
+  debug.log({type: 'Position updated', message: player.lat + ' ' + player.lng}); 
   if(!player.foundCoords){
     map.centerZoomMap();
     player.foundCoords = true;
@@ -141,3 +156,4 @@ const compass = document.querySelector('#compass');
 compass.addEventListener('click', () => {
   map.centerZoomMap();
 });
+

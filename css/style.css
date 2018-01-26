@@ -211,3 +211,25 @@ body {
     flex-direction: column; 
 }
 
+#debugger {
+    width: 100vw; 
+    height: 90vh; 
+    background: white; 
+    position: fixed; 
+    top: 0px; 
+    display: none; 
+    padding: 10vh 10px 10px 10px; 
+    box-sizing: border-box; 
+}
+
+#debugger.show {
+    display: block; 
+}
+
+#debugger-icon {
+    position: fixed; 
+    right: 20px; 
+    top: 5px; 
+    color: white; 
+    z-index: 999; 
+}
