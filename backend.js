@@ -34,8 +34,16 @@ io.on('connection', function(socket){
     questPositions[data].isBeingTaken = true;
     questPositions[data].captureId = socket.id;
     io.sockets.emit('updateMarker', {data: questPositions[data], id: data});
-    questPositions[data].timer = new Stopwatch(3000);
+    const fullTime = 5000;
+    const options = { refreshRateMS: 100};
+    questPositions[data].timer = new Stopwatch(fullTime, options);
     questPositions[data].timer.start();
+    /*
+    questPositions[data].timer.onTime(function(time) {
+      let now = fullTime - time.ms;
+      users[socket.id].socket.emit('timerData', ((now/fullTime).toFixed(2)));
+    });
+    */
     questPositions[data].timer.onDone(function(){
       questPositions[data].timer.stop();
       questPositions[data].isBeingTaken = false;
