@@ -94,12 +94,14 @@ function updatePlayerPos(position){
     player.marker.setMap(null);
   }
   player.updatePlayerPos(position);
+  socket.emit('TeamPosUpdate', {lat: player.lat, lng: player.lng, teamID: 'SickPlayers'});
   if(!player.foundCoords){
     map.centerZoomMap();
     player.foundCoords = true;
   }
 }
 function onError(){}
+//Render all questemarkers first time
 function renderQuestMarkers(data){
   for(let dataID in data){
     const TempMarker = new Markers(data[dataID].lat, data[dataID].lng, map.map, 'img/placeholder.png', dataID);
@@ -114,6 +116,7 @@ function renderQuestMarkers(data){
     }
   }
 }
+//Update QuestMarkers
 function updateMarker(data){
   questMarkerHolder[data.id].CircleGraphics.setMap(null);
   questMarkerHolder[data.id].setMap(null);
@@ -129,8 +132,19 @@ function updateMarker(data){
   }
 }
 
+socket.on('TeamCoords', data => {
+  if(TeamHolder[data.identifier]){
+    //If player exist, clear the marker
+    TeamHolder[data.identifier].setMap(null);
+  }
+  TeamHolder[data.identifier] = new Markers(data.coords.lat, data.coords.lng, map.map, 'img/TeamPlayerIcon.png', 'TeamPlayer');
+  TeamHolder[data.identifier] = TeamHolder[data.identifier].playerMarker();
+});
+
+
 //Initialized
 const questMarkerHolder = [];
+const TeamHolder = [];
 const map = new Map(document.getElementById('map'), 59.332401, 18.064442, mapStyles);
 map.initMap();
 const player = new Player(null, null, 1, false);

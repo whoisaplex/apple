@@ -52,7 +52,6 @@ io.on('connection', function(socket){
   });
 
   socket.on('TeamPosUpdate', (data) => {
-    /*
     if(users[socket.id].teamID){
       users[socket.id].coords = {lat: data.lat, lng: data.lng};
     }else{
@@ -60,8 +59,8 @@ io.on('connection', function(socket){
       users[socket.id].coords = {lat: data.lat, lng: data.lng};
       socket.join(users[socket.id].teamID);
     }
-    */
-    //io.in(users[socket.id].teamID).emit('TeamCords', 'Hello my honey');
+    //Send to everyone in the same team, except the sender
+    socket.broadcast.to(users[socket.id].teamID).emit('TeamCoords', {coords: users[socket.id].coords, identifier: socket.id});
   });
 });
 
