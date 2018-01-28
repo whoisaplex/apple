@@ -14,7 +14,7 @@ class Map{
   }
   centerZoomMap(){
     this.map.setCenter({lat: player.lat, lng: player.lng});
-    this.map.setZoom(17);
+    this.map.setZoom(10);
   }
 }
 
@@ -33,9 +33,9 @@ class Markers{
     let TempQuestMarker = new google.maps.Marker({position: {lat: this.lat, lng: this.lng}, map: this.map, icon: this.icon, title: this.title});
     TempQuestMarker.isAvailable = available;
     TempQuestMarker.isBeingTaken = taken;
-    TempQuestMarker.CircleGraphics = this.questCircleGraphics({lat: this.lat, lng: this.lng}, color);
+    TempQuestMarker.CircleGraphics = this.questCircleGraphics({ lat: this.lat, lng: this.lng }, color);
     TempQuestMarker.addListener('click', () => {
-      this.questClickHandle(TempQuestMarker);
+      this.questClickHandle(TempQuestMarker);     
     });
     return TempQuestMarker;
   }
@@ -43,12 +43,36 @@ class Markers{
     if(player.inRange(data)){
       if(data.isAvailable === true && data.isBeingTaken === false){
         socket.emit('changePosition', data.title);
+
       }else{
         console.log('Quest could not be taken now');
       }
     }else{
       console.log('Player is not in range');
     }
+
+
+    questDialog.classList.add("show");
+    questDialog.innerHTML = '';
+    questDialog.innerHTML += `
+      <div id="quest-dialog-info">
+        <div id="quest-dialog-name"><h4>Namn(${data.title})</h4></div>
+        <div id="quest-dialog-status">${data.isAvailable === false && data.isBeingTaken === true ? 'Otillgänglig <i class="fa fa-times-circle-o red" aria-hidden="true"></i>' : 'Tillgänglig <i class="fa fa-check-circle-o green" aria-hidden="true"></i>'}</div>
+      </div>
+
+      <div id="quest-dialog-progress">
+      ${data.isAvailable === false && data.isBeingTaken === true ? '<progress id="quest-dialog-cooldown" value="60" max="100"></progress>' : data.isAvailable === true ? 'Du kan ta denna quest' : '<progress id="quest-dialog-taking" value="22" max="100"></progress>' }
+      </div>
+
+      <div id="quest-dialog-loot">
+        ${data.isAvailable === false && data.isBeingTaken === true ? 'Questen måste vara tillgängligt för att se denna info!' : '<div id="quest-dialog-cash">$0</div><div id="quest-dialog-xp">0 XP</div>' }
+      </div>
+
+      <div id="quest-dialog-buttons">
+        <button id="quest-dialog-go" ${data.isAvailable === false && data.isBeingTaken === true ? 'class="btn-sm btn-secondary" disabled' : 'class="btn-sm btn-success"' } >Kör</button><button id="quest-dialog-cancel" class="btn-sm btn-primary">Avbryt</button>
+      </div>
+      `
+
   }
   questCircleGraphics(position, color){
     return new google.maps.Circle({

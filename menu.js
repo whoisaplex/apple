@@ -4,6 +4,7 @@ let gameSite = document.querySelector("#menu-site");
 let gameMenu = document.querySelector("#menu-list");
 let mapWindow = document.querySelector("#map");
 let questItems = gameMenu.querySelector('.menu-container ul');
+let questDialog = document.querySelector('#quest-dialog');
 
 siteButton.addEventListener("click", function() {
     gameSite.classList.toggle("show");
