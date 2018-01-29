@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Team;
-use App\UsersInfo;
 use Auth;
 
 class TeamsController extends Controller
 {
+
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
     /**
      * Display a listing of the resource.
      *
@@ -51,7 +56,7 @@ class TeamsController extends Controller
 
 
         // Redirect to home page
-        return redirect('/');
+        return redirect('/home');
     }
 
     /**

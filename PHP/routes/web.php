@@ -14,15 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/profile', function() {
-    //$user = DB::table('users')->get('name')
-    return view('profile/profile');
-});
-Route::get('/teams', function() {
-    return view('profile/teams');
-});
-Route::post('/teams', 'TeamsController@store');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Only for logged in users
+Route::middleware('auth')->group(function () {
+  Route::get('/teams', function() {
+      return view('profile/teams');
+  });
+  Route::get('/home', 'HomeController@index')->name('home');
+  Route::post('/teams', 'TeamsController@store');
+});
