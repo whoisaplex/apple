@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>StreetHack - Profilepage</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
-    <link rel="stylesheet" href="css/profile.css">
-
-</head>
-
-<body>
-
+@section('content')
     <main id="main-content">
 
         <section id="profile-header">
@@ -104,7 +89,4 @@
 
         </section>
     </main>
-
-</body>
-
-</html>
+@endsection

@@ -45,6 +45,34 @@ html, body {
     text-decoration: none;
     text-transform: uppercase;
 }
+.navbar-default .navbar-nav>li>a {
+    color: #19ff00;
+}
+.navbar-default .navbar-brand {
+    color: red;
+}
+.btn-primary {
+    color: #000;
+    background-color: #19a709;
+    border-color: #000;
+}
+.btn-primary:hover {
+    color: #000;
+    background-color: #19a709;
+    border-color: #000;
+}
+
+.btn-link {
+    color: #fff;
+    font-weight: normal;
+    border-radius: 0;
+}
+.btn-link:hover {
+    color: #fff;
+    font-weight: normal;
+    border-radius: 0;
+}
+
 
 .m-b-md {
     margin-bottom: 30px;
