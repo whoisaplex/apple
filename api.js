@@ -20,10 +20,10 @@ let apiRequest = (method, slug, body) => {
 }
 
 // Update specific user
-apiRequest('PUT', 'user/update/11', { xp: 10, currency: 10 })
+apiRequest('PUT', `user/update/11`, { xp: 545, currency: 6545 })
 
 // Get specific user
-apiRequest('GET', 'user/5')
+apiRequest('GET', `user/11`)
 
 // Get all users
-// apiRequest('GET', 'users')
+// let asd = apiRequest('GET', 'users')
