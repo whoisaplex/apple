@@ -19,9 +19,9 @@ Auth::routes();
 
 //Only for logged in users
 Route::middleware('auth')->group(function () {
-  Route::get('/teams', function() {
-      return view('profile/teams');
-  });
-  Route::get('/home', 'HomeController@index')->name('home');
+  Route::get('/teams', 'TeamsController@index')->name('teams');
   Route::post('/teams', 'TeamsController@store');
+  Route::get('/home', 'HomeController@index')->name('home');
+  Route::get('/users', 'UsersController@index')->name('users');
+  Route::get('/users/{user}', 'UsersController@show');
 });

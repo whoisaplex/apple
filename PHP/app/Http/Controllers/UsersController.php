@@ -4,17 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Team;
-use Auth;
 
-class TeamsController extends Controller
+class UsersController extends Controller
 {
-
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +14,8 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        return view('teams');
+        $users = User::take(10)->get();
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -43,20 +36,7 @@ class TeamsController extends Controller
      */
     public function store(Request $request)
     {
-
-        $team = Team::create([
-          'name' => request('name'),
-          'owner_id' => Auth()->id(),
-        ]);
-
-        $user = Auth::user();
-        $user->team()->associate($team);
-        $user->save();
-
-
-
-        // Redirect to home page
-        return redirect('/home');
+        //
     }
 
     /**
@@ -65,9 +45,9 @@ class TeamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('users.show', compact('user'));
     }
 
     /**
