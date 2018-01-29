@@ -2,28 +2,23 @@
 # Created by https://www.gitignore.io/api/osx,node,windows,laravel
 
 ### Laravel ###
-/vendor
-node_modules/
-npm-debug.log
-
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
+/PHP/vendor
+/PHP/node_modules/
+/PHP/npm-debug.log
 
 # Laravel 5 & Lumen specific
-public/storage
-public/hot
-storage/*.key
-.env.*.php
-.env.php
-.env
-Homestead.yaml
-Homestead.json
+/PHP/public/storage
+/PHP/public/hot
+/PHP/storage/*.key
+/PHP/.env.*.php
+/PHP/.env.php
+/PHP/.env
+/PHP/Homestead.yaml
+/PHP/Homestead.json
 
-# Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
-.rocketeer/
 
 ### Node ###
+node_modules/
 # Logs
 logs
 *.log
