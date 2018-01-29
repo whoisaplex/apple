@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password','team_id','xp','level','currency'
     ];
 
     /**
@@ -27,13 +27,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function info()
-    {
-        return $this->hasOne(UsersInfo::class);
-    }
     public function team()
     {
-        return $this->hasOne(Team::class,'owner_id');
+        return $this->belongsTo(Team::class);
     }
 
 }

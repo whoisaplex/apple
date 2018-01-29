@@ -14,9 +14,9 @@ class Teams extends Migration
      public function up()
      {
          Schema::create('teams', function (Blueprint $table) {
-             $table->increments('team_id');
+             $table->increments('id');
              $table->string('name')->unique();
-             $table->integer('owner_id');
+             $table->integer('owner_id')->nullable();
              $table->timestamps();
          });
      }

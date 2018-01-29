@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Team;
 use App\UsersInfo;
+use Auth;
 
 class TeamsController extends Controller
 {
@@ -38,15 +39,18 @@ class TeamsController extends Controller
     public function store(Request $request)
     {
 
-        Team::create([
+        $team = Team::create([
           'name' => request('name'),
           'owner_id' => Auth()->id(),
         ]);
-        $userinfo = User::find(Auth()->id());
-        $userinfo->team->team_id = 1;
-        $userinfo->save();
-        // Redirect to home page
 
+        $user = Auth::user();
+        $user->team()->associate($team);
+        $user->save();
+
+
+
+        // Redirect to home page
         return redirect('/');
     }
 

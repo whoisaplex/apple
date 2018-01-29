@@ -26,27 +26,27 @@
             <div id="user-id-container">
                 <div id="user-id">
 
-                  {{ Auth::user()->name }}
+                  {{ $user->username }}
 
                 </div>
-                @isset(Auth::user()->team->name)
+                @isset($user->team)
                 <div id="user-team">
 
-                  {{ Auth::user()->team->name }}
+                  {{ $user->team->name }}
 
                 </div>
                 @endisset
                 <div id="user-level">
-                    <div>{{ Auth::user()->info->level}}</div>
+                    <div>{{ $user->level}}</div>
                 </div>
-                <div id="user-cash"> {{ Auth::user()->info->currency}}
+                <div id="user-cash">{{ $user->currency }}
                     <i class="fa fa-bitcoin"></i>
                 </div>
             </div>
 
 
             <div id="user-xp">
-                <progress value={{ Auth::user()->info->xp}} max="100"></progress>
+                <progress value={{ $user->xp}} max="100"></progress>
             </div>
 
         </section>
@@ -85,34 +85,17 @@
                             <h3><i class="fa fa-users" aria-hidden="true"></i> My group</h3>
                         </div>
                         <div class="panel-body">
-
+                          @isset($user->team)
                             <ol id="group-members">
-                                <li class="list danger">Group Member (Username) #1
+                              @foreach($user->team->members as $member)
+                                <li>{{ $member->username }}
                                     <span class="delete">
                                         <button class="btn-sm btn-danger" id="user-id">Kick</button>
                                     </span>
                                 </li>
-                                <li>Group Member (Username) #2
-                                    <span class="delete">
-                                        <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
-                                </li>
-                                <li>Group Member (Username) #3
-                                    <span class="delete">
-                                        <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
-                                </li>
-                                <li>Group Member (Username) #4
-                                    <span class="delete">
-                                        <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
-                                </li>
-                                <li>Group Member (Username) #5
-                                    <span class="delete">
-                                        <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
-                                </li>
+                                @endforeach
                             </ol>
+                            @endisset
                         </div>
                     </div>
                 </div>
