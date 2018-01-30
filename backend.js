@@ -1,6 +1,6 @@
 const app = require('express')();
 const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, { origins: '*:*'});
 const Stopwatch = require('timer-stopwatch');
 let users = {};
 
@@ -24,8 +24,8 @@ const questPositions = {
   id17:{lat: 59.368099 , lng: 17.961684, name: 'bankomat', isAvailable: true, isBeingTaken: false},
   id18: { lat: 59.367826, lng: 17.964833, name: 'bankomat', isAvailable: true, isBeingTaken: false },
   id19: { lat: 59.334660, lng: 18.060483, name: 'bankomat', isAvailable: true, isBeingTaken: false }
-  
-  
+
+
 
 };
 

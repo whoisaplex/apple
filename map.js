@@ -32,18 +32,18 @@ class Markers{
   questMarker(color, available, taken, questName){
     let TempQuestMarker = new google.maps.Marker({position: {lat: this.lat, lng: this.lng}, map: this.map, icon: this.icon, title: this.title});
     // Adds 'name', 'available' and 'taken' property to marker object
-    TempQuestMarker.questName = questName; 
+    TempQuestMarker.questName = questName;
     TempQuestMarker.isAvailable = available;
     TempQuestMarker.isBeingTaken = taken;
     TempQuestMarker.CircleGraphics = this.questCircleGraphics({ lat: this.lat, lng: this.lng }, color);
-    
+
     TempQuestMarker.addListener('click', () => {
-      this.questClickHandle(TempQuestMarker);     
+      this.questClickHandle(TempQuestMarker);
     });
     return TempQuestMarker;
   }
   questClickHandle(data){
-
+    console.log(data);
     // if(player.inRange(data)){
     //   if(data.isAvailable === true && data.isBeingTaken === false){
     //     socket.emit('changePosition', data.title);
@@ -54,11 +54,11 @@ class Markers{
     // }else{
     //   console.log('Player is not in range');
     // }
-    
+
     questDialog.classList.add("show");
     questDialog.innerHTML = '';
     questDialog.innerHTML += `
-      <div data-questid=${data.title} id="quest-dialog-info">
+      <div id="quest-dialog-info">
         <div id="quest-dialog-name"><h4>${data.questName} (${data.title})</h4></div>
         <div id="quest-dialog-status">${data.isAvailable === false && data.isBeingTaken === true ? 'Otillgänglig <i class="fa fa-times-circle-o red" aria-hidden="true"></i>' : 'Tillgänglig <i class="fa fa-check-circle-o green" aria-hidden="true"></i>'}</div>
       </div>
@@ -72,7 +72,7 @@ class Markers{
       </div>
 
       <div id="quest-dialog-buttons">
-        <button id="quest-dialog-go" ${data.isAvailable === false && data.isBeingTaken === true ? 'class="btn-sm btn-secondary" disabled' : 'class="btn-sm btn-success"' } >Kör</button><button id="quest-dialog-cancel" class="btn-sm btn-primary">Avbryt</button>
+        <button data-questid="${data.title}" id="quest-dialog-go" ${data.isAvailable === false && data.isBeingTaken === true ? 'class="btn-sm btn-secondary" disabled' : 'class="btn-sm btn-success"' } >Kör</button><button id="quest-dialog-cancel" class="btn-sm btn-primary">Avbryt</button>
       </div>
       `
 
@@ -105,9 +105,10 @@ class Player{
     this.marker = this.marker.playerMarker();
   }
   inRange(data){
+    console.log(data);
     const range = 0.0011;
-    const inLat =  data.position.lat();
-    const inLng = data.position.lng();
+    const inLat =  data.lat;
+    const inLng = data.lng;
     if(player.lat < inLat + range && player.lat > inLat - range && player.lng < inLng + range && player.lng > inLng - range){
       return true;
     }else{
@@ -133,7 +134,7 @@ function renderQuestMarkers(data){
   for(let dataID in data){
     const TempMarker = new Markers(data[dataID].lat, data[dataID].lng, map.map, 'img/placeholder.png', dataID);
     if(data[dataID].captureId != socket.id){
-      if(data[dataID].isAvailable === true){                                                                         // Adds name so we can acces it when quest dialog is clicked 
+      if(data[dataID].isAvailable === true){                                                                         // Adds name so we can acces it when quest dialog is clicked
         questMarkerHolder[dataID] = TempMarker.questMarker('#FBC02D', data[dataID].isAvailable, data[dataID].isBeingTaken, data[dataID].name);
       }else{
         questMarkerHolder[dataID] = TempMarker.questMarker('#D32F2F', data[dataID].isAvailable, data[dataID].isBeingTaken, data[dataID].name);
@@ -149,7 +150,7 @@ function updateMarker(data){
   questMarkerHolder[data.id].setMap(null);
   const TempMarker = new Markers(data.data.lat, data.data.lng, map.map, 'img/placeholder.png', data.id);
   if(data.data.captureId != socket.id){
-    if(data.data.isAvailable === true){                             
+    if(data.data.isAvailable === true){
       questMarkerHolder[data.id] = TempMarker.questMarker('#FBC02D', data.data.isAvailable, data.data.isBeingTaken);
     }else{
       questMarkerHolder[data.id] = TempMarker.questMarker('#D32F2F', data.data.isAvailable, data.data.isBeingTaken);
