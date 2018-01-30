@@ -22,7 +22,8 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        return view('teams');
+        $user = Auth::User();
+        return view('teams.teams', compact('user'));
     }
 
     /**
@@ -65,9 +66,11 @@ class TeamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($team)
     {
-        //
+      $team = Team::where('name', $team)->firstOrFail();
+      return view('teams.show', compact('team'));
+
     }
 
     /**

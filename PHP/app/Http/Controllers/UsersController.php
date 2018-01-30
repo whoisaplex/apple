@@ -14,7 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::take(10)->get();
+        $users = User::take(10)->orderBy('xp','desc')->get();
         return view('users.index', ['users' => $users]);
     }
 

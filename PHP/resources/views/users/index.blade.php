@@ -1,21 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>StreetHack - Profilepage</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
-    <link rel="stylesheet" href="css/profile.css">
-
-</head>
-
-<body>
-
+@extends('layouts.app')
+@section('content')
     <main id="main-content">
         <section>
 
@@ -30,7 +14,7 @@
                         <div class="panel-body">
                             <ol id="user-positions">
                               @foreach($users as $user)
-                                <li>{{$user->username}}<span class="cooldown"> <button class="btn-sm btn-danger" id="user-id">Invite to team</button></span>
+                                <li><a href="http://testing.test/users/{{$user->username}}">{{$user->username}}</a><span class="cooldown"> <button class="btn-sm btn-danger" id="user-id">Invite to team</button></span>
                                 </li>
                               @endforeach
                             </ol>
@@ -39,7 +23,4 @@
                 </div>
         </section>
     </main>
-
-</body>
-
-</html>
+@endsection

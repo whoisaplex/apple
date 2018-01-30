@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>StreetHack</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
-    <link rel="stylesheet" href="css/profile.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ URL::asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
 
     <!-- CSRF Token -->

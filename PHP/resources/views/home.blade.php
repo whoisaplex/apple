@@ -67,16 +67,24 @@
                 <div class="col-flex-2">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3><i class="fa fa-users" aria-hidden="true"></i> My group</h3>
+                            <h3><i class="fa fa-users" aria-hidden="true"></i>
+                              @if($user->team)
+                                {{$user->team->name}}
+                              @else
+                              Not in a Team
+                              @endif
+                             </h3>
                         </div>
                         <div class="panel-body">
                           @isset($user->team)
                             <ol id="group-members">
                               @foreach($user->team->members as $member)
                                 <li>{{ $member->username }}
+                                  @if($member->username != $user->username)
                                     <span class="delete">
                                         <button class="btn-sm btn-danger" id="user-id">Kick</button>
                                     </span>
+                                  @endif
                                 </li>
                                 @endforeach
                             </ol>
