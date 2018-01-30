@@ -1,3 +1,5 @@
+import renderQuestMarkers from './game.js'; 
+
 let positions;
 let socket;
 //const timerLiner = document.getElementById('timerLiner');
@@ -31,3 +33,5 @@ function renderQuestItemList(){
     questItems.innerHTML += questListItem(positions[id], id);
   }
 }
+
+export default socket; 
