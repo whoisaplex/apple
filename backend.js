@@ -22,7 +22,11 @@ const questPositions = {
   id15:{lat: 59.371350 , lng: 17.841666, name: 'bankomat', isAvailable: true, isBeingTaken: false},
   id16:{lat: 59.372527 , lng: 17.844904, name: 'bankomat', isAvailable: true, isBeingTaken: false},
   id17:{lat: 59.368099 , lng: 17.961684, name: 'bankomat', isAvailable: true, isBeingTaken: false},
-  id18:{lat: 59.367826 , lng: 17.964833, name: 'bankomat', isAvailable: true, isBeingTaken: false}
+  id18: { lat: 59.367826, lng: 17.964833, name: 'bankomat', isAvailable: true, isBeingTaken: false },
+  id19: { lat: 59.334660, lng: 18.060483, name: 'bankomat', isAvailable: true, isBeingTaken: false }
+  
+  
+
 };
 
 io.on('connection', function(socket){
