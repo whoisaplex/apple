@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>StreetHack - Profilepage</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
-    <link rel="stylesheet" href="css/style.profile.css">
-
-</head>
-
-<body>
-
+@section('content')
     <main id="main-content">
 
         <section id="profile-header">
@@ -25,19 +10,28 @@
 
             <div id="user-id-container">
                 <div id="user-id">
-                    Username
+
+                  {{ $user->username }}
+
                 </div>
+                @isset($user->team)
+                <div id="user-team">
+
+                  {{ $user->team->name }}
+
+                </div>
+                @endisset
                 <div id="user-level">
-                    <div>10</div>
+                    <div>{{ $user->level}}</div>
                 </div>
-                <div id="user-cash">0
+                <div id="user-cash">{{ $user->currency }}
                     <i class="fa fa-bitcoin"></i>
                 </div>
             </div>
 
 
             <div id="user-xp">
-                <progress value="22" max="100"></progress>
+                <progress value={{ $user->xp}} max="100"></progress>
             </div>
 
         </section>
@@ -70,40 +64,31 @@
                     </div>
                 </div>
 
-                <div class="col-flex-2">    
+                <div class="col-flex-2">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3><i class="fa fa-users" aria-hidden="true"></i> My group</h3>
+                            <h3><i class="fa fa-users" aria-hidden="true"></i>
+                              @if($user->team)
+                                {{$user->team->name}}
+                              @else
+                              Not in a Team
+                              @endif
+                             </h3>
                         </div>
                         <div class="panel-body">
-
+                          @isset($user->team)
                             <ol id="group-members">
-                                <li class="list danger">Group Member (Username) #1
+                              @foreach($user->team->members as $member)
+                                <li>{{ $member->username }}
+                                  @if($member->username != $user->username)
                                     <span class="delete">
                                         <button class="btn-sm btn-danger" id="user-id">Kick</button>
                                     </span>
+                                  @endif
                                 </li>
-                                <li>Group Member (Username) #2
-                                    <span class="delete">
-                                        <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
-                                </li>
-                                <li>Group Member (Username) #3
-                                    <span class="delete">
-                                        <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
-                                </li>
-                                <li>Group Member (Username) #4
-                                    <span class="delete">
-                                        <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
-                                </li>
-                                <li>Group Member (Username) #5
-                                    <span class="delete">
-                                        <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
-                                </li>
+                                @endforeach
                             </ol>
+                            @endisset
                         </div>
                     </div>
                 </div>
@@ -112,7 +97,4 @@
 
         </section>
     </main>
-
-</body>
-
-</html>
+@endsection
