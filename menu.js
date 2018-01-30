@@ -22,7 +22,10 @@ questDialog.addEventListener("click", function (event) {
 
     if (event.target.id == 'quest-dialog-cancel') {
         questDialog.classList.remove("show");
-    }
+    } else if (event.target.id == 'quest-dialog-go') {
+        //startQuest(); 
+        console.log(positions); 
+    } 
 });
 
 /*  Eventlistener for the <UL> that contains quest list-items
@@ -32,6 +35,20 @@ questItems.addEventListener('click', function(e){
     centerMapOnQuest(getTargetPosition(e.target), map.map);
     toggleShow(gameMenu);
 })
+
+
+function startQuest(data) {
+    if(player.inRange(data)){
+        if(data.isAvailable === true && data.isBeingTaken === false){
+          socket.emit('changePosition', data.title);
+  
+        }else{
+          console.log('Quest could not be taken now');
+        }
+      }else{
+        console.log('Player is not in range');
+      }
+}
 
 /* Returns the target ID from LI element */
 function getTargetPosition(target){

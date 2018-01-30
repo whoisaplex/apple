@@ -2,19 +2,19 @@
 # Created by https://www.gitignore.io/api/osx,node,windows,laravel
 
 ### Laravel ###
-/PHP/vendor
-/PHP/node_modules/
-/PHP/npm-debug.log
+PHP/vendor
+PHP/node_modules/
+PHP/npm-debug.log
 
 # Laravel 5 & Lumen specific
-/PHP/public/storage
-/PHP/public/hot
-/PHP/storage/*.key
-/PHP/.env.*.php
-/PHP/.env.php
-/PHP/.env
-/PHP/Homestead.yaml
-/PHP/Homestead.json
+PHP/public/storage
+PHP/public/hot
+PHP/storage/*.key
+PHP/.env.*.php
+PHP/.env.php
+PHP/.env
+PHP/Homestead.yaml
+PHP/Homestead.json
 
 
 ### Node ###

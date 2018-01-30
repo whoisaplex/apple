@@ -36,6 +36,7 @@ class Markers{
     TempQuestMarker.isAvailable = available;
     TempQuestMarker.isBeingTaken = taken;
     TempQuestMarker.CircleGraphics = this.questCircleGraphics({ lat: this.lat, lng: this.lng }, color);
+    
     TempQuestMarker.addListener('click', () => {
       this.questClickHandle(TempQuestMarker);     
     });
@@ -43,21 +44,21 @@ class Markers{
   }
   questClickHandle(data){
 
-    if(player.inRange(data)){
-      if(data.isAvailable === true && data.isBeingTaken === false){
-        socket.emit('changePosition', data.title);
+    // if(player.inRange(data)){
+    //   if(data.isAvailable === true && data.isBeingTaken === false){
+    //     socket.emit('changePosition', data.title);
 
-      }else{
-        console.log('Quest could not be taken now');
-      }
-    }else{
-      console.log('Player is not in range');
-    }
+    //   }else{
+    //     console.log('Quest could not be taken now');
+    //   }
+    // }else{
+    //   console.log('Player is not in range');
+    // }
     
     questDialog.classList.add("show");
     questDialog.innerHTML = '';
     questDialog.innerHTML += `
-      <div id="quest-dialog-info">
+      <div data-questid=${data.title} id="quest-dialog-info">
         <div id="quest-dialog-name"><h4>${data.questName} (${data.title})</h4></div>
         <div id="quest-dialog-status">${data.isAvailable === false && data.isBeingTaken === true ? 'Otillgänglig <i class="fa fa-times-circle-o red" aria-hidden="true"></i>' : 'Tillgänglig <i class="fa fa-check-circle-o green" aria-hidden="true"></i>'}</div>
       </div>
