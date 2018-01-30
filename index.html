@@ -6,10 +6,18 @@
     <title>Map Game</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/flaticon.css">
   </head>
   <body>
+    <!--
+    <div style="display:flex; justify-content:center;">
+      <div style="position:fixed; width:90vw; height: 10px; background:grey; top: 100px; z-index:100;">
+        <div id="timerLiner" style="width:0%; height:100%; background:lightgreen;"></div>
+      </div>
+    </div>
+    -->
     <div id="map"></div>
 
     <div id="menu-list">
@@ -28,10 +36,12 @@
             </ul>
         </div>
     </div>
-
+    
     <div id="menu-site">
         <object data="framed.html" type="text/html"><p>This is the fallback code!</p></object>
     </div>
+    
+    <div id="quest-dialog"></div>
 
     <div id="menu-bar">
         <div id="menu" class="menu-item">
@@ -55,7 +65,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-  
+
     <script src="mapmarkers.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-asKbHoJKTtGt8rWJ35ebHT3j7sVKUBA"></script>
     <script src="menu.js"></script>

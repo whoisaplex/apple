@@ -22,7 +22,11 @@ const questPositions = {
   id15:{lat: 59.371350 , lng: 17.841666, name: 'bankomat', isAvailable: true, isBeingTaken: false},
   id16:{lat: 59.372527 , lng: 17.844904, name: 'bankomat', isAvailable: true, isBeingTaken: false},
   id17:{lat: 59.368099 , lng: 17.961684, name: 'bankomat', isAvailable: true, isBeingTaken: false},
-  id18:{lat: 59.367826 , lng: 17.964833, name: 'bankomat', isAvailable: true, isBeingTaken: false}
+  id18: { lat: 59.367826, lng: 17.964833, name: 'bankomat', isAvailable: true, isBeingTaken: false },
+  id19: { lat: 59.334660, lng: 18.060483, name: 'bankomat', isAvailable: true, isBeingTaken: false }
+  
+  
+
 };
 
 io.on('connection', function(socket){
@@ -34,8 +38,16 @@ io.on('connection', function(socket){
     questPositions[data].isBeingTaken = true;
     questPositions[data].captureId = socket.id;
     io.sockets.emit('updateMarker', {data: questPositions[data], id: data});
-    questPositions[data].timer = new Stopwatch(3000);
+    const fullTime = 5000;
+    const options = { refreshRateMS: 100};
+    questPositions[data].timer = new Stopwatch(fullTime, options);
     questPositions[data].timer.start();
+    /*
+    questPositions[data].timer.onTime(function(time) {
+      let now = fullTime - time.ms;
+      users[socket.id].socket.emit('timerData', ((now/fullTime).toFixed(2)));
+    });
+    */
     questPositions[data].timer.onDone(function(){
       questPositions[data].timer.stop();
       questPositions[data].isBeingTaken = false;
@@ -52,7 +64,6 @@ io.on('connection', function(socket){
   });
 
   socket.on('TeamPosUpdate', (data) => {
-    /*
     if(users[socket.id].teamID){
       users[socket.id].coords = {lat: data.lat, lng: data.lng};
     }else{
@@ -60,8 +71,8 @@ io.on('connection', function(socket){
       users[socket.id].coords = {lat: data.lat, lng: data.lng};
       socket.join(users[socket.id].teamID);
     }
-    */
-    //io.in(users[socket.id].teamID).emit('TeamCords', 'Hello my honey');
+    //Send to everyone in the same team, except the sender
+    socket.broadcast.to(users[socket.id].teamID).emit('TeamCoords', {coords: users[socket.id].coords, identifier: socket.id});
   });
 });
 

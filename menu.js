@@ -4,6 +4,7 @@ let gameSite = document.querySelector("#menu-site");
 let gameMenu = document.querySelector("#menu-list");
 let mapWindow = document.querySelector("#map");
 let questItems = gameMenu.querySelector('.menu-container ul');
+let questDialog = document.querySelector('#quest-dialog');
 
 siteButton.addEventListener("click", function() {
     gameSite.classList.toggle("show");
@@ -15,6 +16,13 @@ gameButton.addEventListener("click", function() {
 
 mapWindow.addEventListener("click", function(){
     gameMenu.classList.remove("show");
+});
+
+questDialog.addEventListener("click", function (event) {
+
+    if (event.target.id == 'quest-dialog-cancel') {
+        questDialog.classList.remove("show");
+    }
 });
 
 /*  Eventlistener for the <UL> that contains quest list-items
