@@ -18,6 +18,13 @@ mapWindow.addEventListener("click", function(){
     gameMenu.classList.remove("show");
 });
 
+questDialog.addEventListener("click", function (event) {
+
+    if (event.target.id == 'quest-dialog-cancel') {
+        questDialog.classList.remove("show");
+    }
+});
+
 /*  Eventlistener for the <UL> that contains quest list-items
     If the clicked target has a class of 'center-map' (font awesome icon)
     the map will center on that specific lat/lng for the quest */

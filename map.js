@@ -53,8 +53,7 @@ class Markers{
     }else{
       console.log('Player is not in range');
     }
-
-
+    
     questDialog.classList.add("show");
     questDialog.innerHTML = '';
     questDialog.innerHTML += `
