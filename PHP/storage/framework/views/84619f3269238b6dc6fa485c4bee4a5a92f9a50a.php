@@ -11,10 +11,10 @@
 
 
                         <div class="form-group<?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="username" class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="<?php echo e(old('name')); ?>" required autofocus>
+                                <input id="username" type="text" class="form-control" name="username" value="<?php echo e(old('username')); ?>" required autofocus>
 
                                 <?php if($errors->has('name')): ?>
                                     <span class="help-block">

@@ -4,14 +4,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StreetHack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="<?php echo e(URL::asset('css/reset.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(URL::asset('css/bootstrap.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(URL::asset('css/font-awesome.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(URL::asset('css/profile.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(URL::asset('css/style.css')); ?>">
+
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <title><?php echo e(config('app.name', 'Laravel')); ?></title>
+    <title><?php echo e(config('app.name', 'StreetHack')); ?></title>
 
     <!-- Styles -->
-    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
+<!--    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">-->
 </head>
 <body>
     <div id="app">
@@ -29,7 +37,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
-                        <?php echo e(config('app.name', 'Laravel')); ?>
+                        <?php echo e(config('app.name', 'StreetHack')); ?>
 
                     </a>
                 </div>
@@ -49,7 +57,7 @@
                         <?php else: ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    <?php echo e(Auth::user()->name); ?> <span class="caret"></span>
+                                    <?php echo e(Auth::user()->username); ?> <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
