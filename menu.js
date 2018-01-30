@@ -23,8 +23,8 @@ questDialog.addEventListener("click", function (event) {
     if (event.target.id == 'quest-dialog-cancel') {
         questDialog.classList.remove("show");
     } else if (event.target.id == 'quest-dialog-go') {
-        //startQuest(positions[event.target.dataset.questid]);
-        console.log(positions[event.target.dataset.questid]);
+        startQuest(positions[event.target.dataset.questid], event.target.dataset.questid);
+        console.log(positions[event.target.dataset.questid], event.target.dataset.questid);
     }
 });
 
@@ -37,10 +37,10 @@ questItems.addEventListener('click', function(e){
 })
 
 
-function startQuest(data) {
+function startQuest(data, id) {
     if(player.inRange(data)){
         if(data.isAvailable === true && data.isBeingTaken === false){
-          socket.emit('changePosition', data.title);
+          socket.emit('changePosition', id);
 
         }else{
           console.log('Quest could not be taken now');

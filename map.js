@@ -145,7 +145,8 @@ function renderQuestMarkers(data){
   }
 }
 //Update QuestMarkers
-function updateMarker(data){
+function updateMarker(data) {
+  console.log(data)
   questMarkerHolder[data.id].CircleGraphics.setMap(null);
   questMarkerHolder[data.id].setMap(null);
   const TempMarker = new Markers(data.data.lat, data.data.lng, map.map, 'img/placeholder.png', data.id);
