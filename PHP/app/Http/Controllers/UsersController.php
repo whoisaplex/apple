@@ -18,6 +18,11 @@ class UsersController extends Controller
         return view('users.index', ['users' => $users]);
     }
 
+    public function API_Users()
+    {        
+        return response(User::all(),200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -51,6 +56,17 @@ class UsersController extends Controller
         return view('users.show', compact('user'));
     }
 
+    public function API_Show($id)
+    {
+        if (!$id) {
+           throw new HttpException(400, "Invalid id");
+        }
+        $user = User::find($id);
+        return response()->json([
+            $user,
+        ], 200);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -72,6 +88,18 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+    public function API_Update(Request $request, $id)
+    {
+        if (!$id) {
+            throw new HttpException(400, "Invalid id");
+        }
+        $user = User::findOrFail($id);
+        $user->fill($request->all());
+        $user->save();
+        return $user;
+
+        throw new HttpException(400, "Invalid data");
     }
 
     /**
