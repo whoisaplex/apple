@@ -1,69 +1,157 @@
-import { Map, Markers, Player } from './map.js'; 
-import socket from './mapmarkers.js'; 
+import { Map, Marker } from './modules/googlemaps.js'; 
+import { ui } from './ui/ui.js'; 
+import User from './modules/user.js'; 
+import initGeolocation from './modules/geolocation.js'; 
 
-function updatePlayerPos(position){
-    if(player.lat || player.lng){
-      player.marker.setMap(null);
-    }
-    player.updatePlayerPos(position);
-    socket.emit('TeamPosUpdate', {lat: player.lat, lng: player.lng, teamID: 'SickPlayers'});
-    if(!player.foundCoords){
-      map.centerZoomMap({lat: player.lat, lng: player.lng}, 15);
-      player.foundCoords = true;
-    }
-  }
-  function onError(){}
-  //Render all questemarkers first time
- export default function renderQuestMarkers(data){
-    for(let dataID in data){
-      const TempMarker = new Markers(data[dataID].lat, data[dataID].lng, map.map, 'img/placeholder.png', dataID);
-      if(data[dataID].captureId != socket.id){
-        if(data[dataID].isAvailable === true){                                                                         // Adds name so we can acces it when quest dialog is clicked 
-          questMarkerHolder[dataID] = TempMarker.questMarker('#FBC02D', data[dataID].isAvailable, data[dataID].isBeingTaken, data[dataID].name);
-        }else{
-          questMarkerHolder[dataID] = TempMarker.questMarker('#D32F2F', data[dataID].isAvailable, data[dataID].isBeingTaken, data[dataID].name);
+// Game 'controller'
+const game = {
+    /*  When a user connects 
+     these are updated to reflect 
+     the server side object */  
+    questPositions: null, 
+    questMarkers: {},
+    socket: null,  
+
+    // Inits all socket events
+    initEvents(socket){
+        ui.initDOMListeners(user, this.questPositions, this.startQuest.bind(this));
+        this.socket = socket; 
+        socket.on('init-quest-positions', this.onInitQuestPositions.bind(this));
+        socket.on('start-quest', this.onPlayerStartedQuest.bind(this)); 
+        socket.on('quest-ended', this.onQuestEnd.bind(this));   
+        socket.on('cooldown-ended', this.onCoolDownEnd.bind(this)); 
+        console.log('[game.initEvents]: socket events initialized')
+    },
+
+    // When quest positions are received from node
+    // renders quest list and inits eventlisteners 
+    onInitQuestPositions(positions){
+        this.questPositions = positions; 
+        ui.render('questlist', positions);
+        this.renderQuestMarkers(); 
+        console.log('[game.onInitQuestPositions]: questpositions initialized') 
+    },
+
+    // When a player starts a quest, receives updated questpostion from node
+    onPlayerStartedQuest(startedQuest, id){
+        this.questPositions[id] = startedQuest;
+        this.questMarkers[id].reRender(Map.googleMap, './img/warning.png');
+        console.log('[game.onPlayerStartedQuest]: player started quest, marker was changed')  
+    },
+
+    // Requests quest postions from node
+    requestQuestPositions(socket){
+        socket.emit('init-quest-positons');
+        console.log('[game.requestQuestPositions]: questpostions requested from client')   
+    },
+
+    // Renders all quest markers when user logs in 
+    renderQuestMarkers(){
+        for(let id in this.questPositions) {
+            const newQuestMarker = new Marker({
+                lat: this.questPositions[id].lat, 
+                lng: this.questPositions[id].lng
+            }, Map.googleMap, './img/placeholder.png'); 
+
+            newQuestMarker.id = id;
+            // Adds listeners to all markers 
+            newQuestMarker.marker.addListener('click', ()=>{
+                ui.render('quest-dialog', this.questPositions[id], id);  
+            })
+            this.questMarkers[id] = newQuestMarker; 
         }
-      }else{
-        questMarkerHolder[dataID] = TempMarker.questMarker('#388E3C', data[dataID].isAvailable, data[dataID].isBeingTaken, data[dataID].name);
-      }
+        console.log('[game.renderQuestMarkers]: questpositions received and questmarkers rendered')   
+    }, 
+
+    // When quest is started checks if quest is available 
+    startQuest(questId){
+        if(this.playerInRange.call(this, this.questMarkers[questId])) 
+        {
+            if(this.questPositions[questId].isAvailable) {
+                console.log('[game.startQuest]: quest started', questId)
+                this.socket.emit('start-quest', questId);
+            } else {
+                console.log('[game.startQuest]: quest not avail', questId); 
+            }
+        } 
+        else 
+        {
+            console.log('[game.startQuest]: player was not in range to start quest', questId)
+        }
+
+    }, 
+
+    // When quest ends, updates marker 
+    onQuestEnd(questId){
+        this.questPositions[questId].isBeingTaken = false; 
+        this.questMarkers[questId].reRender(Map.googleMap, './img/cooldown.png'); 
+        console.log('[game.onQuestEnd]: quest ended, cooldown started and marker changed...', questId); 
+    },
+
+    // When quest cooldown ends, updates marker 
+    onCoolDownEnd(questId){
+        this.questPositions[questId].isAvailable = true; 
+        this.questMarkers[questId].reRender(Map.googleMap, './img/blue.png');
+        this.questMarkers[questId].addClickEvent(()=>{
+            ui.render('quest-dialog', this.questPositions[questId], questId);  
+        }); 
+        console.log('[game.onCoolDownEnd]: cooldown ended quest is now avail, marker changed', questId)
+    },
+
+    // Checks if player is in range of a questposition
+    playerInRange(questPosition){
+        const range = 0.0011;
+        const inLat =  questPosition.coords.lat;
+        const inLng = questPosition.coords.lng;
+        if(
+            user.coords.lat < inLat + range && 
+            user.coords.lat > inLat - range && 
+            user.coords.lng < inLng + range && 
+            user.coords.lng > inLng - range
+        )
+        {
+        console.log('[game.playerInRange]: true'); 
+          return true;
+        }
+        else
+        {
+        console.log('[game.playerInRange]: false'); 
+          return false;
+        }
     }
-  }
-  //Update QuestMarkers
-  function updateMarker(data){
-    questMarkerHolder[data.id].CircleGraphics.setMap(null);
-    questMarkerHolder[data.id].setMap(null);
-    const TempMarker = new Markers(data.data.lat, data.data.lng, map.map, 'img/placeholder.png', data.id);
-    if(data.data.captureId != socket.id){
-      if(data.data.isAvailable === true){                             
-        questMarkerHolder[data.id] = TempMarker.questMarker('#FBC02D', data.data.isAvailable, data.data.isBeingTaken);
-      }else{
-        questMarkerHolder[data.id] = TempMarker.questMarker('#D32F2F', data.data.isAvailable, data.data.isBeingTaken);
-      }
-    }else{
-      questMarkerHolder[data.id] = TempMarker.questMarker('#388E3C', data.data.isAvailable, data.data.isBeingTaken);
-    }
-  }
-  
-  socket.on('TeamCoords', data => {
-    if(TeamHolder[data.identifier]){
-      //If player exist, clear the marker
-      TeamHolder[data.identifier].setMap(null);
-    }
-    TeamHolder[data.identifier] = new Markers(data.coords.lat, data.coords.lng, map.map, 'img/TeamPlayerIcon.png', 'TeamPlayer');
-    TeamHolder[data.identifier] = TeamHolder[data.identifier].playerMarker();
-  });
-  
-  
-  //Initialized
-  const questMarkerHolder = [];
-  const TeamHolder = [];
-  const map = new Map(document.getElementById('map'), 59.332401, 18.064442, mapStyles);
-  map.initMap();
-  const player = new Player(null, null, 1, false);
-  navigator.geolocation.watchPosition(updatePlayerPos, onError,{enableHighAccuracy: true})
-  
-  // Compas button, centers map
-  const compass = document.querySelector('#compass');
-  compass.addEventListener('click', () => {
-    map.centerZoomMap();
-  });
+}
+
+/* TESTING */ 
+const mockUsers = [
+    {username: 'Daniel', id: 1337}, 
+    {username: 'Robbin', id: 1338}, 
+    {username: 'Simon', id: 1339},
+    {username: 'Alexander', id: 1340}, 
+    {username: 'Björn', id: 1341}, 
+    {username: 'Vladimir Putin', id: 1342}
+] 
+function getRandomMockUser(){
+    return mockUsers[Math.floor(Math.random() * mockUsers.length)]; 
+}
+const mockUser = getRandomMockUser(); 
+/* TESTING */ 
+
+
+// Socket, user, geolocation and map initialized 
+const socket = io('http://localhost:8080'); 
+
+const user = new User(mockUser.username, mockUser.id); 
+user.logon(socket);
+
+game.initEvents(socket); 
+game.requestQuestPositions(socket); 
+
+initGeolocation(user, Map); 
+
+
+
+
+
+
+
+

@@ -1,47 +1,61 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Map Game</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="css/font-awesome.css" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <link href="./css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/flaticon.css">
-  </head>
-  <body>
-    <!--
-    <div style="display:flex; justify-content:center;">
-      <div style="position:fixed; width:90vw; height: 10px; background:grey; top: 100px; z-index:100;">
-        <div id="timerLiner" style="width:0%; height:100%; background:lightgreen;"></div>
-      </div>
+    <link rel="stylesheet" href="css/ui.main.css">
+    <title>StreetHack</title>
+</head>
+<body>
+
+    <!-- MAP -->
+    <div id="map">
+        Loading...
+        <noscript>You need to enabla JavaScript to run this game.</noscript>
     </div>
-    -->
-    <div id="map"></div>
 
+    <!-- QUEST LIST -->
     <div id="menu-list">
-
         <div class="menu-container">
             <ul>
-                <!-- Quest positions renders dynimacally via JS -->
-                <!-- ERROR message removed if connected to server sucesfully-->
-                <li class="error-message">
-                    <code>
-                        :'( <br>
-                        There was a problem with the connection to the server.
-                        Make sure you are connecting via https.
-                    </code>
-                </li>
+            <!-- Quest positions renders dynimacally -->
+            <li class="error-message">
+                <code>
+                    :'( <br>
+                    There was a problem with the connection to the server.
+                </code>
+            </li>
             </ul>
         </div>
     </div>
     
+    <!-- PROFILE -->
     <div id="menu-site">
-        <object data="framed.html" type="text/html"><p>This is the fallback code!</p></object>
+        <p>Menu stuff</p>
     </div>
     
-    <div id="quest-dialog"></div>
+    <!-- QUEST DIALOG POPUP -->
+    <div data-questid="null" id="quest-dialog">
+        <div id="quest-dialog-info">
+            <div id="quest-dialog-name"><h4>QUEST NAME AND TITLE</h4></div>
+            <div id="quest-dialog-status"><i class="fa fa-times-circle-o red" aria-hidden="true"></i></div>
+        </div>
+        <div id="quest-dialog-progress">
+            <progress id="quest-dialog-cooldown" value="60" max="100"></progress>
+        </div>
+        <div id="quest-dialog-loot">
+            <div id="quest-dialog-cash">$0</div><div id="quest-dialog-xp">0 XP</div>
+        </div>
+        <div id="quest-dialog-buttons">
+            <button id="start-quest" class="btn-sm btn-secondary">Kör</button>
+            <button id="cancel" class="btn-sm btn-secondary">Avbryt</button>
+        </div>
+    </div>
 
     <div id="menu-bar">
         <div id="menu" class="menu-item">
@@ -64,11 +78,7 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-asKbHoJKTtGt8rWJ35ebHT3j7sVKUBA"></script>                
     <script type="module" src="game.js"></script>
-    <script src="mapmarkers.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-asKbHoJKTtGt8rWJ35ebHT3j7sVKUBA"></script>
-    <script src="menu.js"></script>
-    <script src="mapstyle.js"></script>
-  </body>
+</body>
 </html>
