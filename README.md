@@ -1,6 +1,4 @@
-# apple
-
-### Client
+## Client
 
 #### Modules 
 
@@ -15,9 +13,9 @@
 * game.js 
 
 #### Adding dom eventlisteners: 
-In ui.js in the initDOMEvents function
+In ui.js in the initDOMEvents function. 
 
-### Node server
+## Node server
 
 #### Modules 
 
@@ -31,4 +29,4 @@ In ui.js in the initDOMEvents function
 
 
 #### Adding new socket events: 
-In events.js in the events object. Then include it in the initConnectionAndEvents function in sockets.js and pass it the socket.  
+Add the event in events.js in the events object. Then include it in the initConnectionAndEvents function in sockets.js and pass it the socket as a parameter. 
