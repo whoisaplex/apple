@@ -93,4 +93,4 @@ const ui = {
     initDOMListeners
 }
 
-export { ui }; 
+export default ui; 

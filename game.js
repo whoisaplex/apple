@@ -1,5 +1,5 @@
 import { Map, Marker } from './modules/googlemaps.js'; 
-import { ui } from './ui/ui.js'; 
+import ui from './ui/ui.js'; 
 import User from './modules/user.js'; 
 import initGeolocation from './modules/geolocation.js'; 
 
@@ -14,7 +14,6 @@ const game = {
 
     // Inits all socket events
     initEvents(socket){
-        ui.initDOMListeners(user, this.questPositions, this.startQuest.bind(this));
         this.socket = socket; 
         socket.on('init-quest-positions', this.onInitQuestPositions.bind(this));
         socket.on('start-quest', this.onPlayerStartedQuest.bind(this)); 
@@ -28,7 +27,8 @@ const game = {
     onInitQuestPositions(positions){
         this.questPositions = positions; 
         ui.render('questlist', positions);
-        this.renderQuestMarkers(); 
+        this.renderQuestMarkers();
+        ui.initDOMListeners(user, this.questPositions, this.startQuest.bind(this)); 
         console.log('[game.onInitQuestPositions]: questpositions initialized') 
     },
 

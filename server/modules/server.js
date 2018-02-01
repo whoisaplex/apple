@@ -9,11 +9,17 @@ const server = http.createServer(app).listen(8080,()=> {
     console.log('[server]: Server running on port 8080'); 
 }); 
 
-// Serve public dir
-app.use(express.static('public')); 
+// Routes 
+app.get('/admin', (req, res) => {
+    res.send('Admin stuff?')
+})
+
+function admin(users){
+    return users; 
+}
 
 // Exports
 module.exports = {
     app,
-    server
+    server, 
 }

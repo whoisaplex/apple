@@ -77,7 +77,7 @@ const events = {
                 console.log('[onDisconnect]: online users:', USERS); 
             }
         })
-    }
+    },
 }
 
 // Exports 
