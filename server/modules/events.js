@@ -66,6 +66,7 @@ const events = {
             USERS.set(socket.id, user);
             console.log('[logon]: connected users:', USERS); 
 
+            // If user is in team, join that channel and emit to all the members 
             if(user.team) {
                 console.log('[logon]: user has team, create room and broadcast to:', user.team); 
                 socket.join(user.team); 
