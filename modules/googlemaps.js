@@ -40,4 +40,26 @@ class Marker {
     }
 }
 
-export { Map, Marker }; 
+class QuestCircle {
+
+    constructor(position, type, map){
+
+        let color = type == 'normal' ? 'green' : type == 'unavailable' ? 'red' : 'yellow'; 
+        
+        this.circle = new google.maps.Circle({
+            strokeColor: color,
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: color,
+            fillOpacity: 0.35,
+            map: map,
+            center: position,
+            radius: 11
+        });
+    }
+
+}
+
+
+
+export { Map, Marker, QuestCircle }; 

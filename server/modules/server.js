@@ -11,12 +11,8 @@ const server = http.createServer(app).listen(8080,()=> {
 
 // Routes 
 app.get('/admin', (req, res) => {
-    res.send('Admin stuff?')
+    res.send('<h1>Admin stuff?</h1>')
 })
-
-function admin(users){
-    return users; 
-}
 
 // Exports
 module.exports = {

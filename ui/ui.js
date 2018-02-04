@@ -4,7 +4,8 @@ import { Map } from '../modules/googlemaps.js';
 const menu = document.querySelector('#menu'), 
     questList = document.querySelector('#menu-list'),
     compass = document.querySelector('#compass'), 
-    questDialog = document.querySelector('#quest-dialog');
+    questDialog = document.querySelector('#quest-dialog'), 
+    siteMenu = document.querySelector("#site-menu"); 
 
 // Inits all eventlisteners for the menu-UI 
 const initDOMListeners = function(user, positions, startQuestCallback){
@@ -12,6 +13,11 @@ const initDOMListeners = function(user, positions, startQuestCallback){
     // Shows the quest list 
     menu.addEventListener('click', function(){
         document.querySelector('#menu-list').classList.toggle('show'); 
+    })
+
+    // Profile drop down 
+    siteMenu.addEventListener('click', function(){
+        document.querySelector('#menu-site').classList.toggle('show'); 
     })
 
     // Centers the map on the user 

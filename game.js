@@ -1,4 +1,4 @@
-import { Map, Marker } from './modules/googlemaps.js'; 
+import { Map, Marker, QuestCircle } from './modules/googlemaps.js'; 
 import ui from './ui/ui.js'; 
 import User from './modules/user.js'; 
 import initGeolocation from './modules/geolocation.js'; 
@@ -13,13 +13,21 @@ const game = {
     socket: null,  
 
     // Inits all socket events
-    initEvents(socket){
+    initEvents(socket, user){
         this.socket = socket; 
         socket.on('init-quest-positions', this.onInitQuestPositions.bind(this));
         socket.on('start-quest', this.onPlayerStartedQuest.bind(this)); 
         socket.on('quest-ended', this.onQuestEnd.bind(this));   
-        socket.on('cooldown-ended', this.onCoolDownEnd.bind(this)); 
+        socket.on('cooldown-ended', this.onCoolDownEnd.bind(this));
+        socket.on('logon', this.onTeamLogon.bind(this)); 
         console.log('[game.initEvents]: socket events initialized')
+    },
+
+    // When a team member logs on
+    onTeamLogon(teamMember){
+        if(teamMember.id != user.id) {
+            console.log('[game.onTeamLogon]: team member loged on', teamMember); 
+        }
     },
 
     // When quest positions are received from node
@@ -52,6 +60,8 @@ const game = {
                 lat: this.questPositions[id].lat, 
                 lng: this.questPositions[id].lng
             }, Map.googleMap, './img/placeholder.png'); 
+
+            new QuestCircle({lat: this.questPositions[id].lat, lng: this.questPositions[id].lng}, 'normal', Map.googleMap);  
 
             newQuestMarker.id = id;
             // Adds listeners to all markers 
@@ -123,12 +133,12 @@ const game = {
 
 /* TESTING */ 
 const mockUsers = [
-    {username: 'Daniel', id: 1337}, 
-    {username: 'Robbin', id: 1338}, 
-    {username: 'Simon', id: 1339},
-    {username: 'Alexander', id: 1340}, 
-    {username: 'Björn', id: 1341}, 
-    {username: 'Vladimir Putin', id: 1342}
+    {username: 'Daniel', id: 1337, team: 'Hackermen'}, 
+    {username: 'Robbin', id: 1338, team: 'Hackermen'}, 
+    {username: 'Simon', id: 1339, team: 'Hackermen'},
+    {username: 'Alexander', id: 1340, team: 'Hackermen'}, 
+    {username: 'Björn', id: 1341, team: 'Hackermen'}, 
+    {username: 'Vladimir Putin', id: 1342, team: 'Russia'}
 ] 
 function getRandomMockUser(){
     return mockUsers[Math.floor(Math.random() * mockUsers.length)]; 
@@ -140,10 +150,10 @@ const mockUser = getRandomMockUser();
 // Socket, user, geolocation and map initialized 
 const socket = io('http://localhost:8080'); 
 
-const user = new User(mockUser.username, mockUser.id); 
+const user = new User(mockUser.username, mockUser.id, mockUser.team); 
 user.logon(socket);
 
-game.initEvents(socket); 
+game.initEvents(socket, user); 
 game.requestQuestPositions(socket); 
 
 initGeolocation(user, Map); 

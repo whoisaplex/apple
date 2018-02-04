@@ -3,8 +3,9 @@ import { Marker } from './googlemaps.js';
 // User 
 export default class User {
 
-    constructor(username, id){
+    constructor(username, id, team){
         this.name = username; 
+        this.team = team; 
         this.googleMapMarker = null; 
         this.id = id; 
         this.socket = null; 
@@ -15,7 +16,7 @@ export default class User {
     }
 
     logon(socket){
-        socket.emit('logon', this.id); 
+        socket.emit('logon', {id: this.id, team: this.team, coords: this.coords});
     }
 
     upDateCoords(coords, map){

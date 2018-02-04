@@ -7,32 +7,32 @@ const USERS = new Map();
 // Events 
 const events = {
 
-    beginQuest(questId, socket){
+    beginQuest(questId, socket, io){
         positions[questId].timer = new Stopwatch(5000, {refreshRateMS: 100});
         positions[questId].timer.start(); 
         console.log('[beginQuest]: quest started counting down 5 sec...', questId);
         
-        this.onEndQuest.call(this, questId, socket);  
+        this.onEndQuest.call(this, questId, socket, io);  
     },
 
-    onEndQuest(questId, socket){
+    onEndQuest(questId, socket, io){
         positions[questId].timer.onDone(()=> {
             positions[questId].timer.stop(); 
             positions[questId].isBeingTaken = false;
             console.log('[onEndQuest]: quest ended after 5 sec, starting cooldown', questId, positions[questId].isBeingTaken); 
-            socket.emit('quest-ended', questId); 
-            this.coolDownQuest.call(this, questId, socket); 
+            io.sockets.emit('quest-ended', questId); 
+            this.coolDownQuest.call(this, questId, socket, io); 
         })
     },
 
-    coolDownQuest(questId, socket){
+    coolDownQuest(questId, socket, io){
         positions[questId].coolDown = new Stopwatch(5000, {refreshRateMS: 100}); 
         positions[questId].coolDown.start(); 
         positions[questId].coolDown.onDone(()=>{
             positions[questId].timer.stop(); 
             positions[questId].isAvailable = true; 
             console.log('[coolDownQuest]: cooldown stoped after 5 sec', questId, positions[questId].isAvailable);
-            socket.emit('cooldown-ended', questId);  
+            io.sockets.emit('cooldown-ended', questId);  
         });
     },
 
@@ -55,16 +55,22 @@ const events = {
             io.sockets.emit('start-quest', positions[questId], questId);
             
             // Starts quest and binds `this` to the events object 
-            this.beginQuest.call(this, questId, socket); 
+            this.beginQuest.call(this, questId, socket, io); 
         })
     },
 
     // When a user connects, adds that user to the USERS-map
-    logon(socket){
-        socket.on('logon', (userId) => {
-            console.log('[logon]: user loged on', userId);
-            USERS.set(socket.id, {userId: userId});
-            console.log('[logon]: connected users:', USERS);  
+    logon(socket, io){
+        socket.on('logon', (user) => {
+            console.log('[logon]: user loged on', user.id);
+            USERS.set(socket.id, user);
+            console.log('[logon]: connected users:', USERS); 
+
+            if(user.team) {
+                console.log('[logon]: user has team, create room and broadcast to:', user.team); 
+                socket.join(user.team); 
+                io.sockets.in(user.team).emit('logon', user); 
+            }
         })
     },
 

@@ -17,7 +17,7 @@ function initConnectionAndEvents(io){
         console.log('[initConnectionAndEvents]: socket', socket.id, 'connected'); 
         
         // Inits all socket events
-        events.logon(socket);
+        events.logon(socket, io);
         events.onDisconnect(socket); 
  
         events.onInitQuestPositions(socket); 
