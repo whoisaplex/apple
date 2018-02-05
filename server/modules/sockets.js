@@ -1,32 +1,33 @@
-const socket = require('socket.io'); 
+const socket = require('socket.io');
 const positions = require('./positions.js');
 const events = require('./events.js');
 
 function initSocket(server){
-    const io = socket(); 
+    const io = socket();
     io.listen(server);
 
     // Inits connection to socket io
-    initConnectionAndEvents(io); 
+    initConnectionAndEvents(io);
 
-    return io; 
+    return io;
 }
 
 function initConnectionAndEvents(io){
     io.on('connection', (socket) => {
-        console.log('[initConnectionAndEvents]: socket', socket.id, 'connected'); 
-        
+        console.log('[initConnectionAndEvents]: socket', socket.id, 'connected');
+
         // Inits all socket events
-        events.logon(socket, io);
-        events.onDisconnect(socket); 
- 
-        events.onInitQuestPositions(socket); 
+        events.onLogon(socket, io);
+        events.onDisconnect(socket);
+
+        events.onInitQuestPositions(socket);
         events.onBeginQuest(socket, io);
+        events.onTeamCoordsUpdate(socket, io);
 
     });
 }
 
-// Exports 
+// Exports
 module.exports = {
     initSocket,
     initConnectionAndEvents

@@ -293,4 +293,4 @@ const mapstyle = [
   }
 ];
 
-export default mapstyle; 
+export default mapstyle;

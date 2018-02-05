@@ -15,28 +15,28 @@ const Map = {
 class Marker {
     constructor(pos = {}, map, icon = undefined){
         this.marker = new google.maps.Marker({
-            position: pos, 
-            map: map, 
+            position: pos,
+            map: map,
             icon: icon
         });
 
-        // Saves the coords on the marker object 
+        // Saves the coords on the marker object
         this.coords = pos;
     }
 
-    // When a quest icon is changed 
+    // When a quest icon is changed
     reRender(map, icon){
-        this.marker.setMap(null); 
+        this.marker.setMap(null);
         this.marker = new google.maps.Marker({
-            position: this.coords, 
-            map: map, 
+            position: this.coords,
+            map: map,
             icon: icon
         });
     }
 
-    // Adds click event 
+    // Adds click event
     addClickEvent(callback){
-        this.marker.addListener('click', callback); 
+        this.marker.addListener('click', callback);
     }
 }
 
@@ -44,8 +44,8 @@ class QuestCircle {
 
     constructor(position, type, map){
 
-        let color = type == 'normal' ? 'green' : type == 'unavailable' ? 'red' : 'yellow'; 
-        
+        let color = type == 'normal' ? 'green' : type == 'unavailable' ? 'red' : 'yellow';
+
         this.circle = new google.maps.Circle({
             strokeColor: color,
             strokeOpacity: 0.8,
@@ -62,4 +62,4 @@ class QuestCircle {
 
 
 
-export { Map, Marker, QuestCircle }; 
+export { Map, Marker, QuestCircle };
