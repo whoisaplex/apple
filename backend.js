@@ -34,6 +34,7 @@ io.on('connection', function(socket){
   users[socket.id].socket.emit('sendData', questPositions);
 
   socket.on('changePosition', (data) =>{
+    console.log(questPositions[data].isAvailable, questPositions[data].isBeingTaken);
     questPositions[data].isAvailable = false;
     questPositions[data].isBeingTaken = true;
     questPositions[data].captureId = socket.id;

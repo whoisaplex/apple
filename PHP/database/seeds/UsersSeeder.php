@@ -12,7 +12,7 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 10)->create()->each(function ($user) {
+        factory(App\User::class, 9)->create()->each(function ($user) {
           $team = factory(Team::class)->create(['owner_id' => $user->id]);
           $user->team()->associate($team);
           $user->save();
