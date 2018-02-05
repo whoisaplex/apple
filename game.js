@@ -26,7 +26,7 @@ const game = {
     // When a team member logs on
     onTeamLogon(teamMember){
         if(teamMember.id != user.id) {
-            console.log('[game.onTeamLogon]: team member loged on', teamMember); 
+            console.log('[game.onTeamLogon]: team member loged on', teamMember);
         }
     },
 
@@ -44,13 +44,13 @@ const game = {
     onPlayerStartedQuest(startedQuest, id){
         this.questPositions[id] = startedQuest;
         this.questMarkers[id].reRender(Map.googleMap, './img/warning.png');
-        console.log('[game.onPlayerStartedQuest]: player started quest, marker was changed')  
+        console.log('[game.onPlayerStartedQuest]: player started quest, marker was changed') 
     },
 
     // Requests quest postions from node
     requestQuestPositions(socket){
         socket.emit('init-quest-positons');
-        console.log('[game.requestQuestPositions]: questpostions requested from client')   
+        console.log('[game.requestQuestPositions]: questpostions requested from client')  
     },
 
     // Renders all quest markers when user logs in 
@@ -70,7 +70,7 @@ const game = {
             })
             this.questMarkers[id] = newQuestMarker; 
         }
-        console.log('[game.renderQuestMarkers]: questpositions received and questmarkers rendered')   
+        console.log('[game.renderQuestMarkers]: questpositions received and questmarkers rendered')  
     }, 
 
     // When quest is started checks if quest is available 
@@ -120,13 +120,13 @@ const game = {
             user.coords.lng > inLng - range
         )
         {
-        console.log('[game.playerInRange]: true'); 
-          return true;
+            console.log('[game.playerInRange]: true'); 
+            return true;
         }
         else
         {
-        console.log('[game.playerInRange]: false'); 
-          return false;
+            console.log('[game.playerInRange]: false'); 
+            return false;
         }
     }
 }
@@ -148,7 +148,7 @@ const mockUser = getRandomMockUser();
 
 
 // Socket, user, geolocation and map initialized 
-const socket = io('http://localhost:8080'); 
+const socket = io('http://192.168.0.13:8080'); 
 
 const user = new User(mockUser.username, mockUser.id, mockUser.team); 
 user.logon(socket);
