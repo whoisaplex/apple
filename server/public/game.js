@@ -28,10 +28,10 @@ const game = {
     onTeamUpdateCoords(teamplayer) {
       console.log(teamplayer);
       if(this.teamplayers[teamplayer.id]) {
-        this.teamplayers[teamplayer.id].setMap(null);
+        this.teamplayers[teamplayer.id].marker.setMap(null);
       }
       this.teamplayers[teamplayer.id] = new Marker(teamplayer.coords, Map.googleMap, './img/hacker.png');
-      console.log(this.teamplayers);
+      console.log(this.teamplayers[teamplayer.id].marker);
     },
 
     // When a team member logs on
@@ -148,8 +148,8 @@ const mockUsers = [
     {username: 'Robbin', id: 1338, team: 'Hackermen'},
     {username: 'Simon', id: 1339, team: 'Hackermen'},
     {username: 'Alexander', id: 1340, team: 'Hackermen'},
-    {username: 'Björn', id: 1341, team: 'Hackermen'},
-    {username: 'Vladimir Putin', id: 1342, team: 'Russia'}
+    {username: 'Björn', id: 1341, team: 'Hackermen'}
+    //{username: 'Vladimir Putin', id: 1342, team: 'Russia'}
 ]
 function getRandomMockUser(){
     return mockUsers[Math.floor(Math.random() * mockUsers.length)];
