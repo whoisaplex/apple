@@ -121,14 +121,22 @@ const game = {
 
     // Checks if player is in range of a questposition
     playerInRange(questPosition){
-        const range = 0.0011;
+        const range = 0.0001;
         const inLat =  questPosition.coords.lat;
         const inLng = questPosition.coords.lng;
+
+        const x = user.coords.lat - inLat; 
+        const y = user.coords.lng - inLng; 
+
+        const r = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)); 
+        console.log('x', x, 'y',y, 'r', r); 
+
         if(
-            user.coords.lat < inLat + range &&
-            user.coords.lat > inLat - range &&
-            user.coords.lng < inLng + range &&
-            user.coords.lng > inLng - range
+            // user.coords.lat < inLat + range &&
+            // user.coords.lat > inLat - range &&
+            // user.coords.lng < inLng + range &&
+            // user.coords.lng > inLng - range
+            r <= range 
         )
         {
             console.log('[game.playerInRange]: true');
@@ -159,7 +167,7 @@ const mockUser = getRandomMockUser();
 
 
 // Socket, user, geolocation and map initialized
-const socket = io('10.7.2.123:8080');
+const socket = io('http://localhost:8080');
 
 const user = new User(mockUser.username, mockUser.id, mockUser.team, socket);
 user.logon(socket);
