@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="{{ URL::asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/ui.main.css') }}">
-    <title>StreetHack</title>
+    <script type="text/javascript">
+      const globalUser = '{{$user->id}}'
+    </script>
+
+    <title></title>
 </head>
 <body>
 

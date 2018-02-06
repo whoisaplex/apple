@@ -3,11 +3,11 @@ import { Marker } from './googlemaps.js';
 // User
 export default class User {
 
-    constructor(username, id, team, socket){
-        this.name = username;
-        this.team = team;
+    constructor(socket){
+        this.name = null;
+        this.team = null;
         this.googleMapMarker = null;
-        this.id = id;
+        this.id = null;
         this.socket = socket;
         this.coords = {
             lat: 59.300198,

@@ -3,6 +3,8 @@ import ui from './ui/ui.js';
 import User from './modules/user.js';
 import initGeolocation from './modules/geolocation.js';
 
+
+console.log(globalUser);
 // Game 'controller'
 const game = {
     /*  When a user connects
@@ -125,18 +127,18 @@ const game = {
         const inLat =  questPosition.coords.lat;
         const inLng = questPosition.coords.lng;
 
-        const x = user.coords.lat - inLat; 
-        const y = user.coords.lng - inLng; 
+        const x = user.coords.lat - inLat;
+        const y = user.coords.lng - inLng;
 
-        const r = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)); 
-        console.log('x', x, 'y',y, 'r', r); 
+        const r = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+        console.log('x', x, 'y',y, 'r', r);
 
         if(
             // user.coords.lat < inLat + range &&
             // user.coords.lat > inLat - range &&
             // user.coords.lng < inLng + range &&
             // user.coords.lng > inLng - range
-            r <= range 
+            r <= range
         )
         {
             console.log('[game.playerInRange]: true');
@@ -168,8 +170,19 @@ const mockUser = getRandomMockUser();
 
 // Socket, user, geolocation and map initialized
 const socket = io('https://node1.reweb.se');
+const user = new User(socket);
 
-const user = new User(mockUser.username, mockUser.id, mockUser.team, socket);
+// Fetch user details from api
+fetch(`http://development.test/api/user/${globalUser}`).then(response => {
+  response.json().then(json => {
+    user.id = json[0].id;
+    user.team = json[0].team_id;
+    user.name = json[0].username;
+  });
+}).catch(e => {
+    console.log(e, 'failed to get user from api');
+});
+
 user.logon(socket);
 
 game.initEvents(socket, user);
