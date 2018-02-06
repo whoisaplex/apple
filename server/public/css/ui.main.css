@@ -36,6 +36,7 @@ body {
     height: 1.5em;
     display: flex;
     justify-content: center;
+    align-items: center; 
     position: fixed;
     top: 0;
     background-color: black;
@@ -239,10 +240,6 @@ i.green {
     font-size: 20px;
 }
 
-.menu-container {
-    margin: 58px 0 0 0; 
-}
-
 .menu-container ul li {
     display: flex;
     justify-content: space-between;
@@ -265,5 +262,3 @@ i.green {
     align-items: center; 
     flex-direction: column; 
 }
-
-
