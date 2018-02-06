@@ -125,18 +125,18 @@ const game = {
         const inLat =  questPosition.coords.lat;
         const inLng = questPosition.coords.lng;
 
-        const x = user.coords.lat - inLat;
-        const y = user.coords.lng - inLng;
+        const x = user.coords.lat - inLat; 
+        const y = user.coords.lng - inLng; 
 
-        const r = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-        console.log('x', x, 'y',y, 'r', r);
+        const r = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)); 
+        console.log('x', x, 'y',y, 'r', r); 
 
         if(
             // user.coords.lat < inLat + range &&
             // user.coords.lat > inLat - range &&
             // user.coords.lng < inLng + range &&
             // user.coords.lng > inLng - range
-            r <= range
+            r <= range 
         )
         {
             console.log('[game.playerInRange]: true');
@@ -167,7 +167,7 @@ const mockUser = getRandomMockUser();
 
 
 // Socket, user, geolocation and map initialized
-const socket = io('https://node1.reweb.se');
+const socket = io('http://localhost:8080');
 
 const user = new User(mockUser.username, mockUser.id, mockUser.team, socket);
 user.logon(socket);
