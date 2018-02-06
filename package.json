@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devstart": "nodemon ./bin/www",
-    "start": "node ./bin/www"
+    "start": "node backend.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,9 @@
   "homepage": "https://github.com/whoisaplex/apple#readme",
   "dependencies": {
     "express": "^4.16.2",
-    "socket.io": "^2.0.4"
+    "request": "^2.83.0",
+    "socket.io": "^2.0.4",
+    "timer-stopwatch": "^0.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.13.3"

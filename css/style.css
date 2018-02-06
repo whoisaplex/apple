@@ -28,18 +28,17 @@ body {
 }
 
 #menu-bar #logo {
-
     color: red;
     font-size: 3em;
     font-weight: bold;
     overflow: hidden;
     width: 100%;
+    height: 1.5em;
     display: flex;
     justify-content: center;
     position: fixed;
     top: 0;
     background-color: black;
-
 }
 
 .menu-item {
@@ -80,12 +79,56 @@ body {
     background: #fff;
     transition: .5s;
     opacity: 0;
+    visibility: hidden;
 }
 
-#menu-site.show,
-#menu-list.show {
-    top: 0;
-    opacity: 1;
+
+#quest-dialog {
+    position: absolute;
+    top: -4em;
+    left: 0;
+    right: 0;
+    display: block;
+    z-index: 1;
+    opacity: 0;
+    transition: .5s;
+    visibility: hidden;
+    background: #000;
+    color: #fff;
+    padding: 1em;
+    border-top: 1px solid #111
+}
+
+#quest-dialog #quest-dialog-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#quest-dialog #quest-dialog-progress progress {
+    width: 100%
+}
+
+    progress[value] {
+        /* Reset the default appearance */
+        -webkit-appearance: none;
+        appearance: none;
+        height: 20px;
+    }
+    progress[value]::-webkit-progress-bar { background-color: #fff }
+     progress[value]#quest-dialog-cooldown::-webkit-progress-value {background: #005a96}
+     progress[value]#quest-dialog-taking::-webkit-progress-value {background: #77b300}
+
+#quest-dialog #quest-dialog-loot {
+    display: flex;
+    justify-content: space-around;
+    margin: .5em 0
+}
+#quest-dialog #quest-dialog-buttons {
+    display: flex;
+    justify-content: space-between
+}
+#quest-dialog #quest-dialog-buttons button {
+    width: 48%;
 }
 
 #menu-list a {
@@ -94,11 +137,6 @@ body {
     text-decoration: none;
     color: #fff;
 }
-
-#menu-list li:nth-child(odd) {
-    background: rgb(201, 34, 34);
-}
-
 
 .menu-item {
     padding: .5em;
@@ -141,6 +179,7 @@ body {
     transition: .4s;
     box-shadow: 0 0 10px #333;
     opacity: 0;
+    visibility: hidden;
     
 }
 
@@ -153,12 +192,23 @@ body {
     background: #fff;
     transition: .5s;
     opacity: 0;
+    visibility: hidden;
 }
 
+
+#quest-dialog.show,
 #menu-site.show,
 #menu-list.show {
-    top: 0;
+    top: 4.5em;
     opacity: 1;
+    visibility: visible;
+}
+
+i.red {
+    color: #b30000
+}
+i.green {
+    color: #77b300
 }
 
 #menu-list a {
@@ -166,10 +216,12 @@ body {
     display: block;
     text-decoration: none;
     color: #fff;
+    display: flex; 
+    align-items: center; 
 }
 
 #menu-list li:nth-child(odd) {
-    background: rgb(139, 139, 139)
+    background: rgb(29, 44, 77);
 }
 
 #menu-list ul {
@@ -188,5 +240,30 @@ body {
 }
 
 .menu-container {
-    margin: 70px 0 0 0; 
+    margin: 58px 0 0 0; 
 }
+
+.menu-container ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-container ul li .center-map{
+    margin: 0 20px 0 0; 
+}
+
+.error-message {
+    padding: 50px 10px;
+    text-align: center; 
+    line-height: 30px; 
+    width: 100vw; 
+    height: 30vh;
+    
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+}
+
+
