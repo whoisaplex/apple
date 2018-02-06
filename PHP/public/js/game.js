@@ -167,7 +167,7 @@ const mockUser = getRandomMockUser();
 
 
 // Socket, user, geolocation and map initialized
-const socket = io('http://localhost:8080');
+const socket = io('https://node1.reweb.se');
 
 const user = new User(mockUser.username, mockUser.id, mockUser.team, socket);
 user.logon(socket);
