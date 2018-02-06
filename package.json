@@ -20,6 +20,7 @@
   "homepage": "https://github.com/whoisaplex/apple#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "request": "^2.83.0",
     "socket.io": "^2.0.4",
     "timer-stopwatch": "^0.2.0"
   },

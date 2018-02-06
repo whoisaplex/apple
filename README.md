@@ -47,3 +47,18 @@ In ui.js in the initDOMEvents function.
 
 #### Adding new socket events: 
 Add the event in events.js in the events object. Then include it in the initConnectionAndEvents function in sockets.js and pass it the socket as a parameter. 
+
+# StreetHack - Apple
+
+# Laravel
+
+1. Composer
+2. PHP & MySQL or alt. Vagrient/other envirement (LAMP/MAMP etc)
+
+## Setup
+1. cd ./apple/PHP/
+	- Edit the .env-file ```sudo nano .env```
+		- Add the db-credentials
+2. Install dependencies: ```composer install```
+3. Run Laravel: ```php artisan serve```
+
