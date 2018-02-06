@@ -84,5 +84,7 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-asKbHoJKTtGt8rWJ35ebHT3j7sVKUBA"></script>
     <script type="module" src="js/game.js"></script>
+    <script type="text/javascript" src="js/games/js-game-colormatch.js"></script>
+        
 </body>
 </html>
