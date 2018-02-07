@@ -5,7 +5,8 @@ const menu = document.querySelector('#menu'),
     questList = document.querySelector('#menu-list'),
     compass = document.querySelector('#compass'), 
     questDialog = document.querySelector('#quest-dialog'), 
-    siteMenu = document.querySelector("#site-menu"); 
+    siteMenu = document.querySelector("#site-menu"), 
+    questGame = document.querySelector("#quest-game");  
 
 // Inits all eventlisteners for the menu-UI 
 const initDOMListeners = function(user, positions, startQuestCallback){

@@ -263,10 +263,13 @@ i.green {
     flex-direction: column;
 }
 #quest-game {
-  top: 0;
-  left: 0;
+  bottom: -1000px; 
   position: absolute;
   z-index: 1000;
+}
+
+#quest-game.show {
+    bottom: 0px; 
 }
 .game-screen {
     width: 100vw;

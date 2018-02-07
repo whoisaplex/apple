@@ -170,11 +170,11 @@ const mockUser = getRandomMockUser();
 
 
 // Socket, user, geolocation and map initialized
-const socket = io('https://node1.reweb.se');
+const socket = io('http://localhost:8080');
 const user = new User(socket);
 
 // Fetch user details from api
-fetch(`http://development.test/api/user/${globalUser}`).then(response => {
+fetch(`https://development.test/api/user/${globalUser}`).then(response => {
   response.json().then(json => {
     user.id = json[0].id;
     user.team = json[0].team_id;
@@ -184,7 +184,6 @@ fetch(`http://development.test/api/user/${globalUser}`).then(response => {
     console.log(e, 'failed to get user from api');
 });
 
-play('swiftwrite');
 user.logon(socket);
 
 game.initEvents(socket, user);

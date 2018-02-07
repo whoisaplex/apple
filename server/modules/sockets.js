@@ -5,7 +5,7 @@ const events = require('./events.js');
 function initSocket(server){
     const io = socket();
     io.listen(server);
-
+    io.set('origins', '*:*');
     // Inits connection to socket io
     initConnectionAndEvents(io);
 

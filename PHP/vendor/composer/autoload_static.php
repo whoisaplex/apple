@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit4b5f1c8210418871178b316cb04cf6a1
+class ComposerStaticInitfc8aa9a798010ce8f9cfff19ad0f5f09
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -14,9 +14,9 @@ class ComposerStaticInit4b5f1c8210418871178b316cb04cf6a1
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
+        '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -334,6 +334,7 @@ class ComposerStaticInit4b5f1c8210418871178b316cb04cf6a1
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\GameController' => __DIR__ . '/../..' . '/app/Http/Controllers/GameController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\QuestsController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuestsController.php',
         'App\\Http\\Controllers\\TeamsController' => __DIR__ . '/../..' . '/app/Http/Controllers/TeamsController.php',
         'App\\Http\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -3721,10 +3722,10 @@ class ComposerStaticInit4b5f1c8210418871178b316cb04cf6a1
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit4b5f1c8210418871178b316cb04cf6a1::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit4b5f1c8210418871178b316cb04cf6a1::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit4b5f1c8210418871178b316cb04cf6a1::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit4b5f1c8210418871178b316cb04cf6a1::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitfc8aa9a798010ce8f9cfff19ad0f5f09::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitfc8aa9a798010ce8f9cfff19ad0f5f09::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitfc8aa9a798010ce8f9cfff19ad0f5f09::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitfc8aa9a798010ce8f9cfff19ad0f5f09::$classMap;
 
         }, null, ClassLoader::class);
     }
