@@ -2,7 +2,7 @@ import { Map, Marker, QuestCircle } from './modules/googlemaps.js';
 import ui from './ui/ui.js';
 import User from './modules/user.js';
 import initGeolocation from './modules/geolocation.js';
-
+import play from './modules/play.js';
 
 console.log(globalUser);
 // Game 'controller'
@@ -91,6 +91,7 @@ const game = {
         if(this.playerInRange.call(this, this.questMarkers[questId]))
         {
             if(this.questPositions[questId].isAvailable) {
+                play(this.questPosition[questId].type)
                 console.log('[game.startQuest]: quest started', questId)
                 this.socket.emit('start-quest', questId);
             } else {
@@ -183,6 +184,7 @@ fetch(`http://development.test/api/user/${globalUser}`).then(response => {
     console.log(e, 'failed to get user from api');
 });
 
+play('swiftwrite');
 user.logon(socket);
 
 game.initEvents(socket, user);
