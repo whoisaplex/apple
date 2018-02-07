@@ -6,7 +6,7 @@ module.exports = {
     id4: {lat: 59.331307, lng: 17.998706, name: 'bankomat', area: 'Fredhäll', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420},
     id5: {lat: 59.330984, lng: 17.999951, name: 'bankomat', area: 'Fredhäll', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420},
     id6: {lat: 59.331141, lng: 17.999464, name: 'bankomat', area: 'Hägersten', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420},
-    id7: {lat: 59.331141, lng: 17.999464, name: 'bankomat', area: 'Fredhäll', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1}, xp: 50, currency: 420,
+    id7: {lat: 59.331141, lng: 17.999464, name: 'bankomat', area: 'Fredhäll', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420},
     id8: {lat: 59.298719, lng: 17.996614, name: 'bankomat', area: 'Hägersten', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420},
     id9: {lat: 59.300198, lng: 17.995423, name: 'bankomat', area: 'Hägersten', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420},
     id10: {lat: 59.300751, lng: 17.995144, name: 'bankomat', area: 'Hägersten', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420},
