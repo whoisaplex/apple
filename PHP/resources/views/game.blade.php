@@ -61,6 +61,8 @@
         </div>
     </div>
 
+    <div id="quest-game"></div>
+
     <div id="menu-bar">
         <div id="menu" class="menu-item">
             <a href="#">
