@@ -89,6 +89,7 @@ const game = {
         if(this.playerInRange.call(this, this.questMarkers[questId]))
         {
             if(this.questPositions[questId].isAvailable) {
+                play(this.questPosition[questId].type);
                 console.log('[game.startQuest]: quest started', questId)
                 this.socket.emit('start-quest', questId);
             } else {
@@ -104,6 +105,7 @@ const game = {
 
     // When quest ends, updates marker
     onQuestEnd(questId){
+        play('end quest');
         this.questPositions[questId].isBeingTaken = false;
         this.questMarkers[questId].reRender(Map.googleMap, './img/cooldown.png');
         console.log('[game.onQuestEnd]: quest ended, cooldown started and marker changed...', questId);
