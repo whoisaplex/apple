@@ -8,16 +8,16 @@ const USERS = new Map();
 const events = {
 
     beginQuest(questId, socket, io){
-        positions[questId].timer = new Stopwatch(5000, {refreshRateMS: 100});
-        positions[questId].timer.start();
+        positions[questId].questTimer = new Stopwatch(5000, {refreshRateMS: 100});
+        positions[questId].questTimer.start();
         console.log('[beginQuest]: quest started counting down 5 sec...', questId);
 
         this.onEndQuest.call(this, questId, socket, io);
     },
 
     onEndQuest(questId, socket, io){
-        positions[questId].timer.onDone(()=> {
-            positions[questId].timer.stop();
+        positions[questId].questTimer.onDone(()=> {
+            positions[questId].questTimer.stop();
             positions[questId].isBeingTaken = false;
             console.log('[onEndQuest]: quest ended after 5 sec, starting cooldown', questId, positions[questId].isBeingTaken);
             io.sockets.emit('quest-ended', questId);
@@ -29,7 +29,7 @@ const events = {
         positions[questId].coolDown = new Stopwatch(5000, {refreshRateMS: 100});
         positions[questId].coolDown.start();
         positions[questId].coolDown.onDone(()=>{
-            positions[questId].timer.stop();
+            positions[questId].coolDown.stop();
             positions[questId].isAvailable = true;
             console.log('[coolDownQuest]: cooldown stoped after 5 sec', questId, positions[questId].isAvailable);
             io.sockets.emit('cooldown-ended', questId);

@@ -2,10 +2,10 @@ const screen = document.getElementById('quest-game');
 
 export default function play(type){
 
-   // screen.classList.add('show'); 
+   // screen.classList.add('show');
    const gameScreen = document.createElement('iframe');
    gameScreen.className = 'game-screen';
-
+   screen.classList.add('show');
    switch(type) {
        case 1:
            screen.innerHTML = "";

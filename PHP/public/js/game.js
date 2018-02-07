@@ -125,7 +125,7 @@ const game = {
 
     // Checks if player is in range of a questposition
     playerInRange(questPosition){
-        const range = 0.0001;
+        const range = 0.0011;
         const inLat =  questPosition.coords.lat;
         const inLng = questPosition.coords.lng;
 
