@@ -104,6 +104,7 @@ const game = {
 
     // When quest ends, updates marker
     onQuestEnd(questId){
+        play('end quest');
         this.questPositions[questId].isBeingTaken = false;
         this.questMarkers[questId].reRender(Map.googleMap, './img/cooldown.png');
         console.log('[game.onQuestEnd]: quest ended, cooldown started and marker changed...', questId);

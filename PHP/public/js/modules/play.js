@@ -18,6 +18,9 @@ export default function play(type){
            screen.innerHTML = "";
            gameScreen.src = '/wordmatch';
            break;
+       case 'end quest':
+           screen.innerHTML = "";
+           break;
        default:
            screen.innerHTML = "";
            break;
