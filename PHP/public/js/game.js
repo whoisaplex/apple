@@ -3,6 +3,8 @@ import ui from './ui/ui.js';
 import User from './modules/user.js';
 import initGeolocation from './modules/geolocation.js';
 
+
+console.log(globalUser);
 // Game 'controller'
 const game = {
     /*  When a user connects
@@ -168,8 +170,19 @@ const mockUser = getRandomMockUser();
 
 // Socket, user, geolocation and map initialized
 const socket = io('https://node1.reweb.se');
+const user = new User(socket);
 
-const user = new User(mockUser.username, mockUser.id, mockUser.team, socket);
+// Fetch user details from api
+fetch(`http://development.test/api/user/${globalUser}`).then(response => {
+  response.json().then(json => {
+    user.id = json[0].id;
+    user.team = json[0].team_id;
+    user.name = json[0].username;
+  });
+}).catch(e => {
+    console.log(e, 'failed to get user from api');
+});
+
 user.logon(socket);
 
 game.initEvents(socket, user);
