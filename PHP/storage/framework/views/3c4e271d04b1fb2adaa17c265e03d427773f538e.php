@@ -49,17 +49,9 @@
                         </div>
                         <div class="panel-body">
                             <ol id="user-positions">
-                                <li>Positon #1 <span class="cooldown">11 min</span></li>
-                                <li>Positon #2 <span class="cooldown">13 min</span></li>
-                                <li>Positon #3 <span class="cooldown">7 min</span></li>
-                                <li>Positon #4 <span class="cooldown">6 min</span></li>
-                                <li>Positon #5 <span class="cooldown"><button class="btn-sm btn-danger" id="user-id">Remove deprecated</button></span></li>
-                                <li>Positon #6 <span class="cooldown">7 min</span></li>
-                                <li>Positon #7 <span class="cooldown">15 min</span></li>
-                                <li>Positon #8 <span class="cooldown">14 min</span></li>
-                                <li>Positon #9 <span class="cooldown">1 min</span></li>
-                                <li>Positon #10 <span class="cooldown"> <button class="btn-sm btn-danger" id="user-id">Remove deprecated</button></span>
-                                </li>
+                              <?php $__currentLoopData = $user->position; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($position->name); ?> <span class="cooldown"><?php echo e($position->created_at); ?></span></li>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ol>
                         </div>
                     </div>

@@ -31,5 +31,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Team::class);
     }
+    public function position()
+    {
+        return $this->hasMany(Position::class);
+    }
 
 }
