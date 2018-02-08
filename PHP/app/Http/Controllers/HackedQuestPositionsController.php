@@ -42,7 +42,7 @@ class HackedQuestPositionsController extends Controller
             ]);
 
         $user = Auth::user();
-        $user->quest()->associate($quests);
+        $user->hacked()->associate($quests);
         $user->save();
 
     }

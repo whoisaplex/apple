@@ -31,5 +31,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Team::class);
     }
-
+    public function hacked()
+    {
+      return $this->hasMany(Hacked::class);
+    }
 }

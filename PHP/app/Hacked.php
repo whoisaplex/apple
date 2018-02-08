@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 
-class Team extends Model
+class Hacked extends Model
 {
     protected $fillable = ['name', 'owner_id'];
 
