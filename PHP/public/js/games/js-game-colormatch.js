@@ -5,6 +5,7 @@ const currency = 420;
 var first;
 var second;
 
+
 fetch(`https://development.test/api/user/${globalUser}`).then(response => {
   response.json().then(json => {
     request.id = json[0].id;
@@ -113,16 +114,23 @@ function questClickFunction(param) {
                 document.getElementById('printResult').innerHTML = 'Success: You hacked the memory! <br><br> You gained 100k exp and 40 bitcoins!'
 
                 let myHeaders = new Headers();
-                let myInit = {method: 'PUT',
-                              headers: myHeaders,
-                              body:JSON.stringify({
-                                xp: request.xp + xp,
-                                currency: request.currency + currency
-                              }),
-                              mode: 'cors',
-                              cache: 'default'};
-                fetch(`https://development.test/api/user/${globalUser}`, myInit).then(response => {
+                myHeaders.append('Content-Type', 'application/json');
+                console.log('HEADERS:', myHeaders.has('Content-Type'), myHeaders.get('Content-Type'));
+  
+                const XP = (request.xp + xp), 
+                    CURRENCY = (request.currency + currency); 
+                
+                const data = { xp: XP, currency: currency }; 
+
+                fetch(`https://development.test/api/user/${globalUser}`, 
+                {
+                    method: 'PUT', 
+                    headers: myHeaders, 
+                    body: JSON.stringify(data)
+                }).then(response => {
                   console.log(response);
+                }).catch(err => {
+                    console.log(err); 
                 })
 
             }
