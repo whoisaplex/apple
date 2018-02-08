@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::get('users', 'UsersController@API_Users');
     Route::get('user/{id}', 'UsersController@API_Show');
     Route::put('user/{id}', 'UsersController@API_Update');
+    Route::post('position', 'PositionsController@API_Create');
 /* }); */

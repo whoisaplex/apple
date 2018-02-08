@@ -117,22 +117,37 @@ function questClickFunction(param) {
                 let myHeaders = new Headers();
                 myHeaders.append('Content-Type', 'application/json');
                 console.log('HEADERS:', myHeaders.has('Content-Type'), myHeaders.get('Content-Type'));
-  
-                const updatedXp = (request.xp + xp);  
-                const updatedCurrency = (request.currency + currency); 
-                
-                const data = { xp: updatedXp, currency: updatedCurrency };  
 
-                fetch(`https://development.test/api/user/${globalUser}`, 
+                const updatedXp = (request.xp + xp);
+                const updatedCurrency = (request.currency + currency);
+
+                const data = { xp: updatedXp, currency: updatedCurrency };
+                const positionData = { name: 'Hårdkodad', user_id: globalUser }
+
+                // SKICKAS TVÅ GÅNGER
+
+                fetch(`https://development.test/api/user/${globalUser}`,
                 {
-                    method: 'PUT', 
-                    headers: myHeaders, 
+                    method: 'PUT',
+                    headers: myHeaders,
                     body: JSON.stringify(data)
                 }).then(response => {
                   console.log(response);
                 }).catch(err => {
-                    console.log(err); 
+                    console.log(err);
                 })
+                fetch(`https://development.test/api/position`,
+                {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: JSON.stringify(positionData)
+                }).then(response => {
+                    console.log(response);
+                }).catch(err => {
+                    console.log(err);
+                })
+
+
 
             }
             else {

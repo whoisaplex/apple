@@ -15,18 +15,18 @@ fetch(`https://development.test/api/user/${globalUser}`).then(response => {
 });
 
 var myVars = ['backdoor', 'black hat', 'botnet', 'bug', 'cracking', 'crypto', 'chip-off', 'dark web', 'ddos', 'deep web',
-'defcon', 'digital dertificate', 'encryption', 'evil maid attack', 'exploit', 'forensics', 'gchq', 'hacker', 'hacktivist', 
+'defcon', 'digital dertificate', 'encryption', 'evil maid attack', 'exploit', 'forensics', 'gchq', 'hacker', 'hacktivist',
 'hashing', 'https', 'infosec', 'jailbreak', 'keys', 'malware', 'nist', 'nonce', 'opsec', 'otr', 'pentesting', 'pgp', 'phishing',
-'plaintext', 'rat', 'ransomware', 'rainbow table', 'red team', 'root', 'rootkit', 'salting', 'script kiddies', 'shodan', 
-'signature', 'side channel', 'sniffing', 'social engineering', 'spearphishing', 'spoofing', 'spyware', 'state actor', 
+'plaintext', 'rat', 'ransomware', 'rainbow table', 'red team', 'root', 'rootkit', 'salting', 'script kiddies', 'shodan',
+'signature', 'side channel', 'sniffing', 'social engineering', 'spearphishing', 'spoofing', 'spyware', 'state actor',
 'threat model', 'token', 'tor', 'tails', 'vpn', 'virus', 'vuln', 'warez', 'white hat', 'worm', 'zero-day'];
 
 var wordCount = 0;
 
-window.onload = 
+window.onload =
     //createHTML(),
     runMe();
-    
+
 
 document.getElementById("restart").addEventListener("click", function(){
     location.reload();
@@ -116,20 +116,30 @@ function checkInput() {
         myHeaders.append('Content-Type', 'application/json');
         console.log('HEADERS:', myHeaders.has('Content-Type'), myHeaders.get('Content-Type'));
 
-        const updatedXp = (request.xp + xp);  
-        const updatedCurrency = (request.currency + currency); 
-        
-        const data = { xp: updatedXp, currency: updatedCurrency }; 
+        const updatedXp = (request.xp + xp);
+        const updatedCurrency = (request.currency + currency);
 
-        fetch(`https://development.test/api/user/${globalUser}`, 
+        const data = { xp: updatedXp, currency: updatedCurrency };
+        const positionData = { name: 'Hårdkodad', user_id: globalUser }
+        fetch(`https://development.test/api/user/${globalUser}`,
         {
-            method: 'PUT', 
-            headers: myHeaders, 
+            method: 'PUT',
+            headers: myHeaders,
             body: JSON.stringify(data)
         }).then(response => {
           console.log(response);
         }).catch(err => {
-            console.log(err); 
+            console.log(err);
+        })
+        fetch(`https://development.test/api/position`,
+        {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify(positionData)
+        }).then(response => {
+            console.log(response);
+        }).catch(err => {
+            console.log(err);
         })
     }
     else if (input == displayVal) {
@@ -149,7 +159,7 @@ function generateNewWord() {
 }
 
 var currentdate = new Date();
-var datetime = "Last sync " + 
+var datetime = "Last sync " +
     currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 
 console.log(datetime);
