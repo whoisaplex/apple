@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
 class QuestsController extends Controller
 {
     /**
@@ -14,7 +14,9 @@ class QuestsController extends Controller
 
      public function colormatch()
      {
-         return view('games.game-colormatch');
+       $user = Auth::user();
+
+       return view('games.game-colormatch', ['user' => $user]);
      }
      public function swiftwrite()
      {

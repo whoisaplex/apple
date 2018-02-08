@@ -19,7 +19,7 @@ class UsersController extends Controller
     }
 
     public function API_Users()
-    {        
+    {
         return response(User::all(),200);
     }
 

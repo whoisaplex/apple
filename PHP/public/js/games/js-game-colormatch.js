@@ -1,7 +1,21 @@
 var myVars = ["red", "blue", "green", "gray", "purple", "lightgreen", "yellow", "violet"];
-
+const request = {}
+const xp = 50;
+const currency = 420;
 var first;
 var second;
+
+fetch(`https://development.test/api/user/${globalUser}`).then(response => {
+  response.json().then(json => {
+    request.id = json[0].id;
+    request.xp = json[0].xp;
+    request.currency = json[0].currency;
+    console.log(request);
+
+  });
+}).catch(e => {
+    console.log(e, 'failed to get user from api');
+});
 
 //createHTML();
 shuffleArray(myVars);
@@ -97,6 +111,20 @@ function questClickFunction(param) {
                 allBtns.disabled = true;
                 document.getElementById('checkout').disabled = false;
                 document.getElementById('printResult').innerHTML = 'Success: You hacked the memory! <br><br> You gained 100k exp and 40 bitcoins!'
+
+                let myHeaders = new Headers();
+                let myInit = {method: 'PUT',
+                              headers: myHeaders,
+                              body:JSON.stringify({
+                                xp: request.xp + xp,
+                                currency: request.currency + currency
+                              }),
+                              mode: 'cors',
+                              cache: 'default'};
+                fetch(`https://development.test/api/user/${globalUser}`, myInit).then(response => {
+                  console.log(response);
+                })
+
             }
             else {
 

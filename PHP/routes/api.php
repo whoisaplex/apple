@@ -19,5 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /* Route::group(['middleware' => 'auth.basic'], function () { */
     Route::get('users', 'UsersController@API_Users');
     Route::get('user/{id}', 'UsersController@API_Show');
-    Route::put('user/update/{id}', 'UsersController@API_Update');
+    Route::put('user/{id}', 'UsersController@API_Update');
 /* }); */

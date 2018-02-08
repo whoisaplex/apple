@@ -8,7 +8,7 @@ const USERS = new Map();
 const events = {
 
     beginQuest(questId, socket, io){
-        positions[questId].questTimer = new Stopwatch(5000, {refreshRateMS: 100});
+        positions[questId].questTimer = new Stopwatch(60000, {refreshRateMS: 100});
         positions[questId].questTimer.start();
         console.log('[beginQuest]: quest started counting down 5 sec...', questId);
 
