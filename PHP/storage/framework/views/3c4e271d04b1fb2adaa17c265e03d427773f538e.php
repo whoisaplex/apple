@@ -65,12 +65,12 @@
                                 <?php echo e($user->team->name); ?>
 
                               <?php else: ?>
-                              Not in a Team
+                              Invites
                               <?php endif; ?>
                              </h3>
                         </div>
                         <div class="panel-body">
-                          <?php if(isset($user->team)): ?>
+                          <?php if($user->team): ?>
                             <ol id="group-members">
                               <?php $__currentLoopData = $user->team->members; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $member): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <li><?php echo e($member->username); ?>
@@ -83,6 +83,21 @@
                                 </li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ol>
+                            <?php else: ?>
+                            <ul id="group-members">
+                              <?php $__currentLoopData = $user->invite; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $invite): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <li>
+                                <?php echo e($invite->from->username); ?>
+
+                                Has invited you to join
+                                <?php echo e($invite->team->name); ?>
+
+                                <span class="delete">
+                                    <button class="btn-sm btn-danger" id="user-id">Decline</button>
+                                </span>
+                              </li>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </ul>
                             <?php endif; ?>
                         </div>
                     </div>

@@ -63,12 +63,12 @@
                               @if($user->team)
                                 {{$user->team->name}}
                               @else
-                              Not in a Team
+                              Invites
                               @endif
                              </h3>
                         </div>
                         <div class="panel-body">
-                          @isset($user->team)
+                          @if($user->team)
                             <ol id="group-members">
                               @foreach($user->team->members as $member)
                                 <li>{{ $member->username }}
@@ -80,7 +80,20 @@
                                 </li>
                                 @endforeach
                             </ol>
-                            @endisset
+                            @else
+                            <ul id="group-members">
+                              @foreach($user->invite as $invite)
+                              <li>
+                                {{$invite->from->username}}
+                                Has invited you to join
+                                {{$invite->team->name}}
+                                <span class="delete">
+                                    <button class="btn-sm btn-danger" id="user-id">Decline</button>
+                                </span>
+                              </li>
+                              @endforeach
+                            </ul>
+                            @endif
                         </div>
                     </div>
                 </div>

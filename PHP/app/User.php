@@ -35,5 +35,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Position::class);
     }
+    public function invite()
+    {
+        return $this->hasMany(Invite::class, 'user_id');
+    }
 
 }
