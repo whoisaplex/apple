@@ -1,6 +1,6 @@
 module.exports = {
 
-    id1: {lat: 59.313393, lng: 18.110012, name: 'bankomat', area: 'Henriksdal', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420},
+    id1: {lat: 59.313393, lng: 18.110012, name: 'bankomat', area: 'Henriksdal', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:3, xp: 50, currency: 420},
     id2: {lat: 59.312775, lng: 18.109838, name: 'bankomat', area: 'Henriksdal', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:2, xp: 50, currency: 420},
     id3: {lat: 59.313044, lng: 18.10862, name: 'bankomat', area: 'Henriksdal', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:3, xp: 50, currency: 420},
     id4: {lat: 59.331307, lng: 17.998706, name: 'bankomat', area: 'Fredhäll', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420},

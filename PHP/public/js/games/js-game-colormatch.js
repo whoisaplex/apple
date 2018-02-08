@@ -1,4 +1,5 @@
 var myVars = ["red", "blue", "green", "gray", "purple", "lightgreen", "yellow", "violet"];
+
 const request = {}
 const xp = 50;
 const currency = 420;
@@ -11,7 +12,7 @@ fetch(`https://development.test/api/user/${globalUser}`).then(response => {
     request.id = json[0].id;
     request.xp = json[0].xp;
     request.currency = json[0].currency;
-    console.log(request);
+    console.log(request, json[0]);
 
   });
 }).catch(e => {
@@ -117,10 +118,10 @@ function questClickFunction(param) {
                 myHeaders.append('Content-Type', 'application/json');
                 console.log('HEADERS:', myHeaders.has('Content-Type'), myHeaders.get('Content-Type'));
   
-                const XP = (request.xp + xp), 
-                    CURRENCY = (request.currency + currency); 
+                const updatedXp = (request.xp + xp);  
+                const updatedCurrency = (request.currency + currency); 
                 
-                const data = { xp: XP, currency: currency }; 
+                const data = { xp: updatedXp, currency: updatedCurrency };  
 
                 fetch(`https://development.test/api/user/${globalUser}`, 
                 {

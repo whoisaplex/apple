@@ -1,3 +1,19 @@
+const request = {}
+const xp = 50;
+const currency = 420;
+
+fetch(`https://development.test/api/user/${globalUser}`).then(response => {
+  response.json().then(json => {
+    request.id = json[0].id;
+    request.xp = json[0].xp;
+    request.currency = json[0].currency;
+    console.log(request);
+
+  });
+}).catch(e => {
+    console.log(e, 'failed to get user from api');
+});
+
 
 var myVars = ['backdoor', 'black hat', 'botnet', 'bug', 'cracking', 'crypto', 'chip-off', 'dark web', 'ddos', 'deep web',
 'defcon', 'digital dertificate', 'encryption', 'evil maid attack', 'exploit', 'forensics', 'gchq', 'hacker', 'hacktivist', 
@@ -131,6 +147,27 @@ function onMissionSuccess() {
     document.getElementById('printResult').innerHTML = "Success: You gained control of the system! \n <br><br> 500 exp and 50 bitcoins awarded!";
     disableButtons();
     document.getElementById("checkout").disabled = false;
+
+    // PUT request to api to update xp and currency
+    let myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    console.log('HEADERS:', myHeaders.has('Content-Type'), myHeaders.get('Content-Type'));
+
+    const updatedXp = (request.xp + xp);  
+    const updatedCurrency = (request.currency + currency); 
+    
+    const data = { xp: updatedXp, currency: updatedCurrency }; 
+
+    fetch(`https://development.test/api/user/${globalUser}`, 
+    {
+        method: 'PUT', 
+        headers: myHeaders, 
+        body: JSON.stringify(data)
+    }).then(response => {
+        console.log(response);
+    }).catch(err => {
+        console.log(err); 
+    })
 };
 function onMissionFail() {
     document.getElementById('printResult').innerHTML = "You lost the game..";

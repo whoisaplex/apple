@@ -20,11 +20,15 @@ class QuestsController extends Controller
      }
      public function swiftwrite()
      {
-         return view('games.game-swiftwrite');
+        $user = Auth::user();
+         
+        return view('games.game-swiftwrite', ['user' => $user]);
      }
      public function wordmatch()
      {
-         return view('games.game-wordmatch');
+        $user = Auth::user();
+         
+        return view('games.game-wordmatch', ['user' => $user]);
      }
 
     public function index()
