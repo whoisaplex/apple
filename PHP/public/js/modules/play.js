@@ -21,7 +21,7 @@ export default function play(type){
            break;
        case 'end quest':
            screen.innerHTML = "";
-           break;
+           return;
        default:
            screen.innerHTML = "";
            break;
