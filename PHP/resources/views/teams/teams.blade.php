@@ -35,18 +35,16 @@
                     </form>
                 </div>
                 @endunless
+                @isset($user->team_id)
                 <div class="panel-heading">Team</div>
 
                 <div class="panel-body">
                   <h1 style="color:red;text-align:center;">
-                    @if($user->team)
                       {{$user->team->name}}
-                    @else
-                    Not in a Team
-                    @endif
                   </h1>
                 </div>
             </div>
+            @endisset
         </div>
     </div>
 </div>

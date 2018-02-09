@@ -34,19 +34,17 @@
                     </form>
                 </div>
                 <?php endif; ?>
+                <?php if(isset($user->team_id)): ?>
                 <div class="panel-heading">Team</div>
 
                 <div class="panel-body">
                   <h1 style="color:red;text-align:center;">
-                    <?php if($user->team): ?>
                       <?php echo e($user->team->name); ?>
 
-                    <?php else: ?>
-                    Not in a Team
-                    <?php endif; ?>
                   </h1>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>

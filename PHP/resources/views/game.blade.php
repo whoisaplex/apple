@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <link href="./css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ URL::asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/ui.main.css') }}">
     <script type="text/javascript">
-      const globalUser = '{{$user->id}}'
+      globalUser = {!! json_encode($user) !!}
     </script>
 
     <title></title>
@@ -85,7 +86,8 @@
     </div>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-asKbHoJKTtGt8rWJ35ebHT3j7sVKUBA"></script>
-    <script type="module" src="js/game.js"></script>
-        
+    <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ mix('/js/game.js') }}"></script>
+
 </body>
 </html>

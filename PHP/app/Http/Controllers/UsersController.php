@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Library\Quest;
 
 class UsersController extends Controller
 {
@@ -56,15 +57,15 @@ class UsersController extends Controller
         return view('users.show', compact('user'));
     }
 
-    public function API_Show($id)
+    public function API_Show()
     {
-        if (!$id) {
-           throw new HttpException(400, "Invalid id");
+        if (! \Auth::check()) {
+          return response()->json('Not logged in', 401);
         }
-        $user = User::find($id);
-        return response()->json([
-            $user,
-        ], 200);
+        $user = \Auth::user();
+
+        //$user = User::where('id', $id)->firstOrFail();
+        return response()->json($user, 200);
     }
 
     /**
@@ -89,17 +90,23 @@ class UsersController extends Controller
     {
         //
     }
-    public function API_Update(Request $request, $id)
+    public function API_Update(Request $request)
     {
-        if (!$id) {
-            throw new HttpException(400, "Invalid id");
+        if (! \Auth::check()) {
+          return response()->json('Not logged in', 401);
         }
-        $user = User::findOrFail($id);
-        $user->fill($request->all());
-        $user->save();
-        return $user;
 
-        throw new HttpException(400, "Invalid data");
+        $quest = new Quest($request->input('quest_type'));
+        $user = \Auth::user();
+
+        $user->currency += $quest->currency;
+        $user->xp += $quest->xp;
+        $user->save();
+
+        return response()->json([
+          'user' => $user,
+          'quest' => $quest,
+        ]);
     }
 
     /**
