@@ -17,8 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 /* Route::group(['middleware' => 'auth.basic'], function () { */
-    Route::get('users', 'UsersController@API_Users');
+    Route::get('/users', 'UsersController@API_Users');
     Route::get('/me', 'UsersController@API_Show')->middleware('auth');
     Route::patch('/me', 'UsersController@API_Update')->middleware('auth');
-    Route::post('position', 'PositionsController@API_Create')->middleware('auth');
+    Route::post('/position', 'PositionsController@API_Create')->middleware('auth');
+    //Create controller for invite accpepts
+    Route::post('/invites', 'InvitesController@Send_Invite')
 /* }); */
