@@ -2,14 +2,6 @@ const request = {}
 const xp = 50;
 const currency = 420;
 
-axios.get('https://development.test/api/me')
-  .then(({data}) => {
-    request.id = data.id;
-    request.xp = data.xp;
-    request.currency = data.currency;
-  }).catch(e => {
-      console.log(e, 'failed to get user from api');
-  });
 
 var myVars = ['backdoor', 'black hat', 'botnet', 'bug', 'cracking', 'crypto', 'chip-off', 'dark web', 'ddos', 'deep web',
 'defcon', 'digital dertificate', 'encryption', 'evil maid attack', 'exploit', 'forensics', 'gchq', 'hacker', 'hacktivist',
@@ -107,37 +99,16 @@ function checkInput() {
         document.getElementById('inputID').disabled = true;
         myStopFunction();
         document.getElementById("checkout").disabled = false;
-
-        // PUT request to api to update xp and currency
-        let myHeaders = new Headers();
-        myHeaders.append('Content-Type', 'application/json');
-        console.log('HEADERS:', myHeaders.has('Content-Type'), myHeaders.get('Content-Type'));
-
-        const updatedXp = (request.xp + xp);
-        const updatedCurrency = (request.currency + currency);
-
-        const data = { xp: updatedXp, currency: updatedCurrency };
-        const positionData = { name: 'Hårdkodad', user_id: globalUser }
-        fetch(`https://development.test/api/user/${globalUser}`,
-        {
-            method: 'PUT',
-            headers: myHeaders,
-            body: JSON.stringify(data)
-        }).then(response => {
-          console.log(response);
-        }).catch(err => {
-            console.log(err);
-        })
-        fetch(`https://development.test/api/position`,
-        {
-            method: 'POST',
-            headers: myHeaders,
-            body: JSON.stringify(positionData)
-        }).then(response => {
-            console.log(response);
-        }).catch(err => {
-            console.log(err);
-        })
+        
+        //update user and post to positions table
+        axios.patch('https://development.test/api/me', { quest_type: 2 })
+          .then(response => {
+            globalUser = response.data.user;
+            axios.post('https://development.test/api/position', {name:'Hårdkodad', user_id:globalUser.id});
+            console.log(globalUser);
+          }).catch(err => {
+              console.log(err);
+          });
     }
     else if (input == displayVal) {
         wordCount++;

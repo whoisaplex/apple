@@ -24,27 +24,10 @@ class PositionsController extends Controller
      */
 
     public function API_Create(Request $request)
-    {
+    {        
         return Position::create($request->all());
     }
-  /*  public function API_Create(array $request)
-    {
-        return Position::create(
-        [
-          'name' => $request['name'],
-          'user_id' => $request['user_id']
-        ]
-      );
-    }
-    protected function create(array $data)
-    {
-        return User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password'])
-        ]);
-    }
-*/
+
     /**
      * Store a newly created resource in storage.
      *

@@ -6,9 +6,7 @@
 
         <!-- <link rel="stylesheet" type="text/css" href="reset.css"> -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript">
-          const globalUser = '{{$user->id}}'
-        </script>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
         <div id="headerText">
@@ -30,7 +28,7 @@
         <div id="printResult">
 
         </div>
-
+        <script src="{{ mix('js/app.js') }}"></script>
         <script src="{{ URL::asset( 'js/games/js-game-colormatch.js') }}"></script>
     </body>
 </html>

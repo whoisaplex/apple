@@ -18,6 +18,5 @@ module.exports = {
     id16: {lat: 59.372527, lng: 17.844904, name: 'bankomat', area: 'Hägersten', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420},
     id17: {lat: 59.368099, lng: 17.961684, name: 'bankomat', area: 'Sundbyberg', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420},
     id18: {lat: 59.367826,lng: 17.964833, name: 'bankomat', area: 'Sundbyberg', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420},
-    id19: {lat: 59.334660,lng: 18.060483, name: 'bankomat', area: 'Hägersten', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:1, xp: 50, currency: 420}
-
+    id19: {lat: 59.334660,lng: 18.060483, name: 'bankomat', area: 'Hägersten', isAvailable: true, isBeingTaken: false, questTimer: null, coolDown: null, type:3, xp: 50, currency: 420}
 }
