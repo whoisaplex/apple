@@ -29,4 +29,5 @@ Route::middleware('auth')->group(function () {
   Route::get('/colormatch', 'QuestsController@colormatch');
   Route::get('/swiftwrite', 'QuestsController@swiftwrite');
   Route::get('/wordmatch', 'QuestsController@wordmatch');
+  Route::post('/invite', 'InvitesController@sendInvite');
 });
