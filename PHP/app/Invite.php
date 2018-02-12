@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invite extends Model
 {
-    protected $fillable = ['name', 'user_id', 'sender_id'];
+    protected $fillable = ['name', 'user_id', 'sender_id', 'team_id'];
 
     public function user()
     {

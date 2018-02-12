@@ -88,7 +88,7 @@
                                 Has invited you to join
                                 {{$invite->team->name}}
                                 <span class="delete">
-                                    <button class="btn-sm btn-danger" id="user-id">Decline</button>
+                                    <button class="btn-sm btn-danger" id="accept">Accept</button>
                                 </span>
                               </li>
                               @endforeach
@@ -97,9 +97,22 @@
                         </div>
                     </div>
                 </div>
+{{$invite->id}}
+                @unless ($user->team)
 
+                <script type="text/javascript">
+                document.querySelector('#accept').addEventListener('click', function(){
+                axios.patch('https://development.test/api/me', { team_id: {{$invite->team->id}} })
+                  .then(response => {
+                    axios.patch('https://development.test/api/invite',{id:6});
+                    console.log(response);
 
-
+                  }).catch(err => {
+                      console.log(err);
+                  });
+                });
+                </script>
+                @endunless
         </section>
     </main>
 @endsection

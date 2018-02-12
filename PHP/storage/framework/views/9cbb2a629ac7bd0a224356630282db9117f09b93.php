@@ -13,7 +13,7 @@
                         <div class="panel-body">
                             <ol id="user-positions">
                               <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <li><a href="http://testing.test/users/<?php echo e($user->username); ?>"><?php echo e($user->username); ?></a><span class="cooldown"> <button class="btn-sm btn-danger" id="user-id">Invite to team</button></span>
+                                <li><a href="http://testing.test/users/<?php echo e($user->username); ?>"><?php echo e($user->username); ?></a><span class="cooldown"><?php echo e($user->xp); ?> <button class="btn-sm btn-danger" id="user-id">Invite to team</button></span>
                                 </li>
                               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ol>

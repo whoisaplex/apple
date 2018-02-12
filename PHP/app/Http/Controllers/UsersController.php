@@ -54,7 +54,9 @@ class UsersController extends Controller
     public function show($username)
     {
         $user = User::whereUsername($username)->firstOrFail();
-        return view('users.show', compact('user'));
+        $auth = \Auth::user();
+        return view('users.show', compact('user', 'auth'));
+
     }
 
     public function API_Show()
@@ -95,7 +97,8 @@ class UsersController extends Controller
         if (! \Auth::check()) {
           return response()->json('Not logged in', 401);
         }
-
+        if ($request->input('quest_type'))
+        {
         $quest = new Quest($request->input('quest_type'));
         $user = \Auth::user();
 
@@ -107,7 +110,16 @@ class UsersController extends Controller
           'user' => $user,
           'quest' => $quest,
         ]);
+      }
+      else
+      {
+        $user = \Auth::user();
+        $user->team_id = $request->team_id;
+        $user->save();
+
+        return response()->json($request);
     }
+  }
 
     /**
      * Remove the specified resource from storage.

@@ -1,7 +1,4 @@
-const request = {}
-const xp = 50;
-const currency = 420;
-
+console.log(window.frameElement);
 
 var myVars = ['backdoor', 'black hat', 'botnet', 'bug', 'cracking', 'crypto', 'chip-off', 'dark web', 'ddos', 'deep web',
 'defcon', 'digital dertificate', 'encryption', 'evil maid attack', 'exploit', 'forensics', 'gchq', 'hacker', 'hacktivist',
@@ -141,6 +138,7 @@ function onMissionSuccess() {
         globalUser = response.data.user;
         axios.post('https://development.test/api/position', {name:'Hårdkodad', user_id:globalUser.id});
         console.log(globalUser);
+        setTimeout( () => window.frameElement.remove(),3000);
       }).catch(err => {
           console.log(err);
       });

@@ -102,16 +102,13 @@ function questClickFunction(param) {
                 document.getElementById('checkout').disabled = false;
                 document.getElementById('printResult').innerHTML = 'Success: You hacked the memory! <br><br> You gained 100k exp and 40 bitcoins!'
 
-                let myHeaders = new Headers();
-                myHeaders.append('Content-Type', 'application/json');
-                console.log('HEADERS:', myHeaders.has('Content-Type'), myHeaders.get('Content-Type'));
-
                 //update user and post to positions table
                 axios.patch('https://development.test/api/me', { quest_type: 1 })
                   .then(response => {
                     globalUser = response.data.user;
                     axios.post('https://development.test/api/position', {name:'Hårdkodad', user_id:globalUser.id});
                     console.log(globalUser);
+                    setTimeout( () => window.frameElement.remove(),3000);
                   }).catch(err => {
                       console.log(err);
                   });

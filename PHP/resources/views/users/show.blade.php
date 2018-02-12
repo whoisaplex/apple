@@ -73,9 +73,9 @@
                             </ol>
                         </div>
                         @else
-                        <h3>Riding Solo
+                        <h3>Riding Solo {{$user->id}} {{$auth->id}} {{$auth->team_id}}
                           <span class="delete">
-                              <button class="btn-sm btn-danger" id="user-id">Invite</button>
+                            <button id="invite" name="button" ></button>
                           </span>
                         </h3>
                         @endif
@@ -83,7 +83,16 @@
                 </div>
 
 
-
         </section>
+        <script type="text/javascript">
+        document.querySelector('#invite').addEventListener('click', function(){
+        axios.post('https://development.test/api/invite', { team_id:{{ $auth->team_id}},user_id:{{$user->id}}, sender_id:{{$auth->id}} })
+          .then(response => {
+            console.log(response);
+          }).catch(err => {
+              console.log(err);
+          });
+        });
+        </script>
     </main>
 @endsection

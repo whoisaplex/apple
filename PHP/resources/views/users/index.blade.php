@@ -14,7 +14,7 @@
                         <div class="panel-body">
                             <ol id="user-positions">
                               @foreach($users as $user)
-                                <li><a href="http://testing.test/users/{{$user->username}}">{{$user->username}}</a><span class="cooldown"> <button class="btn-sm btn-danger" id="user-id">Invite to team</button></span>
+                                <li><a href="http://testing.test/users/{{$user->username}}">{{$user->username}}</a><span class="cooldown">{{$user->xp}} <button class="btn-sm btn-danger" id="user-id">Invite to team</button></span>
                                 </li>
                               @endforeach
                             </ol>

@@ -99,13 +99,14 @@ function checkInput() {
         document.getElementById('inputID').disabled = true;
         myStopFunction();
         document.getElementById("checkout").disabled = false;
-        
+
         //update user and post to positions table
         axios.patch('https://development.test/api/me', { quest_type: 2 })
           .then(response => {
             globalUser = response.data.user;
             axios.post('https://development.test/api/position', {name:'Hårdkodad', user_id:globalUser.id});
             console.log(globalUser);
+            setTimeout( () => window.frameElement.remove(),3000);
           }).catch(err => {
               console.log(err);
           });

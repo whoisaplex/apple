@@ -93,7 +93,7 @@
                                 <?php echo e($invite->team->name); ?>
 
                                 <span class="delete">
-                                    <button class="btn-sm btn-danger" id="user-id">Decline</button>
+                                    <button class="btn-sm btn-danger" id="accept">Accept</button>
                                 </span>
                               </li>
                               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -102,9 +102,23 @@
                         </div>
                     </div>
                 </div>
+<?php echo e($invite->id); ?>
 
+                <?php if (! ($user->team)): ?>
 
+                <script type="text/javascript">
+                document.querySelector('#accept').addEventListener('click', function(){
+                axios.patch('https://development.test/api/me', { team_id: <?php echo e($invite->team->id); ?> })
+                  .then(response => {
+                    axios.patch('https://development.test/api/invite',{id:6});
+                    console.log(response);
 
+                  }).catch(err => {
+                      console.log(err);
+                  });
+                });
+                </script>
+                <?php endif; ?>
         </section>
     </main>
 <?php $__env->stopSection(); ?>

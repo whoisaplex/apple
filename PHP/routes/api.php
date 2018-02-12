@@ -21,6 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::get('/me', 'UsersController@API_Show')->middleware('auth');
     Route::patch('/me', 'UsersController@API_Update')->middleware('auth');
     Route::post('/position', 'PositionsController@API_Create')->middleware('auth');
-    //Create controller for invite accpepts
-    Route::post('/invites', 'InvitesController@Send_Invite');
+    Route::post('/invite', 'InvitesController@sendInvite')->middleware('auth');
+    Route::patch('/invite', 'InvitesController@deleteInvite')->middleware('auth');
 /* }); */
