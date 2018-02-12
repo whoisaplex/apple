@@ -65,7 +65,8 @@
                                 <?php echo e($user->team->name); ?>
 
                               <?php else: ?>
-                              Invites
+                              Invites <?php echo e($hasInvites); ?>
+
                               <?php endif; ?>
                              </h3>
                         </div>
@@ -102,22 +103,20 @@
                         </div>
                     </div>
                 </div>
-<?php echo e($invite->id); ?>
-
-                <?php if (! ($user->team)): ?>
-
+                <?php if(isset($invite)): ?>
                 <script type="text/javascript">
                 document.querySelector('#accept').addEventListener('click', function(){
                 axios.patch('https://development.test/api/me', { team_id: <?php echo e($invite->team->id); ?> })
                   .then(response => {
-                    axios.patch('https://development.test/api/invite',{id:6});
-                    console.log(response);
+                    axios.patch('https://development.test/api/invite', { id: <?php echo e($invite->id); ?> });
+                    console.log(response.data);
 
                   }).catch(err => {
                       console.log(err);
                   });
                 });
                 </script>
+
                 <?php endif; ?>
         </section>
     </main>

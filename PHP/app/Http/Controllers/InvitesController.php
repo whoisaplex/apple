@@ -20,7 +20,8 @@ class InvitesController extends Controller
     public function deleteInvite(Request $request)
 
     {
-      
-      $invite = Invite::find($request->input('id'))->delete();
+
+      Invite::find($request->input('id'))->delete();
+    
     }
 }

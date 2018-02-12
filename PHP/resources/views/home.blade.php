@@ -63,7 +63,7 @@
                               @if($user->team)
                                 {{$user->team->name}}
                               @else
-                              Invites
+                              Invites {{$hasInvites}}
                               @endif
                              </h3>
                         </div>
@@ -97,22 +97,21 @@
                         </div>
                     </div>
                 </div>
-{{$invite->id}}
-                @unless ($user->team)
-
+                @isset ($invite)
                 <script type="text/javascript">
                 document.querySelector('#accept').addEventListener('click', function(){
-                axios.patch('https://development.test/api/me', { team_id: {{$invite->team->id}} })
+                axios.patch('https://development.test/api/me', { team_id: {{  $invite->team->id  }} })
                   .then(response => {
-                    axios.patch('https://development.test/api/invite',{id:6});
-                    console.log(response);
+                    axios.patch('https://development.test/api/invite', { id: {{  $invite->id  }} });
+                    console.log(response.data);
 
                   }).catch(err => {
                       console.log(err);
                   });
                 });
                 </script>
-                @endunless
+
+                @endisset
         </section>
     </main>
 @endsection

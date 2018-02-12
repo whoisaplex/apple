@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Invite;
 
 class HomeController extends Controller
 {
@@ -25,9 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $hasInvites = $user->invite->count();
 
 
-      
-        return view('home', ['user' => $user]);
+        return view('home', ['user' => $user, 'hasInvites' => $hasInvites]);
     }
 }
