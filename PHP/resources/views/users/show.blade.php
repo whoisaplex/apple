@@ -75,7 +75,7 @@
                         @else
                         <h3>Riding Solo {{$user->id}} {{$auth->id}} {{$auth->team_id}}
                           <span class="delete">
-                            <button id="invite" name="button" ></button>
+                            <button id="invite" name="button">Invite</button>
                           </span>
                         </h3>
                         @endif
