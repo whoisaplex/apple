@@ -51375,13 +51375,13 @@ var User = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'span',
                     null,
-                    ' ',
+                    ' XP: ',
                     this.props.user.xp
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'span',
                     null,
-                    ' ',
+                    ' Currency: ',
                     this.props.user.currency
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

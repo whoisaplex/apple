@@ -10,13 +10,13 @@ export default class User extends Component {
         });
     }
      render() {
-         return (<li>
+         return (
+          <li>
             <a href={'https://development.test/users/' + this.props.user.username}>{this.props.user.username}</a>
-            <span> {this.props.user.xp}</span>
-             <span> {this.props.user.currency}</span>
-             <span> Team: {this.props.user.team_name}</span> 
-             <span className="cooldown"><button className="btn-sm btn-danger" id="user-id" onClick={this.invitePlayerToTeam.bind(this)}>Invite to team</button></span>
-
-        </li>)
+            <span> XP: {this.props.user.xp}</span>
+            <span> Currency: {this.props.user.currency}</span>
+            <span> Team: {this.props.user.team_name}</span>
+            <span className="cooldown"><button className="btn-sm btn-danger" id="user-id" onClick={this.invitePlayerToTeam.bind(this)}>Invite to team</button></span>
+          </li>)
     }
 }

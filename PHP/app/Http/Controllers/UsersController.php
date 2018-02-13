@@ -23,7 +23,7 @@ class UsersController extends Controller
 
     public function API_Users()
     {
-      $users = User::all();
+      $users = User::take(200)->orderBy('xp', 'desc')->get();
 
       foreach ($users as $user) {
         $team = $user->team()->value('name');
