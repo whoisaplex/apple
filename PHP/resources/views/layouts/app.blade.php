@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/profile.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
+ 
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -84,6 +85,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
+    @yield('scripts')
+    <script src="{{ mix('js/app_vanilla.js') }}"></script>
 </body>
 </html>

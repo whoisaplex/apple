@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 use App\Library\Quest;
 
 class UsersController extends Controller
@@ -15,8 +16,9 @@ class UsersController extends Controller
      */
     public function index()
     {
+        $auth = Auth::user();
         $users = User::take(10)->orderBy('xp','desc')->get();
-        return view('users.index', ['users' => $users]);
+        return view('users.index', ['users' => $users, 'auth' => $auth]);
     }
 
     public function API_Users()

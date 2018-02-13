@@ -60,122 +60,29 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 30);
+/******/ 	return __webpack_require__(__webpack_require__.s = 219);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 2:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Map; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Marker; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return QuestCircle; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map_style_js__ = __webpack_require__(32);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-
-
-var Map = {
-    googleMap: new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: { lat: 59.300198, lng: 17.995423 },
-        styles: __WEBPACK_IMPORTED_MODULE_0__map_style_js__["a" /* default */]
-    }),
-    setZoom: function setZoom(lat, lng) {
-        var zoom = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 17;
-
-        this.googleMap.setCenter({ lat: lat, lng: lng });
-        this.googleMap.setZoom(zoom);
-    }
-};
-
-var Marker = function () {
-    function Marker() {
-        var pos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-        var map = arguments[1];
-        var icon = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
-
-        _classCallCheck(this, Marker);
-
-        this.marker = new google.maps.Marker({
-            position: pos,
-            map: map,
-            icon: icon
-        });
-
-        // Saves the coords on the marker object
-        this.coords = pos;
-    }
-
-    // When a quest icon is changed
-
-
-    _createClass(Marker, [{
-        key: 'reRender',
-        value: function reRender(map, icon) {
-            this.marker.setMap(null);
-            this.marker = new google.maps.Marker({
-                position: this.coords,
-                map: map,
-                icon: icon
-            });
-        }
-
-        // Adds click event
-
-    }, {
-        key: 'addClickEvent',
-        value: function addClickEvent(callback) {
-            this.marker.addListener('click', callback);
-        }
-    }]);
-
-    return Marker;
-}();
-
-var QuestCircle = function QuestCircle(position, type, map) {
-    _classCallCheck(this, QuestCircle);
-
-    var color = type == 'normal' ? 'green' : type == 'unavailable' ? 'red' : 'yellow';
-
-    this.circle = new google.maps.Circle({
-        strokeColor: color,
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: color,
-        fillOpacity: 0.35,
-        map: map,
-        center: position,
-        radius: 11
-    });
-};
-
-
-
-/***/ }),
-
-/***/ 30:
+/***/ 219:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(31);
+module.exports = __webpack_require__(220);
 
 
 /***/ }),
 
-/***/ 31:
+/***/ 220:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_ui_js__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_user_js__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_geolocation_js__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_play_js__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_ui_js__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_user_js__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_geolocation_js__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_play_js__ = __webpack_require__(225);
 
 
 
@@ -363,7 +270,7 @@ Object(__WEBPACK_IMPORTED_MODULE_3__modules_geolocation_js__["a" /* default */])
 
 /***/ }),
 
-/***/ 32:
+/***/ 221:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -566,11 +473,11 @@ var mapstyle = [{
 
 /***/ }),
 
-/***/ 33:
+/***/ 222:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__ = __webpack_require__(75);
 
 
 // DOM elements 
@@ -670,11 +577,11 @@ var ui = {
 
 /***/ }),
 
-/***/ 34:
+/***/ 223:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__googlemaps_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__googlemaps_js__ = __webpack_require__(75);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -734,7 +641,7 @@ var User = function () {
 
 /***/ }),
 
-/***/ 35:
+/***/ 224:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -753,7 +660,7 @@ function initGeolocation(user, map) {
 
 /***/ }),
 
-/***/ 36:
+/***/ 225:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -789,6 +696,99 @@ function play(type) {
 
     screen.appendChild(gameScreen);
 }
+
+/***/ }),
+
+/***/ 75:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Map; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Marker; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return QuestCircle; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map_style_js__ = __webpack_require__(221);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+var Map = {
+    googleMap: new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: { lat: 59.300198, lng: 17.995423 },
+        styles: __WEBPACK_IMPORTED_MODULE_0__map_style_js__["a" /* default */]
+    }),
+    setZoom: function setZoom(lat, lng) {
+        var zoom = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 17;
+
+        this.googleMap.setCenter({ lat: lat, lng: lng });
+        this.googleMap.setZoom(zoom);
+    }
+};
+
+var Marker = function () {
+    function Marker() {
+        var pos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        var map = arguments[1];
+        var icon = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
+
+        _classCallCheck(this, Marker);
+
+        this.marker = new google.maps.Marker({
+            position: pos,
+            map: map,
+            icon: icon
+        });
+
+        // Saves the coords on the marker object
+        this.coords = pos;
+    }
+
+    // When a quest icon is changed
+
+
+    _createClass(Marker, [{
+        key: 'reRender',
+        value: function reRender(map, icon) {
+            this.marker.setMap(null);
+            this.marker = new google.maps.Marker({
+                position: this.coords,
+                map: map,
+                icon: icon
+            });
+        }
+
+        // Adds click event
+
+    }, {
+        key: 'addClickEvent',
+        value: function addClickEvent(callback) {
+            this.marker.addListener('click', callback);
+        }
+    }]);
+
+    return Marker;
+}();
+
+var QuestCircle = function QuestCircle(position, type, map) {
+    _classCallCheck(this, QuestCircle);
+
+    var color = type == 'normal' ? 'green' : type == 'unavailable' ? 'red' : 'yellow';
+
+    this.circle = new google.maps.Circle({
+        strokeColor: color,
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: color,
+        fillOpacity: 0.35,
+        map: map,
+        center: position,
+        radius: 11
+    });
+};
+
+
 
 /***/ })
 
