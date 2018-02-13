@@ -8,15 +8,15 @@ export default class User extends Component {
         }).catch(err => {
             console.log(err);
         });
-    } 
+    }
      render() {
          return (<li>
             <a href={'https://development.test/users/' + this.props.user.username}>{this.props.user.username}</a>
             <span> {this.props.user.xp}</span>
              <span> {this.props.user.currency}</span>
-             <span> TeamID: {this.props.user.team_id}</span> 
+             <span> Team: {this.props.user.team_name}</span> 
              <span className="cooldown"><button className="btn-sm btn-danger" id="user-id" onClick={this.invitePlayerToTeam.bind(this)}>Invite to team</button></span>
-             
+
         </li>)
     }
 }

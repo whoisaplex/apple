@@ -23,7 +23,13 @@ class UsersController extends Controller
 
     public function API_Users()
     {
-        return response(User::all(),200);
+      $users = User::all();
+
+      foreach ($users as $user) {
+        $team = $user->team()->value('name');
+        $user->team_name = $team;
+      }
+        return response()->json($users);
     }
 
     /**

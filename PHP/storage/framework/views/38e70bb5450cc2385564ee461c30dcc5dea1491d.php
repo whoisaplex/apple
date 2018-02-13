@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?php echo e(URL::asset('css/profile.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(URL::asset('css/style.css')); ?>">
 
+ 
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
@@ -38,14 +39,17 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
-                        <?php echo e(config('app.name', 'StreetHack')); ?>
-
+                        <!-- <?php echo e(config('app.name', 'StreetHack')); ?> -->
+                        StreetHack
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+                        <li><a href="/home">Profile</a></li>
+                        <li><a href="/users">Leaderboard</a></li>
+                        <li><a href="/game">Play</a></li>
                         &nbsp;
                     </ul>
 
@@ -86,6 +90,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="<?php echo e(mix('js/app.js')); ?>"></script>
+    <?php echo $__env->yieldContent('scripts'); ?>
+    <script src="<?php echo e(mix('js/app_vanilla.js')); ?>"></script>
 </body>
 </html>
