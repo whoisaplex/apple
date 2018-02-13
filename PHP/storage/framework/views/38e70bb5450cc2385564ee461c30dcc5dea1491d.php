@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?php echo e(URL::asset('css/profile.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(URL::asset('css/style.css')); ?>">
 
+ 
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
@@ -86,6 +87,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="<?php echo e(mix('js/app.js')); ?>"></script>
+    <?php echo $__env->yieldContent('scripts'); ?>
+    <script src="<?php echo e(mix('js/app_vanilla.js')); ?>"></script>
 </body>
 </html>
