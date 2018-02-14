@@ -41,7 +41,7 @@
 
     <!-- PROFILE -->
     <div id="menu-site">
-        <p>Menu stuff</p>
+        <object data="https://development.test/home"></object>
     </div>
 
     <!-- QUEST DIALOG POPUP -->
