@@ -5,7 +5,8 @@ import initGeolocation from './modules/geolocation.js';
 import play from './modules/play.js';
 
 console.log(globalUser);
-// Game 'controller'
+
+
 const game = {
     /*  When a user connects
      these are updated to reflect
@@ -173,6 +174,10 @@ const mockUser = getRandomMockUser();
 // Socket, user, geolocation and map initialized
 const socket = io('http://localhost:8080');
 const user = new User(socket);
+
+//add team id to user variable
+user.team = globalUser.team_id;
+
 
 
 user.logon(socket);
