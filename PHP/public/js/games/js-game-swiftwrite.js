@@ -1,8 +1,3 @@
-const request = {}
-const xp = 50;
-const currency = 420;
-
-
 var myVars = ['backdoor', 'black hat', 'botnet', 'bug', 'cracking', 'crypto', 'chip-off', 'dark web', 'ddos', 'deep web',
 'defcon', 'digital dertificate', 'encryption', 'evil maid attack', 'exploit', 'forensics', 'gchq', 'hacker', 'hacktivist',
 'hashing', 'https', 'infosec', 'jailbreak', 'keys', 'malware', 'nist', 'nonce', 'opsec', 'otr', 'pentesting', 'pgp', 'phishing',
@@ -95,7 +90,7 @@ function checkInput() {
     console.log(input + " " + displayVal);
 
     if(wordCount == 10) {
-        document.getElementById('printResult').innerHTML = "Completed: Access granted!  \n <br><br> 700 exp and 30 bitcoins awarded!";
+        document.getElementById('printResult').innerHTML = "Completed: Access granted!  \n <br><br> 20 xp and 200 bitcoins awarded!";
         document.getElementById('inputID').disabled = true;
         myStopFunction();
         document.getElementById("checkout").disabled = false;

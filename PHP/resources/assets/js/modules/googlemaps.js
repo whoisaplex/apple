@@ -2,8 +2,8 @@ import mapstyle from './map.style.js';
 
 const Map = {
     googleMap: new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: {lat: 59.300198, lng: 17.995423},
+        zoom: 9,
+        center: {lat: 59.313282, lng: 18.06616},
         styles: mapstyle
     }),
     setZoom(lat, lng, zoom = 17){

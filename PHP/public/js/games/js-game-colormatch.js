@@ -1,8 +1,5 @@
 var myVars = ["red", "blue", "green", "gray", "purple", "lightgreen", "yellow", "violet"];
 
-const request = {}
-const xp = 50;
-const currency = 420;
 var first;
 var second;
 
@@ -100,7 +97,7 @@ function questClickFunction(param) {
             if (isEmpty.item(0) == null) {
                 allBtns.disabled = true;
                 document.getElementById('checkout').disabled = false;
-                document.getElementById('printResult').innerHTML = 'Success: You hacked the memory! <br><br> You gained 100k exp and 40 bitcoins!'
+                document.getElementById('printResult').innerHTML = 'Success: You hacked the memory! <br><br> You gained 30 xp and 300 bitcoins!'
 
                 //update user and post to positions table
                 axios.patch('https://development.test/api/me', { quest_type: 1 })

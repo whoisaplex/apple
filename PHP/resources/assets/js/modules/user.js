@@ -10,20 +10,29 @@ export default class User {
         this.id = null;
         this.socket = socket;
         this.coords = {
-            lat: 59.300198,
-            lng: 17.995423
+            lat: null,
+            lng: null
         }
+        this.geolocationInitialized = false; 
     }
 
     logon(socket){
         socket.emit('logon', {id: this.id, team: this.team, coords: this.coords});
     }
 
-    upDateCoords(coords, map){
+    upDateCoords(coords, Map){
+
         console.log('[User.upDateCoords]: coords updated on user');
         this.coords = coords;
-        this.drawMarker(map);
+        this.drawMarker(Map.googleMap);
         this.socket.emit('update-team-coords', {team: this.team, coords: this.coords, id: this.id});
+
+        /* Sets the map to the players position 
+         * the first time geolocation is updated */ 
+        if(!this.geolocationInitialized) {
+            Map.setZoom(this.coords.lat, this.coords.lng);
+            this.geolocationInitialized = true; 
+        }
     }
 
     drawMarker(map){

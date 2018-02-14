@@ -607,9 +607,10 @@ var User = function () {
         this.id = null;
         this.socket = socket;
         this.coords = {
-            lat: 59.300198,
-            lng: 17.995423
+            lat: null,
+            lng: null
         };
+        this.geolocationInitialized = false;
     }
 
     _createClass(User, [{
@@ -619,11 +620,19 @@ var User = function () {
         }
     }, {
         key: 'upDateCoords',
-        value: function upDateCoords(coords, map) {
+        value: function upDateCoords(coords, Map) {
+
             console.log('[User.upDateCoords]: coords updated on user');
             this.coords = coords;
-            this.drawMarker(map);
+            this.drawMarker(Map.googleMap);
             this.socket.emit('update-team-coords', { team: this.team, coords: this.coords, id: this.id });
+
+            /* Sets the map to the players position 
+             * the first time geolocation is updated */
+            if (!this.geolocationInitialized) {
+                Map.setZoom(this.coords.lat, this.coords.lng);
+                this.geolocationInitialized = true;
+            }
         }
     }, {
         key: 'drawMarker',
@@ -654,11 +663,11 @@ var User = function () {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = initGeolocation;
 // Inits geolocation
-function initGeolocation(user, map) {
+function initGeolocation(user, Map) {
     navigator.geolocation.watchPosition(onUpdatePos, onPosError);
 
     function onUpdatePos(pos) {
-        user.upDateCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude }, map.googleMap);
+        user.upDateCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude }, Map);
     }
     function onPosError(err) {
         console.log('Pos update error:', err);
@@ -722,8 +731,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Map = {
     googleMap: new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: { lat: 59.300198, lng: 17.995423 },
+        zoom: 9,
+        center: { lat: 59.313282, lng: 18.06616 },
         styles: __WEBPACK_IMPORTED_MODULE_0__map_style_js__["a" /* default */]
     }),
     setZoom: function setZoom(lat, lng) {
