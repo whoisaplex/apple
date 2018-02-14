@@ -1,5 +1,3 @@
-console.log(window.frameElement);
-
 var myVars = ['backdoor', 'black hat', 'botnet', 'bug', 'cracking', 'crypto', 'chip-off', 'dark web', 'ddos', 'deep web',
 'defcon', 'digital dertificate', 'encryption', 'evil maid attack', 'exploit', 'forensics', 'gchq', 'hacker', 'hacktivist',
 'hashing', 'https', 'infosec', 'jailbreak', 'keys', 'malware', 'nist', 'nonce', 'opsec', 'otr', 'pentesting', 'pgp', 'phishing',
@@ -129,7 +127,7 @@ function printToPage() {
         document.getElementById('printResult').innerHTML += "You have " + clicksRemain + " tries left. <br><br>";
 };
 function onMissionSuccess() {
-    document.getElementById('printResult').innerHTML = "Success: You gained control of the system! \n <br><br> 500 exp and 50 bitcoins awarded!";
+    document.getElementById('printResult').innerHTML = "Success: You gained control of the system! \n <br><br> 10 exp and 100 bitcoins awarded!";
     disableButtons();
     document.getElementById("checkout").disabled = false;
 

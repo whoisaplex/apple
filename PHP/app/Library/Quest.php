@@ -8,8 +8,8 @@ class Quest
     [],
     // type 1
     [
-      'xp' => 10,
-      'currency' => '100'
+      'xp' => 30,
+      'currency' => '300'
     ],
     // type 2
     [
@@ -19,8 +19,8 @@ class Quest
 
     // type 3
     [
-      'xp' => 30,
-      'currency' => '300'
+      'xp' => 10,
+      'currency' => '100'
     ]
   ];
 

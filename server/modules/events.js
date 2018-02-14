@@ -9,8 +9,8 @@ const ONGOINGQUEST = new Map();
 // Events
 const events = {
 
-    beginQuest(questId, socket, io){
-        ONGOINGQUEST.set(questId, new Stopwatch(60000, {refreshRateMS: 100}) );
+    beginQuest(questId, socket, io) {
+        ONGOINGQUEST.set(questId, new Stopwatch(positions[questId].questTimer, {refreshRateMS: 100}) );
         ONGOINGQUEST.get(questId).start();
         console.log('[beginQuest]: quest started counting down 5 sec...', questId);
 
@@ -29,7 +29,7 @@ const events = {
     },
 
     coolDownQuest(questId, socket, io){
-      ONGOINGQUEST.set(questId, new Stopwatch(5000, {refreshRateMS: 100}));
+      ONGOINGQUEST.set(questId, new Stopwatch(positions[questId].coolDown, {refreshRateMS: 100}));
       ONGOINGQUEST.get(questId).start();
       ONGOINGQUEST.get(questId).onDone(() => {
         ONGOINGQUEST.get(questId).stop()
