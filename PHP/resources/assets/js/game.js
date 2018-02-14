@@ -175,9 +175,13 @@ const mockUser = getRandomMockUser();
 const socket = io('http://localhost:8080');
 const user = new User(socket);
 
-//add team id to user variable
+//add info to user variable
+user.id = globalUser.id;
+user.name = globalUser.username;
 user.team = globalUser.team_id;
 
+
+console.log(user);
 
 
 user.logon(socket);

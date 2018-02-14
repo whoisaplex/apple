@@ -4,21 +4,20 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
-
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="<?php echo e(route('register')); ?>">
                         <?php echo e(csrf_field()); ?>
 
 
-                        <div class="form-group<?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
+                        <div class="form-group<?php echo e($errors->has('username') ? ' has-error' : ''); ?>">
                             <label for="username" class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
                                 <input id="username" type="text" class="form-control" name="username" value="<?php echo e(old('username')); ?>" required autofocus>
 
-                                <?php if($errors->has('name')): ?>
+                                <?php if($errors->has('username')): ?>
                                     <span class="help-block">
-                                        <strong><?php echo e($errors->first('name')); ?></strong>
+                                        <strong><?php echo e($errors->first('username')); ?></strong>
                                     </span>
                                 <?php endif; ?>
                             </div>
