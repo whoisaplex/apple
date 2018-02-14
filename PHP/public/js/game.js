@@ -260,7 +260,12 @@ var mockUser = getRandomMockUser();
 // Socket, user, geolocation and map initialized
 var socket = io('http://localhost:8080');
 var user = new __WEBPACK_IMPORTED_MODULE_2__modules_user_js__["a" /* default */](socket);
+
+//add info to user variable
+user.id = globalUser.id;
+user.name = globalUser.username;
 user.team = globalUser.team_id;
+
 console.log(user);
 
 user.logon(socket);
