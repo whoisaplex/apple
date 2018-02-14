@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/profile.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
- 
+
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -48,6 +48,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="/home">Profile</a></li>
+                        <li><a href="/users">Teams</a></li>
                         <li><a href="/users">Leaderboard</a></li>
                         <li><a href="/game">Play</a></li>
                         &nbsp;
