@@ -91,6 +91,6 @@
 
     <!-- Scripts -->
     @yield('scripts')
-    <script src="{{ mix('js/app_vanilla.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

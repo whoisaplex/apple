@@ -4,14 +4,12 @@
         globalAuthUser = {!! json_encode($auth) !!}
     </script>
 
-<main id="main-content">
-       
-    </main>
+    <main id="main-content"></main>
 @endsection
 
 @section('scripts')
     <!-- <script>
         let teamRelations = 
     </script> -->
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src={{ mix('js/react-app.js') }}></script>
 @endsection
