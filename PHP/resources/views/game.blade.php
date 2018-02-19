@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/ui.main.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
     <script type="text/javascript">
       globalUser = {!! json_encode($user) !!}
     </script>
@@ -57,8 +58,8 @@
             <div id="quest-dialog-cash">$0</div><div id="quest-dialog-xp">0 XP</div>
         </div>
         <div id="quest-dialog-buttons">
-            <button id="start-quest" class="btn-sm btn-secondary">Kör</button>
-            <button id="cancel" class="btn-sm btn-secondary">Avbryt</button>
+            <button id="start-quest" class="btn-sm btn-success">Kör</button>
+            <button id="cancel" class="btn-sm btn-danger">Avbryt</button>
         </div>
     </div>
 
