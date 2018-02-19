@@ -202,6 +202,7 @@ var game = {
     onQuestEnd: function onQuestEnd(questId) {
         Object(__WEBPACK_IMPORTED_MODULE_4__modules_play_js__["a" /* default */])('end quest');
         this.questPositions[questId].isBeingTaken = false;
+        document.querySelector('#questTimerMenu').classList.remove('show');
         this.questMarkers[questId].reRender(__WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, './img/cooldown.png');
         console.log('[game.onQuestEnd]: quest ended, cooldown started and marker changed...', questId);
     },
@@ -246,16 +247,6 @@ var game = {
         }
     }
 };
-
-/* TESTING */
-var mockUsers = [{ username: 'Daniel', id: 1337, team: 'Hackermen' }, { username: 'Robbin', id: 1338, team: 'Hackermen' }, { username: 'Simon', id: 1339, team: 'Hackermen' }, { username: 'Alexander', id: 1340, team: 'Hackermen' }, { username: 'Björn', id: 1341, team: 'Hackermen'
-    //{username: 'Vladimir Putin', id: 1342, team: 'Russia'}
-}];
-function getRandomMockUser() {
-    return mockUsers[Math.floor(Math.random() * mockUsers.length)];
-}
-var mockUser = getRandomMockUser();
-/* TESTING */
 
 // Socket, user, geolocation and map initialized
 var socket = io('http://localhost:8080');
@@ -487,33 +478,35 @@ var mapstyle = [{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__ = __webpack_require__(50);
 
 
-// DOM elements 
+// DOM elements
 var menu = document.querySelector('#menu'),
     questList = document.querySelector('#menu-list'),
     compass = document.querySelector('#compass'),
     questDialog = document.querySelector('#quest-dialog'),
     siteMenu = document.querySelector("#site-menu"),
-    questGame = document.querySelector("#quest-game");
+    questGame = document.querySelector("#quest-game"),
+    progressBar = document.querySelector('#questTimerMenu'),
+    progress = document.querySelector('#questProgress');
 
-// Inits all eventlisteners for the menu-UI 
+// Inits all eventlisteners for the menu-UI
 var initDOMListeners = function initDOMListeners(user, positions, startQuestCallback) {
 
-    // Shows the quest list 
+    // Shows the quest list
     menu.addEventListener('click', function () {
         document.querySelector('#menu-list').classList.toggle('show');
     });
 
-    // Profile drop down 
+    // Profile drop down
     siteMenu.addEventListener('click', function () {
         document.querySelector('#menu-site').classList.toggle('show');
     });
 
-    // Centers the map on the user 
+    // Centers the map on the user
     compass.addEventListener('click', function () {
         __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].setZoom(user.coords.lat, user.coords.lng);
     });
 
-    // Centers map on clicked quest 
+    // Centers map on clicked quest
     questList.addEventListener('click', function (e) {
         if (e.target.classList.contains('center-map')) {
             var questId = e.target.parentNode.dataset.questid;
@@ -522,22 +515,48 @@ var initDOMListeners = function initDOMListeners(user, positions, startQuestCall
         }
     });
 
-    // Quest dialog events 
+    // Quest dialog events
     questDialog.addEventListener('click', function (event) {
 
-        // Starts quest 
+        // Starts quest
         if (event.target.id == 'start-quest') {
             var questId = event.target.parentNode.parentNode.dataset.questid;
             questDialog.classList.remove("show");
             startQuestCallback(questId);
+            progressBar.classList.add('show');
+            updateProgressBar(event.target.parentNode.parentNode.dataset.questTimer);
         }
 
-        // Closes quest dialog 
+        // Closes quest dialog
         if (event.target.id == 'cancel') {
             questDialog.classList.remove("show");
         }
     });
 };
+
+function updateProgressBar() {
+    var time = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 2000;
+
+    var max = time;
+    var value = max;
+
+    var interval = setInterval(function () {
+        tick();
+        //console.log(progress.value, value)
+    }, 50);
+
+    function tick() {
+        value -= 50;
+        var wow = value / max * 100;
+        if (value <= 0) {
+            clearInterval(interval);
+            progress.value = 0;
+            console.log('cleared');
+        } else {
+            progress.value = wow;
+        }
+    }
+}
 
 // Renders all quests on logon
 function renderQuestList(quests) {
@@ -549,13 +568,15 @@ function renderQuestList(quests) {
 
 // Opens quest dialog and renders HTML
 function renderQuestDialog(position, id) {
+    console.log(position);
     questDialog.classList.add("show");
     questDialog.dataset.questid = id;
+    questDialog.dataset.questTimer = position.questTimer;
     questDialog.querySelector('#quest-dialog-name h4').innerHTML = position.name + ('(' + id + ')');
 }
 
 /*
-** Renders something in the menu-UI 
+** Renders something in the menu-UI
 ** depending on the type that was sent in
 ** ...data = parameters that the render needs, for example questpostions */
 function render(type) {
@@ -704,6 +725,7 @@ function play(type) {
             break;
         case 'end quest':
             screen.innerHTML = "";
+            document.querySelector('#questTimerMenu').classList.remove('show');
             return;
         default:
             screen.innerHTML = "";

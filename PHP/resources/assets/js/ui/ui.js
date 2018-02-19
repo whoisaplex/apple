@@ -1,60 +1,89 @@
-import { Map } from '../modules/googlemaps.js'; 
+import { Map } from '../modules/googlemaps.js';
 
-// DOM elements 
-const menu = document.querySelector('#menu'), 
+// DOM elements
+const menu = document.querySelector('#menu'),
     questList = document.querySelector('#menu-list'),
-    compass = document.querySelector('#compass'), 
-    questDialog = document.querySelector('#quest-dialog'), 
-    siteMenu = document.querySelector("#site-menu"), 
-    questGame = document.querySelector("#quest-game");  
+    compass = document.querySelector('#compass'),
+    questDialog = document.querySelector('#quest-dialog'),
+    siteMenu = document.querySelector("#site-menu"),
+    questGame = document.querySelector("#quest-game"),
+    progressBar = document.querySelector('#questTimerMenu'),
+    progress = document.querySelector('#questProgress');
 
-// Inits all eventlisteners for the menu-UI 
+// Inits all eventlisteners for the menu-UI
 const initDOMListeners = function(user, positions, startQuestCallback){
-    
-    // Shows the quest list 
+
+    // Shows the quest list
     menu.addEventListener('click', function(){
-        document.querySelector('#menu-list').classList.toggle('show'); 
+        document.querySelector('#menu-list').classList.toggle('show');
     })
 
-    // Profile drop down 
+    // Profile drop down
     siteMenu.addEventListener('click', function(){
-        document.querySelector('#menu-site').classList.toggle('show'); 
+        document.querySelector('#menu-site').classList.toggle('show');
     })
 
-    // Centers the map on the user 
+    // Centers the map on the user
     compass.addEventListener('click', function(){
-        Map.setZoom(user.coords.lat, user.coords.lng);  
+        Map.setZoom(user.coords.lat, user.coords.lng);
     })
 
-    // Centers map on clicked quest 
+    // Centers map on clicked quest
     questList.addEventListener('click', function(e){
         if(e.target.classList.contains('center-map')){
-            const questId = e.target.parentNode.dataset.questid; 
+            const questId = e.target.parentNode.dataset.questid;
             Map.setZoom(positions[questId].lat, positions[questId].lng);
-            document.querySelector('#menu-list').classList.toggle('show'); 
+            document.querySelector('#menu-list').classList.toggle('show');
         }
     })
 
-    // Quest dialog events 
+    // Quest dialog events
     questDialog.addEventListener('click', function(event) {
-        
-        // Starts quest 
+
+        // Starts quest
         if(event.target.id == 'start-quest') {
             const questId = event.target.parentNode.parentNode.dataset.questid;
-            questDialog.classList.remove("show"); 
-            startQuestCallback(questId);  
+            questDialog.classList.remove("show");
+            startQuestCallback(questId);
+            progressBar.classList.add('show');
+            updateProgressBar(event.target.parentNode.parentNode.dataset.questTimer);
         }
 
-        // Closes quest dialog 
+        // Closes quest dialog
         if(event.target.id == 'cancel') {
             questDialog.classList.remove("show");
         }
     })
-} 
+}
+
+
+function updateProgressBar(time = 2000){
+  let max = time;
+  let value = max;
+
+  let interval = setInterval(function(){
+    tick();
+    //console.log(progress.value, value)
+  },50)
+
+  function tick(){
+    value-=50;
+    let wow = (value/max)*100;
+    if(value <= 0) {
+      clearInterval(interval);
+      progress.value = 0;
+      console.log('cleared')
+
+    } else {
+      progress.value = wow;
+    }
+  }
+
+}
 
 // Renders all quests on logon
 function renderQuestList(quests){
-    questList.querySelector('.menu-container ul').innerHTML = ""; 
+    questList.querySelector('.menu-container ul').innerHTML = "";
     for(let id in quests) {
         questList.querySelector('.menu-container ul')
             .innerHTML += `
@@ -73,25 +102,27 @@ function renderQuestList(quests){
 
 // Opens quest dialog and renders HTML
 function renderQuestDialog(position, id){
+  console.log(position)
     questDialog.classList.add("show");
-    questDialog.dataset.questid = id; 
-    questDialog.querySelector('#quest-dialog-name h4').innerHTML = position.name + `(${id})`; 
+    questDialog.dataset.questid = id;
+    questDialog.dataset.questTimer = position.questTimer;
+    questDialog.querySelector('#quest-dialog-name h4').innerHTML = position.name + `(${id})`;
 }
 
 /*
-** Renders something in the menu-UI 
+** Renders something in the menu-UI
 ** depending on the type that was sent in
-** ...data = parameters that the render needs, for example questpostions */ 
+** ...data = parameters that the render needs, for example questpostions */
 function render(type, ...data){
     switch(type) {
-        case 'questlist': 
-            renderQuestList(...data); 
-            break; 
-        case 'quest-dialog': 
-            renderQuestDialog(...data); 
-            break; 
-        default: 
-            break; 
+        case 'questlist':
+            renderQuestList(...data);
+            break;
+        case 'quest-dialog':
+            renderQuestDialog(...data);
+            break;
+        default:
+            break;
     }
 }
 
@@ -100,4 +131,4 @@ const ui = {
     initDOMListeners
 }
 
-export default ui; 
+export default ui;

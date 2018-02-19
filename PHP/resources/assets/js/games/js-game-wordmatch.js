@@ -136,7 +136,9 @@ function onMissionSuccess() {
         globalUser = response.data.user;
         axios.post('https://development.test/api/position', {name:'Hårdkodad', user_id:globalUser.id});
         console.log(globalUser);
-        setTimeout( () => window.frameElement.remove(),3000);
+        setTimeout( () => {
+          window.frameElement.remove()
+        },3000);
       }).catch(err => {
           console.log(err);
       });

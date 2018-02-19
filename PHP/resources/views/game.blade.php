@@ -85,6 +85,10 @@
         </div>
     </div>
 
+    <div id="questTimerMenu">
+      <progress id="questProgress" value="100" max="100"></progress>
+    </div>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-asKbHoJKTtGt8rWJ35ebHT3j7sVKUBA"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="{{ mix('/js/game.js') }}"></script>

@@ -92,6 +92,6 @@
 
     <!-- Scripts -->
     <?php echo $__env->yieldContent('scripts'); ?>
-    <script src="<?php echo e(mix('js/app_vanilla.js')); ?>"></script>
+    <script src="<?php echo e(mix('js/app.js')); ?>"></script>
 </body>
 </html>

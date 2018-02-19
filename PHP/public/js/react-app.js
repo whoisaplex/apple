@@ -9651,7 +9651,7 @@ var Leaderboard = function (_Component) {
                                     'h3',
                                     null,
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-user', 'aria-hidden': 'true' }),
-                                    ' Top players '
+                                    ' Top players'
                                 )
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -22181,66 +22181,79 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var User = function (_Component) {
-    _inherits(User, _Component);
+  _inherits(User, _Component);
 
-    function User() {
-        _classCallCheck(this, User);
+  function User() {
+    _classCallCheck(this, User);
 
-        return _possibleConstructorReturn(this, (User.__proto__ || Object.getPrototypeOf(User)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (User.__proto__ || Object.getPrototypeOf(User)).call(this));
+
+    _this.state = {
+      invited: false
+    };
+    return _this;
+  }
+
+  _createClass(User, [{
+    key: 'invitePlayerToTeam',
+    value: function invitePlayerToTeam() {
+      var _this2 = this;
+
+      axios.post('https://development.test/api/invite', { team_id: globalAuthUser.team_id, user_id: this.props.user.id, sender_id: globalAuthUser.id }).then(function (response) {
+        console.log(response);
+        _this2.setState({ invited: true });
+      }).catch(function (err) {
+        console.log(err);
+      });
     }
+  }, {
+    key: 'render',
+    value: function render() {
+      var invited = this.state.invited;
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'li',
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'a',
+          { href: 'https://development.test/users/' + this.props.user.username },
+          this.props.user.username
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'span',
+          null,
+          ' XP: ',
+          this.props.user.xp
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'span',
+          null,
+          ' Currency: ',
+          this.props.user.currency
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'span',
+          null,
+          ' Team: ',
+          this.props.user.team_name
+        ),
+        !invited ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'span',
+          { className: 'cooldown' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'button',
+            { className: 'btn-sm btn-danger', id: 'user-id', onClick: this.invitePlayerToTeam.bind(this) },
+            'Invite to team'
+          )
+        ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'span',
+          { className: 'cooldown' },
+          'Invited!'
+        )
+      );
+    }
+  }]);
 
-    _createClass(User, [{
-        key: 'invitePlayerToTeam',
-        value: function invitePlayerToTeam() {
-            axios.post('https://development.test/api/invite', { team_id: globalAuthUser.team_id, user_id: this.props.user.id, sender_id: globalAuthUser.id }).then(function (response) {
-                console.log(response);
-            }).catch(function (err) {
-                console.log(err);
-            });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'li',
-                null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'a',
-                    { href: 'https://development.test/users/' + this.props.user.username },
-                    this.props.user.username
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    null,
-                    ' XP: ',
-                    this.props.user.xp
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    null,
-                    ' Currency: ',
-                    this.props.user.currency
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    null,
-                    ' Team: ',
-                    this.props.user.team_name
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    { className: 'cooldown' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'button',
-                        { className: 'btn-sm btn-danger', id: 'user-id', onClick: this.invitePlayerToTeam.bind(this) },
-                        'Invite to team'
-                    )
-                )
-            );
-        }
-    }]);
-
-    return User;
+  return User;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (User);

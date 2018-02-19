@@ -110,6 +110,7 @@ const game = {
     onQuestEnd(questId){
         play('end quest');
         this.questPositions[questId].isBeingTaken = false;
+        document.querySelector('#questTimerMenu').classList.remove('show');
         this.questMarkers[questId].reRender(Map.googleMap, './img/cooldown.png');
         console.log('[game.onQuestEnd]: quest ended, cooldown started and marker changed...', questId);
     },
@@ -154,21 +155,6 @@ const game = {
         }
     }
 }
-
-/* TESTING */
-const mockUsers = [
-    {username: 'Daniel', id: 1337, team: 'Hackermen'},
-    {username: 'Robbin', id: 1338, team: 'Hackermen'},
-    {username: 'Simon', id: 1339, team: 'Hackermen'},
-    {username: 'Alexander', id: 1340, team: 'Hackermen'},
-    {username: 'Björn', id: 1341, team: 'Hackermen'}
-    //{username: 'Vladimir Putin', id: 1342, team: 'Russia'}
-]
-function getRandomMockUser(){
-    return mockUsers[Math.floor(Math.random() * mockUsers.length)];
-}
-const mockUser = getRandomMockUser();
-/* TESTING */
 
 
 // Socket, user, geolocation and map initialized

@@ -1,4 +1,4 @@
-import mapstyle from './map.style.js'; 
+import mapstyle from './map.style.js';
 
 const Map = {
     googleMap: new google.maps.Map(document.getElementById('map'), {
