@@ -1,5 +1,6 @@
 {
-    "/js/react-app.js": "/js/react-app.js",
+    "/js/react-search.js": "/js/react-search.js",
+    "/js/react-leaderboard.js": "/js/react-leaderboard.js",
     "/js/app.js": "/js/app.js",
     "/js/game.js": "/js/game.js",
     "/css/app.css": "/css/app.css"

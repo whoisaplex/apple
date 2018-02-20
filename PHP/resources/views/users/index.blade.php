@@ -11,5 +11,5 @@
     <!-- <script>
         let teamRelations = 
     </script> -->
-    <script src={{ mix('js/react-app.js') }}></script>
+    <script src={{ mix('js/react-leaderboard.js') }}></script>
 @endsection

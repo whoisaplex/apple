@@ -42,6 +42,8 @@
                         <!-- {{ config('app.name', 'StreetHack') }} -->
                         StreetHack
                     </a>
+                    <div id="search"></div>
+
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -92,5 +94,6 @@
     <!-- Scripts -->
     @yield('scripts')
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/react-search.js') }}"></script>
 </body>
 </html>

@@ -11,7 +11,8 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.react('resources/assets/js/react-app.js', 'public/js/react-app.js')    
+mix.react('resources/assets/js/react-leaderboard.js', 'public/js/react-leaderboard.js')
+    .react('resources/assets/js/react-search.js', 'public/js/react-search.js')    
     .js('resources/assets/js/game.js', 'public/js')
     .js('resources/assets/js/app.js', 'public/js')    
     .copyDirectory('resources/assets/js/games', 'public/js/games')
