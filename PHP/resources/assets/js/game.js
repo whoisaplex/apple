@@ -109,6 +109,7 @@ const game = {
     // When quest ends, updates marker
     onQuestEnd(questId){
         play('end quest');
+        ui.render('update-game-menu'); 
         this.questPositions[questId].isBeingTaken = false;
         document.querySelector('#questTimerMenu').classList.remove('show');
         this.questMarkers[questId].reRender(Map.googleMap, './img/cooldown.png');
@@ -161,16 +162,9 @@ const game = {
 
 // Socket, user, geolocation and map initialized
 const socket = io('http://localhost:8080');
-const user = new User(socket);
-
-//add info to user variable
-user.id = globalUser.id;
-user.name = globalUser.username;
-user.team = globalUser.team_id;
-
+const user = new User(socket, globalUser.id, globalUser.name, globalUser.team_id);
 
 console.log(user);
-
 
 user.logon(socket);
 
