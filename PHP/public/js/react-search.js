@@ -22197,14 +22197,13 @@ var Search = function (_Component) {
 
     _createClass(Search, [{
         key: 'search',
-        value: function search(e) {
+        value: function search(value) {
             var _this2 = this;
 
-            console.log(e.target);
-            if (e.target.value.length) {
-                fetch('https://development.test/api/users/search/?username=' + e.target.value).then(function (response) {
+            if (value.length) {
+                fetch('https://development.test/api/users/search/?username=' + value).then(function (response) {
                     return response.json().then(function (users) {
-                        _this2.setState({ users: users });
+                        return _this2.setState({ users: users });
                     });
                 });
             } else {
@@ -22212,16 +22211,28 @@ var Search = function (_Component) {
             }
         }
     }, {
+        key: 'onSearch',
+        value: function onSearch(e) {
+            var _this3 = this;
+
+            var value = e.target.value;
+
+            clearInterval(this.searchTimeout);
+            this.searchTimeout = setTimeout(function () {
+                _this3.search(value);
+                console.log(value);
+            }, 300);
+        }
+    }, {
         key: 'render',
         value: function render() {
             var users = this.state.users.map(function (user, i) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__User__["a" /* default */], { key: i, user: user });
             });
-
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', onChange: this.search.bind(this) }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', onChange: this.onSearch.bind(this) }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'ul',
                     null,

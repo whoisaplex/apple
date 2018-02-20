@@ -11,17 +11,22 @@ export default class Search extends Component {
         }
     }
 
-    search(e) {
-        console.log(e.target)  
-        if (e.target.value.length) {
-            fetch('https://development.test/api/users/search/?username=' + e.target.value).then(
-            response => response.json().then(users => {
-                    this.setState({ users })
-              })
-            )
+    search(value) { 
+        if (value.length) {
+            fetch('https://development.test/api/users/search/?username=' + value)
+             .then(response => response.json().then(users => this.setState({ users })))
         } else {
             this.setState({ users: [] })
         }
+    }
+
+    onSearch(e){
+        const { value } = e.target; 
+        clearInterval(this.searchTimeout); 
+        this.searchTimeout = setTimeout(()=>{
+            this.search(value); 
+            console.log(value)
+        },300)
     }
 
     render() {
@@ -29,10 +34,9 @@ export default class Search extends Component {
             return <User key={i} user={user} />
             }
         )
-
         return (
           <div>
-            <input type="text" onChange={this.search.bind(this)} />
+            <input type="text" onChange={this.onSearch.bind(this)} />
             <ul>
               {users}
             </ul>
