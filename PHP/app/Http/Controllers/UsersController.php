@@ -32,12 +32,16 @@ class UsersController extends Controller
         return response()->json($users);
     }
 
-                    public function API_SearchUsers(Request $request)
-                    {
-                        $name = $request->input('username');
-                        $searchQuery = User::where('username', 'LIKE', '%'.$name.'%')->get();
-                        return response()->json($searchQuery);
-                    }
+    public function API_SearchUsers(Request $request)
+    {
+        $name = $request->input('username');
+        $searchQuery = User::where('username', 'LIKE', '%'.$name.'%')->get();
+        foreach ($searchQuery as $user) {
+          $team = $user->team()->value('name');
+          $user->team_name = $team;
+        }
+        return response()->json($searchQuery);
+    }
 
     /**
      * Show the form for creating a new resource.
