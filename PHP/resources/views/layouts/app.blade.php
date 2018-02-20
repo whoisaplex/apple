@@ -26,7 +26,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+            <div class="header-container">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -42,9 +42,6 @@
                         <!-- {{ config('app.name', 'StreetHack') }} -->
                         StreetHack
                     </a>
-                    @auth
-                    <div id="search"></div>
-                    @endauth
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -57,6 +54,7 @@
                         <li><a href="/game">Play</a></li>
                         &nbsp;
                     </ul>
+
                     @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -86,8 +84,14 @@
                             </li>
                         @endguest
                     </ul>
+                    
                 </div>
+
+                @auth
+                    <div id="search"></div>
+                @endauth
             </div>
+
         </nav>
 
         @yield('content')

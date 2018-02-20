@@ -21,7 +21,7 @@ export default class User extends Component {
        const invited = this.state.invited;
          return (
           <li>
-            <a href={'https://development.test/users/' + this.props.user.username}>{this.props.user.username}</a>
+             <a href={'https://development.test/users/' + this.props.user.username} style={{ width: '100px' }}>{this.props.user.username}</a>
             <span> XP: {this.props.user.xp}</span>
             <span> Currency: {this.props.user.currency}</span>
             <span> Team: {this.props.user.team_name}</span>

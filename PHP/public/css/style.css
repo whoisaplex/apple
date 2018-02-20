@@ -50,6 +50,7 @@ html, body {
 }
 .navbar-default .navbar-brand {
     color: red;
+    display: inline-block;
 }
 .btn-primary {
     color: #000;
@@ -76,4 +77,57 @@ html, body {
 
 .m-b-md {
     margin-bottom: 30px;
+}
+
+
+.header-container {
+    padding: 0 1em;
+}
+
+#search {
+    position: absolute;
+    top: 10px;
+    left: 440px;
+    width: auto
+}
+#search input {
+    height: 2em
+}
+
+#search input:focus {
+    min-width: 500px;
+}
+
+#search .search-results {
+    width: 100%;
+    background: #131313
+}
+
+
+
+.search-results li {
+    padding: .5em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-results li span {
+    width: 10%
+}
+.search-results li:first-child a {
+    width: 100px
+}
+.search-results li:nth-child(odd) {
+    background: #333;
+}
+
+@media (max-width: 770px) {
+    #search {
+        left: 130px;
+        right: 6em;
+
+    }
+    #search input {
+        width: 100%
+    }
 }
