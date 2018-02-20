@@ -478,6 +478,10 @@ var mapstyle = [{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__ = __webpack_require__(50);
 
 
+String.prototype.capitalize = function () {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
 // DOM elements
 var menu = document.querySelector('#menu'),
     questList = document.querySelector('#menu-list'),
@@ -521,6 +525,8 @@ var initDOMListeners = function initDOMListeners(user, positions, startQuestCall
         // Starts quest
         if (event.target.id == 'start-quest') {
             var questId = event.target.parentNode.parentNode.dataset.questid;
+
+            console.log('QUEST NAME: ' + event.target.parentNode.parentNode.dataset.name);
             questDialog.classList.remove("show");
             startQuestCallback(questId);
             progressBar.classList.add('show');
@@ -569,10 +575,18 @@ function renderQuestList(quests) {
 // Opens quest dialog and renders HTML
 function renderQuestDialog(position, id) {
     console.log(position);
+
+    var questName = position.name.capitalize() + " " + position.area.capitalize() + " (#" + id + ")";
+
     questDialog.classList.add("show");
     questDialog.dataset.questid = id;
+    questDialog.dataset.name = questName;
     questDialog.dataset.questTimer = position.questTimer;
-    questDialog.querySelector('#quest-dialog-name h4').innerHTML = position.name + ('(' + id + ')');
+    questDialog.querySelector('#quest-dialog-name h4').innerHTML = questName;
+    questDialog.querySelector('#quest-dialog-cash').innerHTML = "<i class=\"fa fa-bitcoin\"></i> " + position.currency;
+    questDialog.querySelector('#quest-dialog-xp').innerHTML = position.xp + "xp";
+
+    localStorage.setItem("questName", questName);
 }
 
 /*

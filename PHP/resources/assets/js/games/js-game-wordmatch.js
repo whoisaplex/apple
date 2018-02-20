@@ -134,9 +134,13 @@ function onMissionSuccess() {
     axios.patch('https://development.test/api/me', { quest_type: 3 })
       .then(response => {
         globalUser = response.data.user;
-        axios.post('https://development.test/api/position', {name:'Hårdkodad', user_id:globalUser.id});
-        console.log(globalUser);
-        setTimeout( () => {
+        axios.post('https://development.test/api/position', {name: localStorage.getItem("questName"), user_id:globalUser.id});
+          console.log(globalUser);
+        
+          localStorage.removeItem("questName");
+
+    
+          setTimeout(() => {
           window.frameElement.remove()
         },3000);
       }).catch(err => {

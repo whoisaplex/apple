@@ -1,5 +1,9 @@
 import { Map } from '../modules/googlemaps.js';
 
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 // DOM elements
 const menu = document.querySelector('#menu'),
     questList = document.querySelector('#menu-list'),
@@ -43,6 +47,8 @@ const initDOMListeners = function(user, positions, startQuestCallback){
         // Starts quest
         if(event.target.id == 'start-quest') {
             const questId = event.target.parentNode.parentNode.dataset.questid;
+
+            console.log('QUEST NAME: ' + event.target.parentNode.parentNode.dataset.name)
             questDialog.classList.remove("show");
             startQuestCallback(questId);
             progressBar.classList.add('show');
@@ -102,11 +108,20 @@ function renderQuestList(quests){
 
 // Opens quest dialog and renders HTML
 function renderQuestDialog(position, id){
-  console.log(position)
+    console.log(position)
+  
+    let questName = position.name.capitalize() + " " +  position.area.capitalize() + " (#" + id + ")"
+    
     questDialog.classList.add("show");
     questDialog.dataset.questid = id;
+    questDialog.dataset.name = questName;
     questDialog.dataset.questTimer = position.questTimer;
-    questDialog.querySelector('#quest-dialog-name h4').innerHTML = position.name + `(${id})`;
+    questDialog.querySelector('#quest-dialog-name h4').innerHTML = questName;
+    questDialog.querySelector('#quest-dialog-cash').innerHTML = "<i class=\"fa fa-bitcoin\"></i> " + position.currency;
+    questDialog.querySelector('#quest-dialog-xp').innerHTML = position.xp + "xp";
+
+    localStorage.setItem("questName", questName);
+    
 }
 
 /*
