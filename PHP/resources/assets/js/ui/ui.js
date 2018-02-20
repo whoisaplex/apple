@@ -62,6 +62,11 @@ const initDOMListeners = function(user, positions, startQuestCallback){
     })
 }
 
+// Updates the in game menu. 
+// Fires when player completes a quest 
+function updateGameMenu(){
+    document.querySelector('#menu-site object').data = 'https://development.test/home';
+}
 
 function updateProgressBar(time = 2000){
   let max = time;
@@ -135,6 +140,9 @@ function render(type, ...data){
             break;
         case 'quest-dialog':
             renderQuestDialog(...data);
+            break;
+        case 'update-game-menu':
+            updateGameMenu();
             break;
         default:
             break;

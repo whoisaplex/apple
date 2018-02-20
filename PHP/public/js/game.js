@@ -294,6 +294,7 @@ var game = {
     // When quest ends, updates marker
     onQuestEnd: function onQuestEnd(questId) {
         Object(__WEBPACK_IMPORTED_MODULE_4__modules_play_js__["a" /* default */])('end quest');
+        __WEBPACK_IMPORTED_MODULE_1__ui_ui_js__["a" /* default */].render('update-game-menu');
         this.questPositions[questId].isBeingTaken = false;
         document.querySelector('#questTimerMenu').classList.remove('show');
         this.questMarkers[questId].reRender(__WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, './img/cooldown.png');
@@ -345,12 +346,7 @@ var game = {
 
 // Socket, user, geolocation and map initialized
 var socket = io('http://localhost:8080');
-var user = new __WEBPACK_IMPORTED_MODULE_2__modules_user_js__["a" /* default */](socket);
-
-//add info to user variable
-user.id = globalUser.id;
-user.name = globalUser.username;
-user.team = globalUser.team_id;
+var user = new __WEBPACK_IMPORTED_MODULE_2__modules_user_js__["a" /* default */](socket, globalUser.id, globalUser.name, globalUser.team_id);
 
 console.log(user);
 
@@ -635,6 +631,12 @@ var initDOMListeners = function initDOMListeners(user, positions, startQuestCall
     });
 };
 
+// Updates the in game menu. 
+// Fires when player completes a quest 
+function updateGameMenu() {
+    document.querySelector('#menu-site object').data = 'https://development.test/home';
+}
+
 function updateProgressBar() {
     var time = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 2000;
 
@@ -700,6 +702,9 @@ function render(type) {
         case 'quest-dialog':
             renderQuestDialog.apply(undefined, data);
             break;
+        case 'update-game-menu':
+            updateGameMenu();
+            break;
         default:
             break;
     }
@@ -728,13 +733,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 // User
 
 var User = function () {
-    function User(socket) {
+    function User(socket, id, name, team_id) {
         _classCallCheck(this, User);
 
-        this.name = null;
-        this.team = null;
+        this.name = name;
+        this.team = team_id;
         this.googleMapMarker = null;
-        this.id = null;
+        this.id = id;
         this.socket = socket;
         this.coords = {
             lat: null,
