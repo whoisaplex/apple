@@ -42,12 +42,14 @@
                         <!-- {{ config('app.name', 'StreetHack') }} -->
                         StreetHack
                     </a>
+                    @auth
                     <div id="search"></div>
-
+                    @endauth
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+                    @auth
                     <ul class="nav navbar-nav">
                         <li><a href="/home">Profile</a></li>
                         <li><a href="/teams">Team</a></li>
@@ -55,7 +57,7 @@
                         <li><a href="/game">Play</a></li>
                         &nbsp;
                     </ul>
-
+                    @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
