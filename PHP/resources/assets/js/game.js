@@ -113,6 +113,8 @@ const game = {
         document.querySelector('#questTimerMenu').classList.remove('show');
         this.questMarkers[questId].reRender(Map.googleMap, './img/cooldown.png');
         console.log('[game.onQuestEnd]: quest ended, cooldown started and marker changed...', questId);
+
+        localStorage.removeItem("questName");
     },
 
     // When quest cooldown ends, updates marker

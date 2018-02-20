@@ -106,7 +106,6 @@ function questClickFunction(param) {
                     axios.post('https://development.test/api/position', { name: localStorage.getItem("questName"), user_id: globalUser.id });
                     console.log(globalUser);
               
-                    localStorage.removeItem("questName");
                       
                     setTimeout( () => window.frameElement.remove(),3000);
                   }).catch(err => {

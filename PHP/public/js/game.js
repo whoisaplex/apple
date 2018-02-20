@@ -205,6 +205,8 @@ var game = {
         document.querySelector('#questTimerMenu').classList.remove('show');
         this.questMarkers[questId].reRender(__WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, './img/cooldown.png');
         console.log('[game.onQuestEnd]: quest ended, cooldown started and marker changed...', questId);
+
+        localStorage.removeItem("questName");
     },
 
 
