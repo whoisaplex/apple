@@ -42,10 +42,14 @@
                         <!-- <?php echo e(config('app.name', 'StreetHack')); ?> -->
                         StreetHack
                     </a>
+                    <?php if(auth()->guard()->check()): ?>
+                    <div id="search"></div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+                    <?php if(auth()->guard()->check()): ?>
                     <ul class="nav navbar-nav">
                         <li><a href="/home">Profile</a></li>
                         <li><a href="/teams">Team</a></li>
@@ -53,7 +57,7 @@
                         <li><a href="/game">Play</a></li>
                         &nbsp;
                     </ul>
-
+                    <?php endif; ?>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -93,5 +97,6 @@
     <!-- Scripts -->
     <?php echo $__env->yieldContent('scripts'); ?>
     <script src="<?php echo e(mix('js/app.js')); ?>"></script>
+    <script src="<?php echo e(mix('js/react-search.js')); ?>"></script>
 </body>
 </html>
