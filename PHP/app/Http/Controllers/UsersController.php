@@ -36,6 +36,11 @@ class UsersController extends Controller
                     {
                         $name = $request->input('username');
                         $searchQuery = User::where('username', 'LIKE', '%'.$name.'%')->get();
+                        foreach ($searchQuery as $user) {
+                          $team = $user->team()->value('name');
+                          $user->team_name = $team;
+                        }
+                        dd($searchQuery);
                         return response()->json($searchQuery);
                     }
 
