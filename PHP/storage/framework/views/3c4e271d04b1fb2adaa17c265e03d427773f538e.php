@@ -49,7 +49,7 @@
                         </div>
                         <div class="panel-body">
                             <ol id="user-positions">
-                              <?php $__currentLoopData = $user->position; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <li><?php echo e($position->name); ?> <span class="cooldown"><?php echo e($position->created_at); ?></span></li>
                               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ol>

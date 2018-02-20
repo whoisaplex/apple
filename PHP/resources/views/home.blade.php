@@ -48,7 +48,7 @@
                         </div>
                         <div class="panel-body">
                             <ol id="user-positions">
-                              @foreach($user->position as $position)
+                              @foreach($positions as $position)
                                 <li>{{ $position->name }} <span class="cooldown">{{ $position->created_at }}</span></li>
                               @endforeach
                             </ol>
