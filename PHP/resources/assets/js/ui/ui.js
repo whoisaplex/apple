@@ -51,10 +51,8 @@ const initDOMListeners = function(user, positions, startQuestCallback){
             console.log('QUEST NAME: ' + event.target.parentNode.parentNode.dataset.name)
             questDialog.classList.remove("show");
             startQuestCallback(questId);
-            progressBar.classList.add('show');
-            updateProgressBar(event.target.parentNode.parentNode.dataset.questTimer);
         }
-
+  
         // Closes quest dialog
         if(event.target.id == 'cancel') {
             questDialog.classList.remove("show");
@@ -68,7 +66,9 @@ function updateGameMenu(){
     document.querySelector('#menu-site object').data = 'https://development.test/home';
 }
 
-function updateProgressBar(time = 2000){
+function updateProgressBar(time){
+  progressBar.classList.add('show');
+
   let max = time;
   let value = max;
 
@@ -84,7 +84,7 @@ function updateProgressBar(time = 2000){
       clearInterval(interval);
       progress.value = 0;
       console.log('cleared')
-
+      document.querySelector('#questTimerMenu').classList.remove('show');
     } else {
       progress.value = wow;
     }
@@ -144,6 +144,9 @@ function render(type, ...data){
         case 'update-game-menu':
             updateGameMenu();
             break;
+        case 'start-progress-bar': 
+            updateProgressBar(...data);
+            break; 
         default:
             break;
     }

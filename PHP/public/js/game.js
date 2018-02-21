@@ -281,6 +281,7 @@ var game = {
         if (this.playerInRange.call(this, this.questMarkers[questId])) {
             if (this.questPositions[questId].isAvailable) {
                 Object(__WEBPACK_IMPORTED_MODULE_4__modules_play_js__["a" /* default */])(this.questPositions[questId].type);
+                __WEBPACK_IMPORTED_MODULE_1__ui_ui_js__["a" /* default */].render('start-progress-bar', this.questPositions[questId].questTimer);
                 console.log('[game.startQuest]: quest started', questId);
                 this.socket.emit('start-quest', questId);
             } else {
@@ -297,7 +298,7 @@ var game = {
         Object(__WEBPACK_IMPORTED_MODULE_4__modules_play_js__["a" /* default */])('end quest');
         __WEBPACK_IMPORTED_MODULE_1__ui_ui_js__["a" /* default */].render('update-game-menu');
         this.questPositions[questId].isBeingTaken = false;
-        document.querySelector('#questTimerMenu').classList.remove('show');
+        // document.querySelector('#questTimerMenu').classList.remove('show');
         this.questMarkers[questId].reRender(__WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, './img/cooldown.png');
         console.log('[game.onQuestEnd]: quest ended, cooldown started and marker changed...', questId);
 
@@ -621,8 +622,6 @@ var initDOMListeners = function initDOMListeners(user, positions, startQuestCall
             console.log('QUEST NAME: ' + event.target.parentNode.parentNode.dataset.name);
             questDialog.classList.remove("show");
             startQuestCallback(questId);
-            progressBar.classList.add('show');
-            updateProgressBar(event.target.parentNode.parentNode.dataset.questTimer);
         }
 
         // Closes quest dialog
@@ -638,8 +637,8 @@ function updateGameMenu() {
     document.querySelector('#menu-site object').data = 'https://development.test/home';
 }
 
-function updateProgressBar() {
-    var time = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 2000;
+function updateProgressBar(time) {
+    progressBar.classList.add('show');
 
     var max = time;
     var value = max;
@@ -656,6 +655,7 @@ function updateProgressBar() {
             clearInterval(interval);
             progress.value = 0;
             console.log('cleared');
+            document.querySelector('#questTimerMenu').classList.remove('show');
         } else {
             progress.value = wow;
         }
@@ -705,6 +705,9 @@ function render(type) {
             break;
         case 'update-game-menu':
             updateGameMenu();
+            break;
+        case 'start-progress-bar':
+            updateProgressBar.apply(undefined, data);
             break;
         default:
             break;
