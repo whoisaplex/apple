@@ -22074,7 +22074,7 @@ var User = function (_Component) {
         value: function invitePlayerToTeam() {
             var _this2 = this;
 
-            axios.post('https://development.test/api/invite', { team_id: globalAuthUser.team_id, user_id: this.props.user.id, sender_id: globalAuthUser.id }).then(function (response) {
+            axios.post('https://laravel.reweb.se/api/invite', { team_id: globalAuthUser.team_id, user_id: this.props.user.id, sender_id: globalAuthUser.id }).then(function (response) {
                 console.log(response);
                 _this2.setState({ invited: true });
             }).catch(function (err) {
@@ -22090,7 +22090,7 @@ var User = function (_Component) {
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'a',
-                    { href: 'https://development.test/users/' + this.props.user.username, style: { width: '20%' } },
+                    { href: 'https://laravel.reweb.se/users/' + this.props.user.username, style: { width: '20%' } },
                     isNaN(this.props.i) ? null : this.props.i + 1 + '.',
                     ' ',
                     this.props.user.username
@@ -22198,13 +22198,13 @@ var Leaderboard = function (_Component) {
     value: function componentWillMount() {
       var _this2 = this;
 
-      fetch('https://development.test/api/users').then(function (response) {
+      fetch('https://laravel.reweb.se/api/users').then(function (response) {
         return response.json().then(function (users) {
           return _this2.setState({ users: users });
         });
       });
 
-      fetch('https://development.test/api/teams').then(function (response) {
+      fetch('https://laravel.reweb.se/api/teams').then(function (response) {
         return response.json().then(function (teams) {
           return _this2.setState({ teams: teams });
         });

@@ -130,7 +130,7 @@ const game = {
 
     // Checks if player is in range of a questposition
     playerInRange(questPosition){
-        const range = 1.0011;
+        const range = 0.0011;
         const inLat =  questPosition.coords.lat;
         const inLng = questPosition.coords.lng;
 
@@ -161,7 +161,7 @@ const game = {
 
 
 // Socket, user, geolocation and map initialized
-const socket = io('http://localhost:8080');
+const socket = io('http://localhost:3000');
 const user = new User(socket, globalUser.id, globalUser.name, globalUser.team_id);
 
 console.log(user);

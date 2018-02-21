@@ -100,9 +100,9 @@
                 @isset ($invite)
                 <script type="text/javascript">
                 document.querySelector('#accept').addEventListener('click', function(){
-                axios.patch('https://development.test/api/me', { team_id: {{  $invite->team->id  }} })
+                axios.patch('https://laravel.reweb.se/api/me', { team_id: {{  $invite->team->id  }} })
                   .then(response => {
-                    axios.patch('https://development.test/api/invite', { id: {{  $invite->id  }} });
+                    axios.patch('https://laravel.reweb.se/api/invite', { id: {{  $invite->id  }} });
                     console.log(response.data);
 
                   }).catch(err => {

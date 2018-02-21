@@ -100,10 +100,10 @@ function questClickFunction(param) {
                 document.getElementById('printResult').innerHTML = 'Success: You hacked the memory! <br><br> You gained 30 xp and 300 bitcoins!'
 
                 //update user and post to positions table
-                axios.patch('https://development.test/api/me', { quest_type: 1 })
+                axios.patch('https://laravel.reweb.se/api/me', { quest_type: 1 })
                   .then(response => {
                     globalUser = response.data.user;
-                    axios.post('https://development.test/api/position', { name: localStorage.getItem("questName"), user_id: globalUser.id });
+                    axios.post('https://laravel.reweb.se/api/position', { name: localStorage.getItem("questName"), user_id: globalUser.id });
                     console.log(globalUser);
               
                       

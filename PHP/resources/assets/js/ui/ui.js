@@ -65,7 +65,7 @@ const initDOMListeners = function(user, positions, startQuestCallback){
 // Updates the in game menu. 
 // Fires when player completes a quest 
 function updateGameMenu(){
-    document.querySelector('#menu-site object').data = 'https://development.test/home';
+    document.querySelector('#menu-site object').data = 'https://laravel.reweb.se/home';
 }
 
 function updateProgressBar(time = 2000){

@@ -346,7 +346,7 @@ var game = {
 };
 
 // Socket, user, geolocation and map initialized
-var socket = io('http://localhost:8080');
+var socket = io('http://localhost:3000');
 var user = new __WEBPACK_IMPORTED_MODULE_2__modules_user_js__["a" /* default */](socket, globalUser.id, globalUser.name, globalUser.team_id);
 
 console.log(user);
@@ -635,7 +635,7 @@ var initDOMListeners = function initDOMListeners(user, positions, startQuestCall
 // Updates the in game menu. 
 // Fires when player completes a quest 
 function updateGameMenu() {
-    document.querySelector('#menu-site object').data = 'https://development.test/home';
+    document.querySelector('#menu-site object').data = 'https://laravel.reweb.se/home';
 }
 
 function updateProgressBar() {

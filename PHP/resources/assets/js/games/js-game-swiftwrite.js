@@ -96,10 +96,10 @@ function checkInput() {
         document.getElementById("checkout").disabled = false;
 
         //update user and post to positions table
-        axios.patch('https://development.test/api/me', { quest_type: 2 })
+        axios.patch('https://laravel.reweb.se/api/me', { quest_type: 2 })
           .then(response => {
             globalUser = response.data.user;
-            axios.post('https://development.test/api/position', {name: localStorage.getItem("questName"), user_id:globalUser.id});
+            axios.post('https://laravel.reweb.se/api/position', {name: localStorage.getItem("questName"), user_id:globalUser.id});
             console.log(globalUser);
 
               

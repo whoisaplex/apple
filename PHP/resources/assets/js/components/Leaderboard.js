@@ -14,11 +14,11 @@ export default class Leaderboard extends Component {
     }
 
     componentWillMount() {
-       fetch('https://development.test/api/users').then(
+       fetch('https://laravel.reweb.se/api/users').then(
             response => response.json().then( users => this.setState({users}) )
         )
 
-        fetch('https://development.test/api/teams').then(
+        fetch('https://laravel.reweb.se/api/teams').then(
             response => response.json().then( teams => this.setState({teams}) )
         ).catch(err => console.log(err))
 

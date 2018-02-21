@@ -5,8 +5,8 @@ const http = require('http');
 const app = express();
 
 // Create server
-const server = http.createServer(app).listen(8080,()=> {
-    console.log('[server]: Server running on port 8080');
+const server = http.createServer(app).listen(3000,()=> {
+    console.log('[server]: Server running on port 3000');
 });
 
 
