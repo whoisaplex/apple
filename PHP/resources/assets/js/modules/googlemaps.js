@@ -4,7 +4,8 @@ const Map = {
     googleMap: new google.maps.Map(document.getElementById('map'), {
         zoom: 9,
         center: {lat: 59.313282, lng: 18.06616},
-        styles: mapstyle
+        styles: mapstyle, 
+        disableDefaultUI: true
     }),
     setZoom(lat, lng, zoom = 17){
         this.googleMap.setCenter({lat: lat, lng: lng});
