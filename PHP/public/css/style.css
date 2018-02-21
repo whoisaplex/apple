@@ -91,14 +91,17 @@ html, body {
     width: auto
 }
 #search input {
-    height: 2em
+    height: 2em;
+    width: 10em;
 }
 
 #search .search-results {
-    min-width: 30em;
+    width: 30em;
+    margin-left: -10em;
     background: #131313;
     box-shadow: 0 0 5px #000;
     color: #fff;
+    margin-top: 1em;
 }
 
 
@@ -134,14 +137,13 @@ html, body {
         right: 6em;
 
     }
-    #search input {
-        width: 100%
-    }
-
 
     #search .search-results {
         position: fixed;
-        left: 0;
+        left: 1em;
+        margin-left: 0;
+        right: 1em;
+        width: auto;
     }
 }
 
