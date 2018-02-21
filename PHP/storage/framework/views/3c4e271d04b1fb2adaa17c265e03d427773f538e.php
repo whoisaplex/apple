@@ -45,7 +45,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3>
-                                <i class="fa fa-globe" aria-hidden="true"></i> Hacked position</h3>
+                                <i class="fa fa-globe" aria-hidden="true"></i> Hacking history</h3>
                         </div>
                         <div class="panel-body">
                             <ol id="user-positions">

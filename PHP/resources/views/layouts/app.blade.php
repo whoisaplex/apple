@@ -84,7 +84,7 @@
                             </li>
                         @endguest
                     </ul>
-                    
+
                 </div>
 
                 @auth

@@ -10,10 +10,6 @@ use Auth;
 class TeamsController extends Controller
 {
 
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
 
     /**
      * Display a listing of the resource.
@@ -26,6 +22,24 @@ class TeamsController extends Controller
         return view('teams.teams', compact('user'));
     }
 
+
+    public function API_Teams()
+    {
+      $teams = Team::take(12)->get();
+      foreach($teams as $team){
+      $team->xp = 0;
+      $team->currency = 0;
+        foreach($team->members as $member ){
+
+          $team->xp += $member->xp;
+          $team->currency += $member->currency;
+      }
+
+
+    }
+    return response()->json($teams);
+
+}
     /**
      * Show the form for creating a new resource.
      *
