@@ -21,14 +21,14 @@ export default class User extends Component {
        const invited = this.state.invited;
          return (
           <li>
-             <a href={'https://development.test/users/' + this.props.user.username} style={{ width: '100px' }}>{this.props.user.username}</a>
-            <span> XP: {this.props.user.xp}</span>
-            <span> Currency: {this.props.user.currency}</span>
-            <span> Team: {this.props.user.team_name}</span>
+             <a href={'https://development.test/users/' + this.props.user.username} style={{ width: '20%' }}>{isNaN(this.props.i) ? null : `${this.props.i+1}.`} {this.props.user.username}</a>
+             <div style={{width: '10%'}}>{this.props.user.xp}xp</div>
+            <div style={{width: '10%'}}><i className="fa fa-bitcoin"></i>{this.props.user.currency}</div>
+            <div style={{width: '20%'}}>Team: {this.props.user.team_name}</div>
             { !invited ? (
-              <span className="cooldown"><button className="btn-sm btn-danger" id="user-id" onClick={this.invitePlayerToTeam.bind(this)}>Invite to team</button></span>
+                <div><i className="fa fa-plus-circle fa-2x" title="Invite to team" style={{color: 'red', cursor: 'pointer'}} id="user-id" onClick={this.invitePlayerToTeam.bind(this)}></i></div>
             ) : (
-              <span className="cooldown">Invited!</span>
+                <div>Invited!</div>
             )}
           </li>)
     }

@@ -36,7 +36,7 @@ export default class Search extends Component {
         )
         return (
           <div>
-            <input type="text" onChange={this.onSearch.bind(this)}  className="form-control" />
+            <input type="search" placeholder='Search users...' onChange={this.onSearch.bind(this)}  className="form-control" />
             <ul className="search-results">
               {users}
             </ul>

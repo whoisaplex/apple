@@ -20,7 +20,7 @@ export default class Leaderboard extends Component {
 
     render() {
         const users = this.state.users.map((user, i) => {
-            return <User key={i} user={user} />
+            return <User key={i} i={i} user={user} />
             }
         )
 

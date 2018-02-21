@@ -22090,38 +22090,36 @@ var User = function (_Component) {
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'a',
-                    { href: 'https://development.test/users/' + this.props.user.username, style: { width: '100px' } },
+                    { href: 'https://development.test/users/' + this.props.user.username, style: { width: '20%' } },
+                    isNaN(this.props.i) ? null : this.props.i + 1 + '.',
+                    ' ',
                     this.props.user.username
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    null,
-                    ' XP: ',
-                    this.props.user.xp
+                    'div',
+                    { style: { width: '10%' } },
+                    this.props.user.xp,
+                    'xp'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    null,
-                    ' Currency: ',
+                    'div',
+                    { style: { width: '10%' } },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-bitcoin' }),
                     this.props.user.currency
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    null,
-                    ' Team: ',
+                    'div',
+                    { style: { width: '20%' } },
+                    'Team: ',
                     this.props.user.team_name
                 ),
                 !invited ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    { className: 'cooldown' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'button',
-                        { className: 'btn-sm btn-danger', id: 'user-id', onClick: this.invitePlayerToTeam.bind(this) },
-                        'Invite to team'
-                    )
+                    'div',
+                    null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-plus-circle fa-2x', title: 'Invite to team', style: { color: 'red', cursor: 'pointer' }, id: 'user-id', onClick: this.invitePlayerToTeam.bind(this) })
                 ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'span',
-                    { className: 'cooldown' },
+                    'div',
+                    null,
                     'Invited!'
                 )
             );
@@ -22207,7 +22205,7 @@ var Leaderboard = function (_Component) {
         key: 'render',
         value: function render() {
             var users = this.state.users.map(function (user, i) {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__User__["a" /* default */], { key: i, user: user });
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__User__["a" /* default */], { key: i, i: i, user: user });
             });
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
