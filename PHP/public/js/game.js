@@ -279,7 +279,9 @@ var game = {
     // When quest is started checks if quest is available
     startQuest: function startQuest(questId) {
         if (this.playerInRange.call(this, this.questMarkers[questId])) {
-            if (this.questPositions[questId].isAvailable) {
+            if (this.questPositions[questId].isAvailable && !user.inGame) {
+                console.log(user.inGame);
+                user.inGame = true;
                 Object(__WEBPACK_IMPORTED_MODULE_4__modules_play_js__["a" /* default */])(this.questPositions[questId].type);
                 __WEBPACK_IMPORTED_MODULE_1__ui_ui_js__["a" /* default */].render('start-progress-bar', this.questPositions[questId].questTimer);
                 console.log('[game.startQuest]: quest started', questId);
@@ -298,7 +300,7 @@ var game = {
         Object(__WEBPACK_IMPORTED_MODULE_4__modules_play_js__["a" /* default */])('end quest');
         __WEBPACK_IMPORTED_MODULE_1__ui_ui_js__["a" /* default */].render('update-game-menu');
         this.questPositions[questId].isBeingTaken = false;
-        // document.querySelector('#questTimerMenu').classList.remove('show');
+        user.inGame = false;
         this.questMarkers[questId].reRender(__WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, './img/cooldown.png');
         console.log('[game.onQuestEnd]: quest ended, cooldown started and marker changed...', questId);
 
@@ -748,7 +750,7 @@ var User = function () {
         this.coords = {
             lat: null,
             lng: null
-        };
+        }, this.inGame = false;
         this.geolocationInitialized = false;
     }
 

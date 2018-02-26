@@ -91,7 +91,9 @@ const game = {
     startQuest(questId){
         if(this.playerInRange.call(this, this.questMarkers[questId]))
         {
-            if(this.questPositions[questId].isAvailable) {
+            if(this.questPositions[questId].isAvailable && !user.inGame) {
+                console.log(user.inGame); 
+                user.inGame = true; 
                 play(this.questPositions[questId].type); 
                 ui.render('start-progress-bar', this.questPositions[questId].questTimer); 
                 console.log('[game.startQuest]: quest started', questId)
@@ -112,7 +114,7 @@ const game = {
         play('end quest');
         ui.render('update-game-menu'); 
         this.questPositions[questId].isBeingTaken = false;
-        // document.querySelector('#questTimerMenu').classList.remove('show');
+        user.inGame = false; 
         this.questMarkers[questId].reRender(Map.googleMap, './img/cooldown.png');
         console.log('[game.onQuestEnd]: quest ended, cooldown started and marker changed...', questId);
 
