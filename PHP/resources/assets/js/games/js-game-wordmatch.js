@@ -138,7 +138,7 @@ function onMissionSuccess() {
           console.log(globalUser);
 
           setTimeout(() => {
-          window.parent.document.getElementById('questTimerMenu').style.display = 'none';
+            parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
           window.frameElement.remove()
         },3000);
       }).catch(err => {

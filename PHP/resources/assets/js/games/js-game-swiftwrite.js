@@ -104,8 +104,8 @@ function checkInput() {
 
 
             setTimeout( () => {
-              window.parent.document.getElementById('questTimerMenu').style.display = 'none';
-              window.frameElement.remove(),3000);
+                parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
+                window.frameElement.remove(),3000);
             }).catch(err => {
               console.log(err);
           });
