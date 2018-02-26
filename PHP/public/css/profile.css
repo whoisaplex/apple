@@ -151,7 +151,6 @@ progress[value]::-webkit-progress-value {
     background: #131313
 }
 
-
 #group-members li .delete,
 #user-positions li .cooldown {
     position: absolute;
@@ -161,6 +160,11 @@ progress[value]::-webkit-progress-value {
     align-items: center;
     top: 0;
     bottom: 0;
+}
+
+
+#search .cooldown {
+    text-align: right
 }
 
 

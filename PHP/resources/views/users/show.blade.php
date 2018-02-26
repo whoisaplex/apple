@@ -43,21 +43,13 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3>
-                                <i class="fa fa-globe" aria-hidden="true"></i> Hacked position</h3>
+                                <i class="fa fa-globe" aria-hidden="true"></i> Hacking history</h3>
                         </div>
                         <div class="panel-body">
                             <ol id="user-positions">
-                                <li>Positon #1 <span class="cooldown">11 min</span></li>
-                                <li>Positon #2 <span class="cooldown">13 min</span></li>
-                                <li>Positon #3 <span class="cooldown">7 min</span></li>
-                                <li>Positon #4 <span class="cooldown">6 min</span></li>
-                                <li>Positon #5 <span class="cooldown"><button class="btn-sm btn-danger" id="user-id">Remove deprecated</button></span></li>
-                                <li>Positon #6 <span class="cooldown">7 min</span></li>
-                                <li>Positon #7 <span class="cooldown">15 min</span></li>
-                                <li>Positon #8 <span class="cooldown">14 min</span></li>
-                                <li>Positon #9 <span class="cooldown">1 min</span></li>
-                                <li>Positon #10 <span class="cooldown"> <button class="btn-sm btn-danger" id="user-id">Remove deprecated</button></span>
-                                </li>
+                              @foreach($user->position as $position)
+                                <li>{{ $position->name }} <span class="cooldown">{{ $position->created_at }}</span></li>
+                              @endforeach
                             </ol>
                         </div>
                     </div>
@@ -81,9 +73,9 @@
                             </ol>
                         </div>
                         @else
-                        <h3>Riding Solo
+                        <h3>Riding Solo {{$user->id}} {{$auth->id}} {{$auth->team_id}}
                           <span class="delete">
-                              <button class="btn-sm btn-danger" id="user-id">Invite</button>
+                            <button id="invite" name="button">Invite</button>
                           </span>
                         </h3>
                         @endif
@@ -91,7 +83,16 @@
                 </div>
 
 
-
         </section>
+        <script type="text/javascript">
+        document.querySelector('#invite').addEventListener('click', function(){
+        axios.post('https://development.test/api/invite', { team_id:{{ $auth->team_id}},user_id:{{$user->id}}, sender_id:{{$auth->id}} })
+          .then(response => {
+            console.log(response);
+          }).catch(err => {
+              console.log(err);
+          });
+        });
+        </script>
     </main>
 @endsection

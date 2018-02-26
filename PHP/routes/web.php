@@ -25,4 +25,8 @@ Route::middleware('auth')->group(function () {
   Route::get('/home', 'HomeController@index')->name('home');
   Route::get('/users', 'UsersController@index')->name('users');
   Route::get('/users/{user}', 'UsersController@show');
-});
+  Route::get('/game', 'GameController@index');
+  Route::get('/colormatch', 'QuestsController@colormatch');
+  Route::get('/swiftwrite', 'QuestsController@swiftwrite');
+  Route::get('/wordmatch', 'QuestsController@wordmatch');
+  });

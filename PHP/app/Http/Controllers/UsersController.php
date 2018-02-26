@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
+use App\Library\Quest;
 
 class UsersController extends Controller
 {
@@ -14,13 +16,31 @@ class UsersController extends Controller
      */
     public function index()
     {
+        $auth = Auth::user();
         $users = User::take(10)->orderBy('xp','desc')->get();
-        return view('users.index', ['users' => $users]);
+        return view('users.index', ['users' => $users, 'auth' => $auth]);
     }
 
     public function API_Users()
-    {        
-        return response(User::all(),200);
+    {
+      $users = User::take(200)->orderBy('xp', 'desc')->get();
+
+      foreach ($users as $user) {
+        $team = $user->team()->value('name');
+        $user->team_name = $team;
+      }
+        return response()->json($users);
+    }
+
+    public function API_SearchUsers(Request $request)
+    {
+        $name = $request->input('username');
+        $searchQuery = User::where('username', 'LIKE', '%'.$name.'%')->get();
+        foreach ($searchQuery as $user) {
+          $team = $user->team()->value('name');
+          $user->team_name = $team;
+        }
+        return response()->json($searchQuery);
     }
 
     /**
@@ -53,18 +73,20 @@ class UsersController extends Controller
     public function show($username)
     {
         $user = User::whereUsername($username)->firstOrFail();
-        return view('users.show', compact('user'));
+        $auth = \Auth::user();
+        return view('users.show', compact('user', 'auth'));
+
     }
 
-    public function API_Show($id)
+    public function API_Show()
     {
-        if (!$id) {
-           throw new HttpException(400, "Invalid id");
+        if (! \Auth::check()) {
+          return response()->json('Not logged in', 401);
         }
-        $user = User::find($id);
-        return response()->json([
-            $user,
-        ], 200);
+        $user = \Auth::user();
+
+        //$user = User::where('id', $id)->firstOrFail();
+        return response()->json($user, 200);
     }
 
     /**
@@ -89,18 +111,34 @@ class UsersController extends Controller
     {
         //
     }
-    public function API_Update(Request $request, $id)
+    public function API_Update(Request $request)
     {
-        if (!$id) {
-            throw new HttpException(400, "Invalid id");
+        if (! \Auth::check()) {
+          return response()->json('Not logged in', 401);
         }
-        $user = User::findOrFail($id);
-        $user->fill($request->all());
-        $user->save();
-        return $user;
+        if ($request->input('quest_type'))
+        {
+        $quest = new Quest($request->input('quest_type'));
+        $user = \Auth::user();
 
-        throw new HttpException(400, "Invalid data");
+        $user->currency += $quest->currency;
+        $user->xp += $quest->xp;
+        $user->save();
+
+        return response()->json([
+          'user' => $user,
+          'quest' => $quest,
+        ]);
+      }
+      else
+      {
+        $user = \Auth::user();
+        $user->team_id = $request->team_id;
+        $user->save();
+
+        return response()->json($request);
     }
+  }
 
     /**
      * Remove the specified resource from storage.

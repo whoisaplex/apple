@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>StreetHack</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ URL::asset('css/reset.css') }}">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/profile.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+
 
 
     <!-- CSRF Token -->
@@ -24,7 +26,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+            <div class="header-container">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -37,16 +39,23 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'StreetHack') }}
+                        <!-- {{ config('app.name', 'StreetHack') }} -->
+                        StreetHack
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+                    @auth
                     <ul class="nav navbar-nav">
+                        <li><a href="/home">Profile</a></li>
+                        <li><a href="/teams">Team</a></li>
+                        <li><a href="/users">Leaderboard</a></li>
+                        <li><a href="/game">Play</a></li>
                         &nbsp;
                     </ul>
 
+                    @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -75,14 +84,22 @@
                             </li>
                         @endguest
                     </ul>
+
                 </div>
+
+                @auth
+                    <div id="search"></div>
+                @endauth
             </div>
+
         </nav>
 
         @yield('content')
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/react-search.js') }}"></script>
 </body>
 </html>
