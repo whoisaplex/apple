@@ -90,7 +90,10 @@ function updateProgressBar(time){
     }
   }
   
-   function clearProgressInterval() {clearInterval(interval);}  
+    function clearProgressInterval() { clearInterval(interval); }  
+    window.addEventListener('message', function (e) {
+        clearProgressInterval();
+    }); 
 
 }
 

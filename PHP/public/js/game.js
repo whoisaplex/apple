@@ -666,6 +666,9 @@ function updateProgressBar(time) {
     function clearProgressInterval() {
         clearInterval(interval);
     }
+    window.addEventListener('message', function (e) {
+        clearProgressInterval();
+    });
 }
 
 // Renders all quests on logon

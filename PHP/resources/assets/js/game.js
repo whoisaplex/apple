@@ -92,7 +92,7 @@ const game = {
         if(this.playerInRange.call(this, this.questMarkers[questId]))
         {
             if(this.questPositions[questId].isAvailable && !user.inGame) {
-                user.inGame = true; 
+                user.inGame = true;
                 play(this.questPositions[questId].type); 
                 ui.render('start-progress-bar', this.questPositions[questId].questTimer); 
                 console.log('[game.startQuest]: quest started', questId)

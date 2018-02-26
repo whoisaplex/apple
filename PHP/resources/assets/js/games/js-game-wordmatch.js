@@ -137,11 +137,15 @@ function onMissionSuccess() {
         axios.post('https://development.test/api/position', {name: localStorage.getItem("questName"), user_id:globalUser.id});
           console.log(globalUser);
 
+
+        /* Robbin Was Here 2018/02/26 kl 16:48 */
           setTimeout(() => {
               parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
-              window.parent.clearProgressInterval();
-          window.frameElement.remove()
-        },3000);
+              parent.postMessage('', 'https://development.test');          
+              window.frameElement.remove()
+          }, 2000);
+        /* Robbin Was Here 2018/02/26 kl 16:48 */
+          
       }).catch(err => {
           console.log(err);
       });
@@ -151,6 +155,15 @@ function onMissionFail() {
     document.getElementById('printResult').innerHTML = "You lost the game..";
     disableButtons();
     enableRestartBtn();
+
+
+    /* Robbin Was Here 2018/02/26 kl 16:48 */
+    setTimeout(function () {
+        parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
+        parent.postMessage('', 'https://development.test');
+        window.frameElement.remove()        
+    }, 2000)
+    /* Robbin Was Here 2018/02/26 kl 16:48 */
 };
 function enableRestartBtn() {
     document.getElementById("restart").disabled = false;

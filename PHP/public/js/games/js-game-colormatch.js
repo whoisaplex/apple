@@ -1,37 +1,76 @@
-var myVars = ["red", "blue", "green", "purple", "yellow", "orange"];
+var myVars = ["red", "blue", "green", "gray", "purple", "lightgreen", "yellow", "violet"];
 
 var first;
 var second;
 
+
+//createHTML();
 shuffleArray(myVars);
 createTable(myVars);
 addNewListeners();
 shuffleArray(myVars);
 createTable(myVars);
 
+function createHTML() {
+    var createdHeaderDiv = document.createElement('div');
+    createdHeaderDiv.id = 'headerText';
+    document.body.appendChild(createdHeaderDiv);
+
+    var createdHeaderDivH1 = document.createElement('h1');
+    var createdHeaderDivP = document.createElement('p');
+    createdHeaderDivH1.innerHTML = "Memory";
+    createdHeaderDivP.innerHTML = "Hack the bits.";
+    document.getElementById('headerText').appendChild(createdHeaderDivH1);
+    document.getElementById('headerText').appendChild(createdHeaderDivP);
+
+    var createDivPrintVars = document.createElement('div');
+    createDivPrintVars.id = 'printVars';
+    document.body.appendChild(createDivPrintVars);
+
+    var createFlexContainer = document.createElement('div');
+    createFlexContainer.id = 'flexContainer';
+    document.body.appendChild(createFlexContainer);
+
+    var restartBtn = document.createElement('button');
+    restartBtn.id = 'restart';
+    restartBtn.disabled = true;
+    restartBtn.innerHTML = 'Restart';
+    document.getElementById('flexContainer').appendChild(restartBtn);
+
+    var checkoutBtn = document.createElement('button');
+    checkoutBtn.id = 'checkout';
+    checkoutBtn.disabled = true;
+    checkoutBtn.innerHTML = 'Checkout';
+    document.getElementById('flexContainer').appendChild(checkoutBtn);
+
+    var printResultDiv = document.createElement('div');
+    printResultDiv.id = 'printResult';
+    document.body.appendChild(printResultDiv);
+}
+
 function createTable(list) {
-    for (var i = 0; i<(list.length); i++) {
+    for (var i = 0; i < (list.length); i++) {
         var newBtn = document.createElement('button');
-        newBtn.className = 'newBtn include col-sm-4 btn btn-default';
+        newBtn.className = 'newBtn include';
         document.getElementById('printVars').appendChild(newBtn);
         newBtn.dataset.color = list[i];
     }
-};
+}
 
-function addNewListeners () {
-    document.getElementById('printVars').addEventListener('click', function(e) {
-        if(e.target.classList.contains('newBtn')) {
-          questClickFunction(e.target);
+function addNewListeners() {
+    document.getElementById('printVars').addEventListener('click', function (e) {
+        if (e.target.classList.contains('newBtn')) {
+            questClickFunction(e.target);
         }
-      }, false);
-};
+    }, false);
+}
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
-};
+}
 
 function questClickFunction(param) {
     var allBtns = document.getElementsByClassName('newBtn');
@@ -40,12 +79,13 @@ function questClickFunction(param) {
         first = param;
         param.style.backgroundColor = param.dataset.color;
         first.disabled = true;
-    }
-    else if (second == null) {
+    } else if (second == null) {
+
         second = param;
         param.style.backgroundColor = param.dataset.color;
 
         if (first.dataset.color == second.dataset.color) {
+
             first.classList.remove('include');
             second.classList.remove('include');
             first.disabled = true;
@@ -54,54 +94,58 @@ function questClickFunction(param) {
             second = null;
             var isEmpty = document.getElementsByClassName('include');
             console.log(isEmpty);
-            document.getElementById('printResult').innerHTML = '<p class="alert alert-warning"><strong>Alert</strong>: The colors matched!</p>';
+            document.getElementById('printResult').innerHTML = 'The colors matched!';
+
+
             if (isEmpty.item(0) == null) {
                 allBtns.disabled = true;
-                document.getElementById('printResult').innerHTML = "<p class='alert alert-success'><strong>Success</strong>: You gained 30 exp and 300 bitcoins!</p>";
+                document.getElementById('checkout').disabled = false;
+                document.getElementById('printResult').innerHTML = 'Success: You hacked the memory! <br><br> You gained 30 xp and 300 bitcoins!'
 
                 //update user and post to positions table
                 axios.patch('https://development.test/api/me', { quest_type: 1 })
-                  .then(response => {
-                    globalUser = response.data.user;
-                    axios.post('https://development.test/api/position', { name: localStorage.getItem("questName"), user_id: globalUser.id });
-                    console.log(globalUser);
+                    .then(response => {
+                        globalUser = response.data.user;
+                        axios.post('https://development.test/api/position', { name: localStorage.getItem("questName"), user_id: globalUser.id });
+                        console.log(globalUser);
 
 
-                    setTimeout( () => {
-                        parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
-                        window.frameElement.remove(),3000);
-                  }).catch(err => {
-                      console.log(err);
-                  });
+                                    
+                        /* Robbin Was Here 2018/02/26 kl 16:48 */
+                        setTimeout(function () {
+                            parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
+                            parent.postMessage('', 'https://development.test');
+                            window.frameElement.remove()        
+                        }, 2000)
+                        /* Robbin Was Here 2018/02/26 kl 16:48 */
+
+                    }).catch(err => {
+                        console.log(err);
+                    });
             }
-            else {
 
-            }
-        }
-        else {
-            document.getElementById('printResult').innerHTML = "<p class='alert alert-danger'><strong>Alert</strong>: The colors did not match..</p>";
+        } else {
+            document.getElementById('printResult').innerHTML = 'The colors did not match..';
 
-            for (k=0; k<allBtns.length; k++) {
+            for (k = 0; k < allBtns.length; k++) {
                 allBtns[k].disabled = true;
             }
 
             setTimeout(function () {
-                for (var j= 0; j< allBtns.length; j++) {
+                for (var j = 0; j < allBtns.length; j++) {
                     allBtns[j].disabled = false;
                 }
-                first.style.backgroundColor = "#424242";
-                second.style.backgroundColor = "#424242";
+                first.style.backgroundColor = "white";
+                second.style.backgroundColor = "white";
                 first = null;
                 second = null;
             }, 500);
 
             var allIncludes = document.getElementsByClassName('include');
 
-            for (var j= 0; j< allIncludes.length; j++) {
+            for (var j = 0; j < allIncludes.length; j++) {
                 allIncludes[j].disabled = false;
             }
         }
-
     }
-
-};
+}
