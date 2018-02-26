@@ -116,29 +116,31 @@ function makeUnique(str) {
     return uniqueChars
 };
 function showInstructions() {
-    document.getElementById('printResult').innerHTML = "Click a word to see how many unique letters match the correct password<br><br>";
+    document.getElementById('printResult').innerHTML = "Click a word to see how many unique letters match the correct password. ";
     printToPage();
 };
 function onWordNotMatch(numOfMatches) {
-    document.getElementById('printResult').innerHTML = "Failure: The word has " + numOfMatches + " matching letters.<br><br>";
+    document.getElementById('printResult').innerHTML = "<p class='alert alert-warning'><strong>Alert:</strong> The word has " + numOfMatches + " matching letters</p>";
     printToPage();
 };
 function printToPage() {
         document.getElementById('printResult').innerHTML += "You have " + clicksRemain + " tries left. <br><br>";
+        
 };
 function onMissionSuccess() {
-    document.getElementById('printResult').innerHTML = "Success: You gained control of the system! \n <br><br> 10 exp and 100 bitcoins awarded!";
+    document.getElementById('printResult').innerHTML = "<p class='alert alert-success'><strong>Success</strong>: You gained 10 exp and 100 bitcoins!</p>";
     disableButtons();
-    document.getElementById("checkout").disabled = false;
 
     axios.patch('https://development.test/api/me', { quest_type: 3 })
       .then(response => {
         globalUser = response.data.user;
         axios.post('https://development.test/api/position', {name: localStorage.getItem("questName"), user_id:globalUser.id});
           console.log(globalUser);
+        
+          localStorage.removeItem("questName");
 
+    
           setTimeout(() => {
-            parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
           window.frameElement.remove()
         },3000);
       }).catch(err => {
