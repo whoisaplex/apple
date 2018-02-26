@@ -92,7 +92,6 @@ const game = {
         if(this.playerInRange.call(this, this.questMarkers[questId]))
         {
             if(this.questPositions[questId].isAvailable && !user.inGame) {
-                console.log(user.inGame); 
                 user.inGame = true; 
                 play(this.questPositions[questId].type); 
                 ui.render('start-progress-bar', this.questPositions[questId].questTimer); 
@@ -100,6 +99,7 @@ const game = {
                 this.socket.emit('start-quest', questId);
             } else {
                 console.log('[game.startQuest]: quest not avail', questId);
+                console.log('user in game', user.inGame); 
             }
         }
         else

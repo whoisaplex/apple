@@ -280,7 +280,6 @@ var game = {
     startQuest: function startQuest(questId) {
         if (this.playerInRange.call(this, this.questMarkers[questId])) {
             if (this.questPositions[questId].isAvailable && !user.inGame) {
-                console.log(user.inGame);
                 user.inGame = true;
                 Object(__WEBPACK_IMPORTED_MODULE_4__modules_play_js__["a" /* default */])(this.questPositions[questId].type);
                 __WEBPACK_IMPORTED_MODULE_1__ui_ui_js__["a" /* default */].render('start-progress-bar', this.questPositions[questId].questTimer);
@@ -288,6 +287,7 @@ var game = {
                 this.socket.emit('start-quest', questId);
             } else {
                 console.log('[game.startQuest]: quest not avail', questId);
+                console.log('user in game', user.inGame);
             }
         } else {
             console.log('[game.startQuest]: player was not in range to start quest', questId);
