@@ -654,13 +654,17 @@ function updateProgressBar(time) {
         value -= 50;
         var wow = value / max * 100;
         if (value <= 0) {
-            clearInterval(interval);
+            clearProgressInterval();
             progress.value = 0;
             console.log('cleared');
             document.querySelector('#questTimerMenu').classList.remove('show');
         } else {
             progress.value = wow;
         }
+    }
+
+    function clearProgressInterval() {
+        clearInterval(interval);
     }
 }
 

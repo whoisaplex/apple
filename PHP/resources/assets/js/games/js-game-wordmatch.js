@@ -97,7 +97,8 @@ function onMissionSuccess() {
           console.log(globalUser);
 
           setTimeout(() => {
-            parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
+              parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
+              window.parent.clearProgressInterval();
           window.frameElement.remove()
         },3000);
       }).catch(err => {
