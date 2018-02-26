@@ -12,7 +12,8 @@ export default class User {
         this.coords = {
             lat: null,
             lng: null
-        }
+        },
+        this.inGame = false; 
         this.geolocationInitialized = false; 
     }
 
