@@ -26,18 +26,25 @@ class TeamsController extends Controller
     public function API_Teams()
     {
       $teams = Team::take(12)->get();
+
       foreach($teams as $team){
-      $team->xp = 0;
-      $team->currency = 0;
+
+        $team->xp = 0;
+        $team->currency = 0;
+
         foreach($team->members as $member ){
 
           $team->xp += $member->xp;
           $team->currency += $member->currency;
       }
+      //$sortedTeams = arsort($teams->team->xp);
+      //dd($sortedTeams);
+      $teamsByXp = $teams->sortByDesc('xp')->values();
+
 
 
     }
-    return response()->json($teams);
+    return response()->json($teamsByXp);
 
 }
     /**
