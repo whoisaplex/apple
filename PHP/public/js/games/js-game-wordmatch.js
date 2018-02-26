@@ -12,49 +12,8 @@ var clicksRemain = 5;
 var count = 0;
 
 window.onload =
-    //createHTML(),
     createButtons(),
-    showInstructions(),
-    document.getElementById("restart").addEventListener("click", function(){
-    location.reload();
-});
-
-function createHTML() {
-    var createdHeaderDiv = document.createElement('div');
-    createdHeaderDiv.id = 'headerText';
-    document.body.appendChild(createdHeaderDiv);
-
-    var createdHeaderDivH1 = document.createElement('h1');
-    var createdHeaderDivP = document.createElement('p');
-    createdHeaderDivH1.innerHTML = "Word Quiz";
-    createdHeaderDivP.innerHTML = "Find the right password to hack the terminal.";
-    document.getElementById('headerText').appendChild(createdHeaderDivH1);
-    document.getElementById('headerText').appendChild(createdHeaderDivP);
-
-    var createDivPrintVars = document.createElement('div');
-    createDivPrintVars.id = 'printVars';
-    document.body.appendChild(createDivPrintVars);
-
-    var createFlexContainer = document.createElement('div');
-    createFlexContainer.id = 'flexContainer';
-    document.body.appendChild(createFlexContainer);
-
-    var restartBtn = document.createElement('button');
-    restartBtn.id = 'restart';
-    restartBtn.disabled = true;
-    restartBtn.innerHTML = 'Restart';
-    document.getElementById('flexContainer').appendChild(restartBtn);
-
-    var checkoutBtn = document.createElement('button');
-    checkoutBtn.id = 'checkout';
-    checkoutBtn.disabled = true;
-    checkoutBtn.innerHTML = 'Checkout';
-    document.getElementById('flexContainer').appendChild(checkoutBtn);
-
-    var printResultDiv = document.createElement('div');
-    printResultDiv.id = 'printResult';
-    document.body.appendChild(printResultDiv);
-};
+    showInstructions();
 
 function createButtons() {
     for(i=0; i<8;i++) {
@@ -138,7 +97,8 @@ function onMissionSuccess() {
           console.log(globalUser);
 
           setTimeout(() => {
-            parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
+              parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
+              window.parent.clearProgressInterval();
           window.frameElement.remove()
         },3000);
       }).catch(err => {
@@ -149,10 +109,6 @@ function onMissionSuccess() {
 function onMissionFail() {
     document.getElementById('printResult').innerHTML = "You lost the game..";
     disableButtons();
-    enableRestartBtn();
-};
-function enableRestartBtn() {
-    document.getElementById("restart").disabled = false;
 };
 function randomizeAnswer() {
     var random = myVars[Math.floor(Math.random() * myVars.length)];
