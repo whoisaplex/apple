@@ -1,3 +1,49 @@
+html {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+body {
+    width: 90%;
+    height: 90%;
+    background-color: black;
+}
+#headerText {
+    color: #19ff00;
+    margin: 20px 0 0 0;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+#headerText h1 {
+    font-size: 30px;
+    margin-top: 10px;
+    font-family: monospace;
+    font-weight: bold;
+}
+#headerText p {
+    font-size: 18px;
+    margin-top: 20px;
+    font-family: monospace;
+    font-weight: bold;
+}
+#printVars {
+    width: 100%;
+    height: auto;
+    border: 5px #19ff00 solid;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding-bottom: 30px;
+    font-family: monospace;
+    border-style: dashed;
+}
 .newBtnClass {
     height: 40px;
     width: 40%;
@@ -7,14 +53,44 @@
     font-size: auto;
     margin-top: 30px;
     font-weight: bold;
-    margin-left: 20px;
 }
 #inputID {
     font-size: 25px;
 }
 #printResult {
-    margin-top: 20px;
+    height: auto;
+    width: auto;
+    color: #19ff00;
+    font-size: 16px;
+    margin-top: 30px;
+    font-family: monospace;
 }
-#printVars {
-    color: black;
+#restart {
+    height: 25px;
+    width: 20%;
+    border: 1px black solid;
+    background-color: lightgray;
+    text-align: center;
+    font-size: auto;
+    margin-top: 5px;
+    font-weight: bold;
+    font-family: monospace;
+}
+#checkout {
+    height: 25px;
+    width: 20%;
+    border: 1px black solid;
+    background-color: lightgray;
+    text-align: center;
+    font-size: auto;
+    margin-top: 5px;
+    font-weight: bold;
+    font-family: monospace;
+}
+#flexContainer {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    justify-content: space-between;
 }
