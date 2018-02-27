@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Team;
 use Auth;
+use App\Position;
 
 class TeamsController extends Controller
 {
-
 
     /**
      * Display a listing of the resource.
@@ -17,9 +17,24 @@ class TeamsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
         $user = Auth::User();
-        return view('teams.teams', compact('user'));
+        $team = $user->team;
+        $positions = [];
+
+        foreach($team->members as $member){
+          $userPosition = $member->position;
+          $positions[] = $userPosition;
+        }
+
+        $positions = array_flatten($positions);
+        $positions = collect($positions)->sortByDesc('created_at');
+
+
+
+
+        return view('teams.teams', compact('user', 'team', 'positions'));
     }
 
 

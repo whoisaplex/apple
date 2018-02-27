@@ -103,21 +103,47 @@ function checkInput() {
             console.log(globalUser);
 
 
-            setTimeout( () => {
-                parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
-                window.frameElement.remove(),3000);
-            }).catch(err => {
-              console.log(err);
-          });
+
+                /* Robbin Was Here 2018/02/26 kl 16:48 */
+                setTimeout(function () {
+                    parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
+                    parent.postMessage('', 'https://development.test');
+                    window.frameElement.remove()        
+                }, 2000)
+                /* Robbin Was Here 2018/02/26 kl 16:48 */
+                        
+              
+        }).catch(err => {
+            console.log(err);
+        });
     }
     else if (input == displayVal) {
         wordCount++;
         document.getElementById('printResult').innerHTML = "Success: One step closer to gain access!<br><br>" + ' Words Completed: ' + wordCount;
         console.log(wordCount);
         generateNewWord();
+
+
+        /* Robbin Was Here 2018/02/26 kl 16:48 */
+        setTimeout(function () {
+            parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
+            parent.postMessage('', 'https://development.test');
+            window.frameElement.remove()        
+        }, 2000)
+        /* Robbin Was Here 2018/02/26 kl 16:48 */
+            
     }
     else {
         document.getElementById('printResult').innerHTML = "Failure: The word didn't match.";
+
+        /* Robbin Was Here 2018/02/26 kl 16:48 */
+        setTimeout(function () {
+            parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
+            parent.postMessage('', 'https://development.test');
+            window.frameElement.remove()        
+        }, 2000)
+        /* Robbin Was Here 2018/02/26 kl 16:48 */
+            
     }
 }
 function generateNewWord() {
