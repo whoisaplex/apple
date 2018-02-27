@@ -73,9 +73,9 @@
                               @foreach($user->team->members as $member)
                                 <li>{{ $member->username }}
                                   @if($member->username != $user->username)
-                                    <span class="delete">
+                                    <!-- <span class="delete">
                                         <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
+                                    </span> -->
                                   @endif
                                 </li>
                                 @endforeach
@@ -99,7 +99,7 @@
                 </div>
                 @isset ($invite)
                 <script type="text/javascript">
-                document.querySelector('#accept').addEventListener('click', function(){
+                document.querySelector('#accept').addEventListener('click', function() {
                 axios.patch('https://development.test/api/me', { team_id: {{  $invite->team->id  }} })
                   .then(response => {
                     axios.patch('https://development.test/api/invite', { id: {{  $invite->id  }} });
@@ -108,6 +108,8 @@
                   }).catch(err => {
                       console.log(err);
                   });
+
+                  location.reload();
                 });
                 </script>
 

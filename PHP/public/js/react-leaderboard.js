@@ -22090,33 +22090,33 @@ var User = function (_Component) {
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'a',
-                    { href: 'https://development.test/users/' + this.props.user.username, style: { width: '20%' } },
+                    { href: 'https://development.test/users/' + this.props.user.username, style: { width: '35%' } },
                     isNaN(this.props.i) ? null : this.props.i + 1 + '.',
                     ' ',
                     this.props.user.username
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { style: { width: '10%' } },
+                    { style: { width: '15%' } },
                     this.props.user.xp,
                     'xp'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { style: { width: '10%' } },
+                    { style: { width: '15%' } },
                     this.props.user.currency,
                     ' ',
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-bitcoin' })
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { style: { width: '20%' } },
+                    { style: { width: '25%' } },
                     'Team: ',
                     this.props.user.team_name
                 ),
                 !invited ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    null,
+                    { style: { width: '10%', textAlign: 'right' } },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-plus-circle fa-2x', title: 'Invite to team', style: { color: 'red', cursor: 'pointer' }, id: 'user-id', onClick: this.invitePlayerToTeam.bind(this) })
                 ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',

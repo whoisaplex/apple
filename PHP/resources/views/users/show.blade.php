@@ -64,11 +64,7 @@
                         <div class="panel-body">
                             <ol id="group-members">
                               @foreach($user->team->members as $member)
-                                <li>{{ $member->username }}
-                                    <span class="delete">
-                                        <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
-                                </li>
+                                <li>{{ $member->username }}</li>
                                 @endforeach
                             </ol>
                         </div>
@@ -110,7 +106,6 @@
           }).catch(err => {
               console.log(err);
           });
-          this.remove()
         });
         </script>
     </main>
