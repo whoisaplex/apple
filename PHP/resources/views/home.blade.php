@@ -110,6 +110,7 @@
                   });
 
                   location.reload();
+                  
                 });
                 </script>
 

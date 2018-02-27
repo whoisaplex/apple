@@ -25,4 +25,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::post('/position', 'PositionsController@API_Create')->middleware('auth');
     Route::post('/invite', 'InvitesController@sendInvite')->middleware('auth');
     Route::patch('/invite', 'InvitesController@deleteInvite')->middleware('auth');
+    Route::get('/kick', 'UsersController@API_KickUser')->middleware('auth');
+    
 /* }); */

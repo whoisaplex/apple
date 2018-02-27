@@ -2,10 +2,13 @@
 
 @section('content')
 <div class="container">
+
+
+
+@unless($user->team_id)
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-              @unless($user->team_id)
                 <div class="panel-heading">Create Team</div>
 
                 <div class="panel-body">
@@ -34,20 +37,20 @@
                         </div>
                     </form>
                 </div>
-                @endunless
-                @isset($user->team_id)
-                <div class="panel-heading">Team</div>
-
-                  <div class="panel-body">
-                    <h1 style="color:red;text-align:center;">
-                        {{$user->team->name}}
-                    </h1>
-                  </div>
-
                 </div>
               </div>
             </div>
             
+            @endunless
+            @isset($user->team_id)
+
+<h1 style="color:red;text-align:center; font-size: 5em">
+        {{$user->team->name}}
+    </h1>
+    
+    @if($user->id == $user->team->owner_id)
+        <button id="remove-team" class="btn-sm btn-danger">Ta bort laget {{$user->team->name}}</button>
+    @endif
                 <div class="grid-flex space width-100 text-align-center">
                     <div class="col-flex-2">
                         <div class="panel panel-default">
@@ -78,7 +81,16 @@
                                 <ol id="user-positions">
                                   @foreach($team->members as $member)
 
-                                    <li>{{ $member->username }}<span class="cooldown"></span></li>
+                                    <li><a href="/users/{{ $member->username }}">{{ $member->username }}</a>
+                                        
+                                        @if($user->id == $user->team->owner_id)
+                                            
+                                                
+                                            @if($user->id != $member->id)
+                                            <span class="cooldown"><button name="button"  class="btn-sm btn-danger" onclick="return kickThisUser({{$member->id}})")>Kick</button></span>
+                                            @endif
+                                        @endif
+                                    </li>
                                   @endforeach
                                 </ol>
                             </div>
@@ -89,6 +101,20 @@
 
               @endisset
 
+    <script>
+        function kickThisUser(data) {
+    
+        axios.get('https://development.test/api/kick?id=' + data)
+            .then(response => {
+            console.log(response.data);
+            console.log("-----------------");
+            console.log(data)
+            }).catch(err => {
+                console.log(err);
+            });
 
+            location.reload();
+        }
+    </script>
 </div>
 @endsection

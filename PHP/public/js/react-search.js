@@ -22111,13 +22111,12 @@ var User = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { style: { width: '25%' } },
-                    'Team: ',
-                    this.props.user.team_name
+                    this.props.user.team_name != null ? 'Team: ' + this.props.user.team_name : 'No Team'
                 ),
                 !invited ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { style: { width: '10%', textAlign: 'right' } },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-plus-circle fa-2x', title: 'Invite to team', style: { color: 'red', cursor: 'pointer' }, id: 'user-id', onClick: this.invitePlayerToTeam.bind(this) })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-plus-circle fa-2x', title: 'Invite to my team', style: { color: 'red', cursor: 'pointer' }, id: 'user-id', onClick: this.invitePlayerToTeam.bind(this) })
                 ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     null,

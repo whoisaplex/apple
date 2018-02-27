@@ -83,9 +83,8 @@
                                 <li><p class="waring">You have to create a team before you can invite users...</p></li>
                                 <li><a href="/teams">Create your team here</a></li>
                             </ul>
-@else
-
-<button id="invite" name="button" class="btn-sm btn-danger">Invite {{$user->username}}</button>
+                            @else
+                                <button id="invite" name="button" class="btn-sm btn-danger">Invite {{$user->username}}</button>
                             @endif
                             </span>
                         </div>
