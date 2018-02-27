@@ -130,7 +130,7 @@ progress[value]::-webkit-progress-value {
     color: white;
 }
 
-#user-cash .fa-bitcoin {
+.fa-bitcoin {
     color: gold
 }
 
