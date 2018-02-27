@@ -23,6 +23,7 @@ class TeamsController extends Controller
         $team = $user->team;
         $positions = [];
 
+        if($user->team_id){
         foreach($team->members as $member){
           $userPosition = $member->position;
           $positions[] = $userPosition;
@@ -30,7 +31,7 @@ class TeamsController extends Controller
 
         $positions = array_flatten($positions);
         $positions = collect($positions)->sortByDesc('created_at');
-
+};
 
 
 

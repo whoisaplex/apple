@@ -47,6 +47,7 @@
                 </div>
               </div>
             </div>
+            
                 <div class="grid-flex space width-100 text-align-center">
                     <div class="col-flex-2">
                         <div class="panel panel-default">
