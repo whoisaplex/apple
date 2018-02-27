@@ -146,8 +146,24 @@ html, body {
         width: auto;
     }
 }
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content .title {
+  position: absolute;
+}
+.links {
+  z-index: 10;
+}
+#video {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+}
+
 
    input[type="search"]::-webkit-search-cancel-button {
    -webkit-appearance: searchfield-cancel-button;
    }
-   

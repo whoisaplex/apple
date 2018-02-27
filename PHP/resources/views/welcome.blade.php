@@ -30,9 +30,12 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    StreetHack
-                </div>
+              <video src="img/blackandwhite.mp4" autoplay loop id="video">
+              </video>
+              <div class="title m-b-md">
+                  StreetHack
+              </div>
+
             </div>
         </div>
     </body>
