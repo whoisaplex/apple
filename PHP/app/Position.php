@@ -8,8 +8,8 @@ class Position extends Model
 {
     protected $fillable = ['name', 'user_id'];
 
-    public function positions()
+    public function user()
     {
-      return $this->associate(User::class);
+      return $this->belongsTo(User::class);
     }
 }

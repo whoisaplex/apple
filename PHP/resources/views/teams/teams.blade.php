@@ -52,12 +52,16 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3>
-                                    <i class="fa fa-globe" aria-hidden="true"></i> Hacking history</h3>
+                                    <i class="fa fa-globe" aria-hidden="true"></i> Team hacking history</h3>
                             </div>
                             <div class="panel-body">
                                 <ol id="user-positions">
 
-                                    <li><span class="cooldown"></span></li>
+                                  @foreach($positions as $position)
+
+                                    <li>{{ $position->name }} hacked by {{ $position->user->username }}<span class="cooldown">{{ $position->created_at}}</span></li>
+
+                                  @endforeach
 
                                 </ol>
                             </div>

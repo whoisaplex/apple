@@ -52,12 +52,16 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3>
-                                    <i class="fa fa-globe" aria-hidden="true"></i> Hacking history</h3>
+                                    <i class="fa fa-globe" aria-hidden="true"></i> Team hacking history</h3>
                             </div>
                             <div class="panel-body">
                                 <ol id="user-positions">
 
-                                    <li><span class="cooldown"></span></li>
+                                  <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                                    <li><?php echo e($position->name); ?> hacked by <?php echo e($position->user->username); ?><span class="cooldown"><?php echo e($position->created_at); ?></span></li>
+
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                 </ol>
                             </div>
