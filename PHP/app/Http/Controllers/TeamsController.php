@@ -19,7 +19,8 @@ class TeamsController extends Controller
     public function index()
     {
         $user = Auth::User();
-        return view('teams.teams', compact('user'));
+        $team = $user->team;
+        return view('teams.teams', compact('user', 'team'));
     }
 
 

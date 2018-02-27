@@ -38,14 +38,52 @@
                 @isset($user->team_id)
                 <div class="panel-heading">Team</div>
 
-                <div class="panel-body">
-                  <h1 style="color:red;text-align:center;">
-                      {{$user->team->name}}
-                  </h1>
+                  <div class="panel-body">
+                    <h1 style="color:red;text-align:center;">
+                        {{$user->team->name}}
+                    </h1>
+                  </div>
+
                 </div>
+              </div>
             </div>
-            @endisset
-        </div>
-    </div>
+                <div class="grid-flex space width-100 text-align-center">
+                    <div class="col-flex-2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>
+                                    <i class="fa fa-globe" aria-hidden="true"></i> Hacking history</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ol id="user-positions">
+
+                                    <li><span class="cooldown"></span></li>
+
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-flex-2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>
+                                    <i class="fa fa-users" aria-hidden="true"></i> Team members</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ol id="user-positions">
+                                  @foreach($team->members as $member)
+
+                                    <li>{{ $member->username }}<span class="cooldown"></span></li>
+                                  @endforeach
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+              @endisset
+
+
 </div>
 @endsection
