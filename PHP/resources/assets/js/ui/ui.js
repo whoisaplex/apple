@@ -80,8 +80,8 @@ function updateProgressBar(time){
   function tick(){
     value-=50;
     let wow = (value/max)*100;
-    if(value <= 0) {
-      clearInterval(interval);
+      if (value <= 0) {
+      clearProgressInterval();
       progress.value = 0;
       console.log('cleared')
       document.querySelector('#questTimerMenu').classList.remove('show');
@@ -89,6 +89,11 @@ function updateProgressBar(time){
       progress.value = wow;
     }
   }
+  
+    function clearProgressInterval() { clearInterval(interval); }  
+    window.addEventListener('message', function (e) {
+        clearProgressInterval();
+    }); 
 
 }
 

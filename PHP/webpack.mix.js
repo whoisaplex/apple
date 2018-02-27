@@ -16,4 +16,5 @@ mix.react('resources/assets/js/react-leaderboard.js', 'public/js/react-leaderboa
     .js('resources/assets/js/game.js', 'public/js')
     .js('resources/assets/js/app.js', 'public/js')    
     .copyDirectory('resources/assets/js/games', 'public/js/games')
-    .styles('resources/assets/css/app.css', 'public/css/app.css');
+    .styles('resources/assets/css/app.css', 'public/css/app.css')
+    .sass('resources/assets/sass/startPageAnimation.scss', 'public/css');

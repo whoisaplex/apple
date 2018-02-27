@@ -22104,8 +22104,9 @@ var User = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { style: { width: '10%' } },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-bitcoin' }),
-                    this.props.user.currency
+                    this.props.user.currency,
+                    ' ',
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-bitcoin' })
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
@@ -22144,7 +22145,8 @@ var User = function (_Component) {
 /* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(195);
+__webpack_require__(195);
+module.exports = __webpack_require__(198);
 
 
 /***/ }),
@@ -22345,8 +22347,9 @@ var Team = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           { style: { width: '10%' } },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-bitcoin' }),
-          this.props.team.currency
+          this.props.team.currency,
+          ' ',
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-bitcoin' })
         )
       );
     }
@@ -22356,6 +22359,12 @@ var Team = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (Team);
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
