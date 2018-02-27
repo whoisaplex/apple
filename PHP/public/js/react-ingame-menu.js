@@ -22500,7 +22500,6 @@ var InGameProfile = function (_Component) {
         _this.state = {
             user: {},
             positions: GLOBAL_USER.positions
-
         };
         return _this;
     }

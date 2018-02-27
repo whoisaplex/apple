@@ -18,7 +18,6 @@ export default class InGameProfile extends Component {
         this.state = {
             user: {},
             positions: GLOBAL_USER.positions, 
-           
         }; 
     }
 
@@ -37,7 +36,6 @@ export default class InGameProfile extends Component {
         console.log(this.state); 
         return(
             <div style={{background: 'black', padding: '1em', marginBottom: '7vh'}}>
-
                 <UserProfile user={this.state.user}/>
                 <Router>
                     <div>
@@ -48,16 +46,12 @@ export default class InGameProfile extends Component {
                         </nav>
                         <Route exact path={'/game'} 
                                render={ (props) => <HackingHistory>{positions}</HackingHistory> } />
-
                         <Route exact path={'/game/team'} 
                                render={ (props) => <TeamProfile teamName={this.state.user.team_name} /> } />
-
                         <Route exact path={'/game/leaderboard'} 
                                render={ (props) => <LeaderBoard/> } />
-
                     </div>
                 </Router>
-
             </div>
         )
     }

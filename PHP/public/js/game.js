@@ -787,7 +787,7 @@ var User = function () {
         value: function drawMarker(map) {
             console.log('[User.drawMarker]: new marker rendered on user');
             this.clearMarker();
-            this.googleMapMarker = new __WEBPACK_IMPORTED_MODULE_0__googlemaps_js__["b" /* Marker */]({ lat: this.coords.lat, lng: this.coords.lng }, map, './img/playericon.png');
+            this.googleMapMarker = new __WEBPACK_IMPORTED_MODULE_0__googlemaps_js__["b" /* Marker */]({ lat: this.coords.lat, lng: this.coords.lng }, map, 'https://development.test/img/playericon.png');
         }
     }, {
         key: 'clearMarker',
