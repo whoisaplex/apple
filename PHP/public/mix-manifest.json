@@ -3,5 +3,6 @@
     "/js/react-search.js": "/js/react-search.js",
     "/js/app.js": "/js/app.js",
     "/js/game.js": "/js/game.js",
+    "/js/react-ingame-menu.js": "/js/react-ingame-menu.js",
     "/css/app.css": "/css/app.css"
 }
