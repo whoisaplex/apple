@@ -14,11 +14,14 @@ class CreateInvitesTable extends Migration
     public function up()
     {
         Schema::create('invites', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('team_id')->nullable();
-            $table->integer('user_id')->nullable();
-            $table->integer('sender_id')->nullable();
-            $table->timestamps();
+          $table->increments('id');
+          $table->integer('team_id')->nullable();
+          $table->integer('user_id')->unsigned();
+          $table->integer('sender_id')->unsigned();
+          $table->unique(['user_id', 'sender_id']);
+          $table->timestamps();
+          $table->foreign('user_id')->references('id')->on('users');
+          $table->foreign('sender_id')->references('id')->on('users');
         });
     }
 
