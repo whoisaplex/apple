@@ -1,10 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding');
+
 html, body {
     background-color: #000;
     color: #636b6f;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 100;
+    
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+
+    font-family: monospace;
+
+    /* Alternative?
+        font-family: 'Nanum Gothic Coding', monospace; 
+        font-size: 16px;
+        font-weight: bold;
+    */
+    
     height: 100vh;
     margin: 0;
+    overflow-x: hidden;
 }
 
 .full-height {
@@ -33,7 +47,12 @@ html, body {
 }
 
 .title {
-    font-size: 84px;
+    font-size: 10vw;
+}
+.title a {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
 }
 
 .links > a {
@@ -87,17 +106,20 @@ html, body {
 #search {
     position: absolute;
     top: 10px;
-    left: 440px;
+    left: 500px;
     width: auto
 }
 #search input {
     height: 2em;
-    width: 10em;
+    width: 12em;
 }
 
 #search .search-results {
-    width: 30em;
-    margin-left: -10em;
+    right: 10em;
+    left: 10em;
+    max-height: 75vh;
+    overflow-y: auto;
+    position: fixed;
     background: #131313;
     box-shadow: 0 0 5px #000;
     color: #fff;
@@ -133,10 +155,15 @@ html, body {
 
 @media (max-width: 770px) {
     #search {
-        left: 130px;
+        left: 150px;
         right: 6em;
 
     }
+
+    #search input {
+        width: 10em;
+    }
+
 
     #search .search-results {
         position: fixed;
@@ -159,7 +186,6 @@ html, body {
 }
 #video {
     height: 100vh;
-    width: 100vw;
     position: absolute;
 }
 
@@ -167,3 +193,8 @@ html, body {
    input[type="search"]::-webkit-search-cancel-button {
    -webkit-appearance: searchfield-cancel-button;
    }
+
+
+.waring {
+    color: red
+}

@@ -140,6 +140,16 @@ class UsersController extends Controller
     }
   }
 
+  public function API_KickUser(Request $request)
+    {
+        $id = $request->input('id');
+        $user = User::findOrFail($id);
+        // $user = \Auth::user();
+        $user->team_id = null;
+        $user->save();
+        return response()->json($user);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

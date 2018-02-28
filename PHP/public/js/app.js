@@ -290,8 +290,13 @@ process.umask = function() { return 0; };
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
+<<<<<<< HEAD
 var utils = __webpack_require__(35);
 var normalizeHeaderName = __webpack_require__(271);
+=======
+var utils = __webpack_require__(19);
+var normalizeHeaderName = __webpack_require__(220);
+>>>>>>> origin/development
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'

@@ -22330,8 +22330,9 @@ var Team = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           { style: { width: '10%' } },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-bitcoin' }),
-          this.props.team.currency
+          this.props.team.currency,
+          ' ',
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-bitcoin' })
         )
       );
     }

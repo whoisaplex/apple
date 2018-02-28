@@ -77,9 +77,9 @@
                                 <li><?php echo e($member->username); ?>
 
                                   <?php if($member->username != $user->username): ?>
-                                    <span class="delete">
+                                    <!-- <span class="delete">
                                         <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
+                                    </span> -->
                                   <?php endif; ?>
                                 </li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -105,7 +105,7 @@
                 </div>
                 <?php if(isset($invite)): ?>
                 <script type="text/javascript">
-                document.querySelector('#accept').addEventListener('click', function(){
+                document.querySelector('#accept').addEventListener('click', function() {
                 axios.patch('https://development.test/api/me', { team_id: <?php echo e($invite->team->id); ?> })
                   .then(response => {
                     axios.patch('https://development.test/api/invite', { id: <?php echo e($invite->id); ?> });
@@ -114,6 +114,8 @@
                   }).catch(err => {
                       console.log(err);
                   });
+
+                  location.reload();
                 });
                 </script>
 

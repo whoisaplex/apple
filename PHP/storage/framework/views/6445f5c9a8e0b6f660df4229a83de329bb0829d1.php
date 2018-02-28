@@ -37,16 +37,59 @@
                 <?php if(isset($user->team_id)): ?>
                 <div class="panel-heading">Team</div>
 
-                <div class="panel-body">
-                  <h1 style="color:red;text-align:center;">
-                      <?php echo e($user->team->name); ?>
+                  <div class="panel-body">
+                    <h1 style="color:red;text-align:center;">
+                        <?php echo e($user->team->name); ?>
 
-                  </h1>
+                    </h1>
+                  </div>
+
                 </div>
+              </div>
             </div>
-            <?php endif; ?>
-        </div>
-    </div>
+            
+                <div class="grid-flex space width-100 text-align-center">
+                    <div class="col-flex-2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>
+                                    <i class="fa fa-globe" aria-hidden="true"></i> Team hacking history</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ol id="user-positions">
+
+                                  <?php $__currentLoopData = $positions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $position): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                                    <li><?php echo e($position->name); ?> hacked by <?php echo e($position->user->username); ?><span class="cooldown"><?php echo e($position->created_at); ?></span></li>
+
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-flex-2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3>
+                                    <i class="fa fa-users" aria-hidden="true"></i> Team members</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ol id="user-positions">
+                                  <?php $__currentLoopData = $team->members; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $member): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                                    <li><?php echo e($member->username); ?><span class="cooldown"></span></li>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+              <?php endif; ?>
+
+
 </div>
 <?php $__env->stopSection(); ?>
 
