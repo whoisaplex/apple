@@ -115,8 +115,11 @@ html, body {
 }
 
 #search .search-results {
-    width: 30em;
-    margin-left: -9em;
+    right: 10em;
+    left: 10em;
+    max-height: 75vh;
+    overflow-y: auto;
+    position: fixed;
     background: #131313;
     box-shadow: 0 0 5px #000;
     color: #fff;
@@ -190,3 +193,8 @@ html, body {
    input[type="search"]::-webkit-search-cancel-button {
    -webkit-appearance: searchfield-cancel-button;
    }
+
+
+.waring {
+    color: red
+}

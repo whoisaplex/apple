@@ -13,7 +13,7 @@ export default class Search extends Component {
 
     search(value) { 
         if (value.length) {
-            fetch('https://development.test/api/users/search/?username=' + value)
+            fetch('https://development.test/api/users/search?username=' + value)
              .then(response => response.json().then(users => this.setState({ users })))
         } else {
             this.setState({ users: [] })

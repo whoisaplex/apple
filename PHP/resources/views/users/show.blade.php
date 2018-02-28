@@ -64,21 +64,34 @@
                         <div class="panel-body">
                             <ol id="group-members">
                               @foreach($user->team->members as $member)
-                                <li>{{ $member->username }}
-                                    <span class="delete">
-                                        <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
-                                </li>
+                                <li>{{ $member->username }}</li>
                                 @endforeach
                             </ol>
                         </div>
                         @else
-                        <h3>Riding Solo {{$user->id}} {{$auth->id}} {{$auth->team_id}}
-                          <span class="delete">
-                            <button id="invite" name="button">Invite</button>
-                          </span>
-                        </h3>
+                        
+                        
+                        
+
+                        <h3><i class="fa fa-users" aria-hidden="true"></i> Riding Solo</h3>
+                        </div>
+                        <div class="panel-body">
+                            <span class="delete">
+                            @if(!$auth->team_id)
+                            <button name="button" disabled class="btn-sm">Invite {{$user->username}}</button>
+                            <ul>
+                                <li><p class="waring">You have to create a team before you can invite users...</p></li>
+                                <li><a href="/teams">Create your team here</a></li>
+                            </ul>
+                            @else
+                                <button id="invite" name="button" class="btn-sm btn-danger">Invite {{$user->username}}</button>
+                            @endif
+                            </span>
+                        </div>
+
+                        
                         @endif
+
                     </div>
                 </div>
 
