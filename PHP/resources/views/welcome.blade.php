@@ -32,10 +32,10 @@
             @endif
 
             <div class="content">
-              <video src="img/blackandwhite.mp4" autoplay loop id="video">
+              <video src="img/blackandwhite.mp4" autoplay loop id="video" playsinline muted>
               </video>
 
-              <div class="title m-b-md"><a href="/">StreetHack &nbsp;<span>&nbsp;</span></a></div>
+              <div class="title m-b-md"><a href="/">StreetHack</a></div>
 
             </div>
         </div>
