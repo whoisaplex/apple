@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <script type="text/javascript">
-        globalAuthUser = {!! json_encode($auth) !!}
+        globalUser = {!! json_encode($auth) !!}
     </script>
 
     <main id="main-content"></main>

@@ -140,6 +140,12 @@ progress[value]::-webkit-progress-value {
     list-style-position: inside
 }
 
+#user-positions li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
 #group-members li,
 #user-positions li {
     padding: 1em 1em;

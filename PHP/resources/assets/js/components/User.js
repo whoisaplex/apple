@@ -9,7 +9,7 @@ export default class User extends Component {
   }
 
     invitePlayerToTeam() {
-        axios.post('https://development.test/api/invite', { team_id:globalAuthUser.team_id ,user_id:this.props.user.id, sender_id: globalAuthUser.id })
+        axios.post('https://development.test/api/invite', { team_id:globalUser.team_id ,user_id:this.props.user.id, sender_id: globalUser.id })
         .then(response => {
         console.log(response);
         this.setState({invited:true})

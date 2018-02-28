@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 218);
+/******/ 	return __webpack_require__(__webpack_require__.s = 219);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10153,7 +10153,7 @@ var User = function (_Component) {
         value: function invitePlayerToTeam() {
             var _this2 = this;
 
-            axios.post('https://development.test/api/invite', { team_id: globalAuthUser.team_id, user_id: this.props.user.id, sender_id: globalAuthUser.id }).then(function (response) {
+            axios.post('https://development.test/api/invite', { team_id: globalUser.team_id, user_id: this.props.user.id, sender_id: globalUser.id }).then(function (response) {
                 console.log(response);
                 _this2.setState({ invited: true });
             }).catch(function (err) {
@@ -10169,33 +10169,33 @@ var User = function (_Component) {
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'a',
-                    { href: 'https://development.test/users/' + this.props.user.username, style: { width: '20%' } },
+                    { href: 'https://development.test/users/' + this.props.user.username, style: { width: '35%' } },
                     isNaN(this.props.i) ? null : this.props.i + 1 + '.',
                     ' ',
                     this.props.user.username
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { style: { width: '10%' } },
+                    { style: { width: '15%' } },
                     this.props.user.xp,
                     'xp'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { style: { width: '10%' } },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-bitcoin' }),
-                    this.props.user.currency
+                    { style: { width: '15%' } },
+                    this.props.user.currency,
+                    ' ',
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-bitcoin' })
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { style: { width: '20%' } },
-                    'Team: ',
-                    this.props.user.team_name
+                    { style: { width: '25%' } },
+                    this.props.user.team_name != null ? 'Team: ' + this.props.user.team_name : 'No Team'
                 ),
                 !invited ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-plus-circle fa-2x', title: 'Invite to team', style: { color: 'red', cursor: 'pointer' }, id: 'user-id', onClick: this.invitePlayerToTeam.bind(this) })
+                    { style: { width: '10%', textAlign: 'right' } },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-plus-circle fa-2x', title: 'Invite to my team', style: { color: 'red', cursor: 'pointer' }, id: 'user-id', onClick: this.invitePlayerToTeam.bind(this) })
                 ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     null,
@@ -22258,14 +22258,15 @@ if (document.getElementById('search')) {
 /* 215 */,
 /* 216 */,
 /* 217 */,
-/* 218 */
+/* 218 */,
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(219);
+module.exports = __webpack_require__(220);
 
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(194);
