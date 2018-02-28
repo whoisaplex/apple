@@ -1,4 +1,5 @@
 import { Map } from '../modules/googlemaps.js';
+import { debug } from 'util';
 
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
@@ -147,6 +148,7 @@ function render(type, ...data){
             renderQuestDialog(...data);
             break;
         case 'update-game-menu':
+            debugger; 
             updateGameMenu();
             break;
         case 'start-progress-bar': 
