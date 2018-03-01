@@ -10309,7 +10309,7 @@ var User = function (_Component) {
         value: function invitePlayerToTeam() {
             var _this2 = this;
 
-            axios.post('https://development.test/api/invite', { team_id: globalUser.team_id, user_id: this.props.user.id, sender_id: globalUser.id }).then(function (response) {
+            axios.post('https://' + window.location.hostname + '/api/invite', { team_id: globalUser.team_id, user_id: this.props.user.id, sender_id: globalUser.id }).then(function (response) {
                 console.log(response);
                 _this2.setState({ invited: true });
             }).catch(function (err) {
@@ -10325,7 +10325,7 @@ var User = function (_Component) {
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'a',
-                    { href: 'https://development.test/users/' + this.props.user.username, style: { width: '35%' } },
+                    { href: 'https://' + window.location.hostname + '/users/' + this.props.user.username, style: { width: '35%' } },
                     isNaN(this.props.i) ? null : this.props.i + 1 + '.',
                     ' ',
                     this.props.user.username
@@ -22550,13 +22550,13 @@ var Leaderboard = function (_Component) {
     value: function componentWillMount() {
       var _this2 = this;
 
-      fetch('https://development.test/api/users').then(function (response) {
+      fetch('https://' + window.location.hostname + '/api/users').then(function (response) {
         return response.json().then(function (users) {
           return _this2.setState({ users: users });
         });
       });
 
-      fetch('https://development.test/api/teams').then(function (response) {
+      fetch('https://' + window.location.hostname + '/api/teams').then(function (response) {
         return response.json().then(function (teams) {
           return _this2.setState({ teams: teams });
         });
@@ -22753,7 +22753,7 @@ var Search = function (_Component) {
             var _this2 = this;
 
             if (value.length) {
-                fetch('https://development.test/api/users/search/?username=' + value).then(function (response) {
+                fetch('https://' + window.location.hostname + '/api/users/search?username=' + value).then(function (response) {
                     return response.json().then(function (users) {
                         return _this2.setState({ users: users });
                     });
@@ -23870,7 +23870,7 @@ var InGameProfile = function (_Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            fetch('https://development.test/api/users/search?username=' + GLOBAL_USER.username).then(function (res) {
+            fetch('https://' + window.location.hostname + '/api/users/search?username=' + GLOBAL_USER.username).then(function (res) {
                 return res.json().then(function (me) {
                     console.log(me[0]);
                     _this2.setState({ user: Object.assign({}, me[0]) });

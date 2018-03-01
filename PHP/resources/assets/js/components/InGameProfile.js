@@ -22,7 +22,7 @@ export default class InGameProfile extends Component {
     }
 
     componentWillMount(){
-        fetch('https://development.test/api/users/search?username=' + GLOBAL_USER.username)
+        fetch('https://' + window.location.hostname + '/api/users/search?username=' + GLOBAL_USER.username)
          .then(res => res.json().then(me => {
              console.log(me[0]); 
              this.setState({user: Object.assign({}, me[0])}); 

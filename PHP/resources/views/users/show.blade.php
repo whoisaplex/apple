@@ -99,7 +99,7 @@
         </section>
         <script type="text/javascript">
         document.querySelector('#invite').addEventListener('click', function(){
-        axios.post('https://development.test/api/invite', { team_id:{{ $auth->team_id}},user_id:{{$user->id}}, sender_id:{{$auth->id}} })
+        axios.post('https://' + window.location.hostname + '/api/invite', { team_id:{{ $auth->team_id}},user_id:{{$user->id}}, sender_id:{{$auth->id}} })
           .then(response => {
             console.log(response);
           }).catch(err => {

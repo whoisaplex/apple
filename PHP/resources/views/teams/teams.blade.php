@@ -104,7 +104,7 @@
     <script>
         function kickThisUser(data) {
     
-        axios.get('https://development.test/api/kick?id=' + data)
+        axios.get('https://' + window.location.hostname + '/api/kick?id=' + data)
             .then(response => {
             console.log(response.data);
             console.log("-----------------");

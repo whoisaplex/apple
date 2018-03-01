@@ -429,7 +429,7 @@ var game = {
         if (this.teamplayers[teamplayer.id]) {
             this.teamplayers[teamplayer.id].marker.setMap(null);
         }
-        this.teamplayers[teamplayer.id] = new __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["b" /* Marker */](teamplayer.coords, __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, 'https://development.test/img/hacker.png');
+        this.teamplayers[teamplayer.id] = new __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["b" /* Marker */](teamplayer.coords, __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, 'https://' + window.location.hostname + '/img/hacker.png');
         console.log(this.teamplayers[teamplayer.id].marker);
     },
 
@@ -456,7 +456,7 @@ var game = {
     // When a player starts a quest, receives updated questpostion from node
     onPlayerStartedQuest: function onPlayerStartedQuest(startedQuest, id) {
         this.questPositions[id] = startedQuest;
-        this.questMarkers[id].reRender(__WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, 'https://development.test/img/warning.png');
+        this.questMarkers[id].reRender(__WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, 'https://' + window.location.hostname + '/img/warning.png');
         console.log('[game.onPlayerStartedQuest]: player started quest, marker was changed');
     },
 
@@ -476,7 +476,7 @@ var game = {
             var newQuestMarker = new __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["b" /* Marker */]({
                 lat: _this.questPositions[id].lat,
                 lng: _this.questPositions[id].lng
-            }, __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, 'https://development.test/img/placeholder.png');
+            }, __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, 'https://' + window.location.hostname + '/img/placeholder.png');
 
             new __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["c" /* QuestCircle */]({ lat: _this.questPositions[id].lat, lng: _this.questPositions[id].lng }, 'normal', __WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap);
 
@@ -520,7 +520,7 @@ var game = {
         //ui.render('update-game-menu');
         this.questPositions[questId].isBeingTaken = false;
         user.inGame = false;
-        this.questMarkers[questId].reRender(__WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, 'https://development.test/img/cooldown.png');
+        this.questMarkers[questId].reRender(__WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, 'https://' + window.location.hostname + '/img/cooldown.png');
         console.log('[game.onQuestEnd]: quest ended, cooldown started and marker changed...', questId);
 
         localStorage.removeItem("questName");
@@ -532,7 +532,7 @@ var game = {
         var _this2 = this;
 
         this.questPositions[questId].isAvailable = true;
-        this.questMarkers[questId].reRender(__WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, 'https://development.test/img/blue.png');
+        this.questMarkers[questId].reRender(__WEBPACK_IMPORTED_MODULE_0__modules_googlemaps_js__["a" /* Map */].googleMap, 'https://' + window.location.hostname + '/img/blue.png');
         this.questMarkers[questId].addClickEvent(function () {
             __WEBPACK_IMPORTED_MODULE_1__ui_ui_js__["a" /* default */].render('quest-dialog', _this2.questPositions[questId], questId);
         });
@@ -858,7 +858,7 @@ var initDOMListeners = function initDOMListeners(user, positions, startQuestCall
 // Updates the in game menu. 
 // Fires when player completes a quest 
 function updateGameMenu() {
-    document.querySelector('#menu-site object').data = 'https://development.test/home';
+    document.querySelector('#menu-site object').data = 'https://' + window.location.hostname + '/home';
 }
 
 function updateProgressBar(time) {
@@ -1646,7 +1646,7 @@ var User = function () {
         value: function drawMarker(map) {
             console.log('[User.drawMarker]: new marker rendered on user');
             this.clearMarker();
-            this.googleMapMarker = new __WEBPACK_IMPORTED_MODULE_0__googlemaps_js__["b" /* Marker */]({ lat: this.coords.lat, lng: this.coords.lng }, map, 'https://development.test/img/playericon.png');
+            this.googleMapMarker = new __WEBPACK_IMPORTED_MODULE_0__googlemaps_js__["b" /* Marker */]({ lat: this.coords.lat, lng: this.coords.lng }, map, 'https://' + window.location.hostname + '/img/playericon.png');
         }
     }, {
         key: 'clearMarker',

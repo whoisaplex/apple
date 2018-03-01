@@ -38,10 +38,10 @@ function checkInput() {
         myStopFunction();
 
         //update user and post to positions table
-        axios.patch('https://development.test/api/me', { quest_type: 2 })
+        axios.patch('https://' + window.location.hostname + '/api/me', { quest_type: 2 })
           .then(response => {
             globalUser = response.data.user;
-            axios.post('https://development.test/api/position', {name: localStorage.getItem("questName"), user_id:globalUser.id});
+            axios.post('https://' + window.location.hostname + '/api/position', {name: localStorage.getItem("questName"), user_id:globalUser.id});
             console.log(globalUser);
 
 
@@ -49,7 +49,7 @@ function checkInput() {
                 /* Robbin Was Here 2018/02/26 kl 16:48 */
                 setTimeout(function () {
                     parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
-                    parent.postMessage('', 'https://development.test');
+                    parent.postMessage('', 'https://' + window.location.hostname + '');
                     window.frameElement.remove()        
                 }, 2000)
                 /* Robbin Was Here 2018/02/26 kl 16:48 */
@@ -68,7 +68,7 @@ function checkInput() {
         /* Robbin Was Here 2018/02/26 kl 16:48 */
         /* setTimeout(function () {
             parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
-            parent.postMessage('', 'https://development.test');
+            parent.postMessage('', 'https://' + window.location.hostname + '');
             window.frameElement.remove()        
         }, 2000) */
         /* Robbin Was Here 2018/02/26 kl 16:48 */
@@ -80,7 +80,7 @@ function checkInput() {
         /* Robbin Was Here 2018/02/26 kl 16:48 */
         /* setTimeout(function () {
             parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
-            parent.postMessage('', 'https://development.test');
+            parent.postMessage('', 'https://' + window.location.hostname + '');
             window.frameElement.remove()        
         }, 2000) */
         /* Robbin Was Here 2018/02/26 kl 16:48 */

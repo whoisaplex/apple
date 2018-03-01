@@ -44,7 +44,7 @@
 
     <!-- PROFILE -->
     <div id="menu-site">
-        <!-- <object data="https://development.test/home"></object> -->
+        <!-- <object data="https://' + window.location.hostname + '/home"></object> -->
     </div>
 
     <!-- QUEST DIALOG POPUP -->
