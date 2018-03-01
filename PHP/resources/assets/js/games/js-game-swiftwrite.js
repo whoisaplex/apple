@@ -8,13 +8,7 @@ var myVars = ['backdoor', 'black hat', 'botnet', 'bug', 'cracking', 'crypto', 'c
 var wordCount = 0;
 
 window.onload =
-    //createHTML(),
     runMe();
-
-
-document.getElementById("restart").addEventListener("click", function(){
-    location.reload();
-});
 
 const node = document.getElementById('inputID');
 node.addEventListener('keydown', function onEvent(event) {
@@ -22,56 +16,6 @@ node.addEventListener('keydown', function onEvent(event) {
         checkInput();
     }
 });
-
-function createHTML() {
-    var createdHeaderDiv = document.createElement('div');
-    createdHeaderDiv.id = 'headerText';
-    document.body.appendChild(createdHeaderDiv);
-
-    var firstHeader = document.createElement('h1');
-    firstHeader.innerHTML = 'Swift Access';
-
-    var firstP = document.createElement('p');
-    firstP.innerHTML = "Type out the words shown on screen to gain access to the bank account.";
-    document.getElementById('headerText').appendChild(firstP);
-
-    var createDivPrintVars = document.createElement('div');
-    createDivPrintVars.id = 'printVars';
-    document.body.appendChild(createDivPrintVars);
-
-    var createFlexContainer = document.createElement('div');
-    createFlexContainer.id = 'flexContainer';
-    document.body.appendChild(createFlexContainer);
-
-    var restartBtn = document.createElement('button');
-    restartBtn.id = 'restart';
-    restartBtn.disabled = true;
-    restartBtn.innerHTML = 'Restart';
-    document.getElementById('flexContainer').appendChild(restartBtn);
-
-    var checkoutBtn = document.createElement('button');
-    checkoutBtn.id = 'checkout';
-    checkoutBtn.disabled = true;
-    checkoutBtn.innerHTML = 'Checkout';
-    document.getElementById('flexContainer').appendChild(checkoutBtn);
-
-    var timerDiv = document.createElement('div');
-    document.body.appendChild(timerDiv);
-
-    var timerP = document.createElement('p');
-    timerP.id = "timerText";
-    timerP.innerHTML = "Time remaining: "
-    timerDiv.appendChild(timerP);
-
-    var timer2 = document.createElement('p');
-    timer2.id = "timer";
-    timer2.innerHTML = "30";
-    timerDiv.appendChild(timer2);
-
-    var printResultDiv = document.createElement('div');
-    printResultDiv.id = 'printResult';
-    document.body.appendChild(printResultDiv);
-};
 
 function runMe() {
     var newDiv = document.createElement('div');
@@ -87,13 +31,11 @@ function runMe() {
 function checkInput() {
     var input = document.getElementById("inputID").value.toLowerCase();
     var displayVal = document.getElementById('newDiv').innerHTML.toLowerCase();
-    console.log(input + " " + displayVal);
 
-    if(wordCount == 10) {
-        document.getElementById('printResult').innerHTML = "Completed: Access granted!  \n <br><br> 20 xp and 200 bitcoins awarded!";
+    if(wordCount == 6) {
+        document.getElementById('printResult').innerHTML = "<p class='alert alert-success'><strong>Success</strong>: You gained 20 exp and 200 bitcoins!</p>";
         document.getElementById('inputID').disabled = true;
         myStopFunction();
-        document.getElementById("checkout").disabled = false;
 
         //update user and post to positions table
         axios.patch('https://development.test/api/me', { quest_type: 2 })
@@ -119,29 +61,28 @@ function checkInput() {
     }
     else if (input == displayVal) {
         wordCount++;
-        document.getElementById('printResult').innerHTML = "Success: One step closer to gain access!<br><br>" + ' Words Completed: ' + wordCount;
-        console.log(wordCount);
+        document.getElementById('printResult').innerHTML = "<p class='alert alert-info'>Words Completed: " + wordCount + "</p>";
         generateNewWord();
 
 
         /* Robbin Was Here 2018/02/26 kl 16:48 */
-        setTimeout(function () {
+        /* setTimeout(function () {
             parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
             parent.postMessage('', 'https://development.test');
             window.frameElement.remove()        
-        }, 2000)
+        }, 2000) */
         /* Robbin Was Here 2018/02/26 kl 16:48 */
             
     }
     else {
-        document.getElementById('printResult').innerHTML = "Failure: The word didn't match.";
+        document.getElementById('printResult').innerHTML = "<p class='alert alert-danger'>The word didn't match..</p>";
 
         /* Robbin Was Here 2018/02/26 kl 16:48 */
-        setTimeout(function () {
+        /* setTimeout(function () {
             parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
             parent.postMessage('', 'https://development.test');
             window.frameElement.remove()        
-        }, 2000)
+        }, 2000) */
         /* Robbin Was Here 2018/02/26 kl 16:48 */
             
     }
@@ -171,7 +112,6 @@ function countDown() {
         myStopFunction();
         document.getElementById('printResult').innerHTML = "You lost..";
         document.getElementById('inputID').disabled = true;
-        document.getElementById("restart").disabled = false;
     }
 };
 //3
