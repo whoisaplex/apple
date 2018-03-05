@@ -30,8 +30,22 @@
 
 
             <div id="user-xp">
-                <progress value={{ $user->xp}} max="100"></progress>
+                <progress></progress>
             </div>
+
+            <script>
+                let levelCalc = function (experience) {
+
+                    let threshold = 100
+                    let level = parseInt(experience / threshold)
+                    let newEX = ((experience / threshold) - level) * 100
+
+                    document.querySelector("#user-level div").innerHTML = level
+                    document.querySelector("#user-xp progress").value = newEX
+                    document.querySelector("#user-xp progress").max = threshold
+                }
+                levelCalc({{$user->xp}})
+            </script>
 
         </section>
 
@@ -99,7 +113,7 @@
         </section>
         <script type="text/javascript">
         document.querySelector('#invite').addEventListener('click', function(){
-        axios.post('https://development.test/api/invite', { team_id:{{ $auth->team_id}},user_id:{{$user->id}}, sender_id:{{$auth->id}} })
+        axios.post('https://' + window.location.hostname + '/api/invite', { team_id:{{ $auth->team_id}},user_id:{{$user->id}}, sender_id:{{$auth->id}} })
           .then(response => {
             console.log(response);
           }).catch(err => {

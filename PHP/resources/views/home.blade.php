@@ -22,7 +22,7 @@
                 </div>
                 @endisset
                 <div id="user-level">
-                    <div>{{ $user->level}}</div>
+                    <div></div>
                 </div>
                 <div id="user-cash">{{ $user->currency }}
                     <i class="fa fa-bitcoin"></i>
@@ -31,8 +31,23 @@
 
 
             <div id="user-xp">
-                <progress value={{ $user->xp}} max="100"></progress>
+                <progress></progress>
             </div>
+            <div class="level-test"></div>
+
+            <script>
+                let levelCalc = function (experience) {
+
+                    let threshold = 100
+                    let level = parseInt(experience / threshold)
+                    let newEX = ((experience / threshold) - level) * 100
+
+                    document.querySelector("#user-level div").innerHTML = level
+                    document.querySelector("#user-xp progress").value = newEX
+                    document.querySelector("#user-xp progress").max = threshold
+                }
+                levelCalc({{$user->xp}})
+            </script>
 
         </section>
 
@@ -59,7 +74,7 @@
                 <div class="col-flex-2">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3><i class="fa fa-users" aria-hidden="true"></i>
+                                <h3><i class="fa fa-users" aria-hidden="true"></i>
                               @if($user->team)
                                 {{$user->team->name}}
                               @else
@@ -100,9 +115,9 @@
                 @isset ($invite)
                 <script type="text/javascript">
                 document.querySelector('#accept').addEventListener('click', function() {
-                axios.patch('https://development.test/api/me', { team_id: {{  $invite->team->id  }} })
+                axios.patch('https://' + window.location.hostname + '/api/me', { team_id: {{  $invite->team->id  }} })
                   .then(response => {
-                    axios.patch('https://development.test/api/invite', { id: {{  $invite->id  }} });
+                    axios.patch('https://' + window.location.hostname + '/api/invite', { id: {{  $invite->id  }} });
                     console.log(response.data);
 
                   }).catch(err => {

@@ -1,4 +1,5 @@
 import { Map } from '../modules/googlemaps.js';
+import { debug } from 'util';
 
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
@@ -63,7 +64,7 @@ const initDOMListeners = function(user, positions, startQuestCallback){
 // Updates the in game menu. 
 // Fires when player completes a quest 
 function updateGameMenu(){
-    document.querySelector('#menu-site object').data = 'https://development.test/home';
+    document.querySelector('#menu-site object').data = 'https://' + window.location.hostname + '/home';
 }
 
 function updateProgressBar(time){
@@ -147,6 +148,7 @@ function render(type, ...data){
             renderQuestDialog(...data);
             break;
         case 'update-game-menu':
+            debugger; 
             updateGameMenu();
             break;
         case 'start-progress-bar': 

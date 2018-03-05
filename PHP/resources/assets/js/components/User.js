@@ -9,7 +9,7 @@ export default class User extends Component {
   }
 
     invitePlayerToTeam() {
-        axios.post('https://development.test/api/invite', { team_id:globalAuthUser.team_id ,user_id:this.props.user.id, sender_id: globalAuthUser.id })
+        axios.post('https://' + window.location.hostname + '/api/invite', { team_id:globalUser.team_id ,user_id:this.props.user.id, sender_id: globalUser.id })
         .then(response => {
         console.log(response);
         this.setState({invited:true})
@@ -21,7 +21,7 @@ export default class User extends Component {
        const invited = this.state.invited;
          return (
           <li>
-             <a href={'https://development.test/users/' + this.props.user.username} style={{ width: '35%' }}>{isNaN(this.props.i) ? null : `${this.props.i+1}.`} {this.props.user.username}</a>
+             <a href={'https://' + window.location.hostname + '/users/' + this.props.user.username} style={{ width: '35%' }}>{isNaN(this.props.i) ? null : `${this.props.i+1}.`} {this.props.user.username}</a>
              <div style={{width: '15%'}}>{this.props.user.xp}xp</div>
                  <div style={{ width: '15%' }}>{this.props.user.currency} <i className="fa fa-bitcoin"></i></div>
                  <div style={{ width: '25%' }}>{this.props.user.team_name != null ? 'Team: ' + this.props.user.team_name : 'No Team'}</div>

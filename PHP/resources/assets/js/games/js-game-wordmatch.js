@@ -12,55 +12,14 @@ var clicksRemain = 5;
 var count = 0;
 
 window.onload =
-    //createHTML(),
-    createButtons(),
-    showInstructions(),
-    document.getElementById("restart").addEventListener("click", function(){
-    location.reload();
-});
-
-function createHTML() {
-    var createdHeaderDiv = document.createElement('div');
-    createdHeaderDiv.id = 'headerText';
-    document.body.appendChild(createdHeaderDiv);
-
-    var createdHeaderDivH1 = document.createElement('h1');
-    var createdHeaderDivP = document.createElement('p');
-    createdHeaderDivH1.innerHTML = "Word Quiz";
-    createdHeaderDivP.innerHTML = "Find the right password to hack the terminal.";
-    document.getElementById('headerText').appendChild(createdHeaderDivH1);
-    document.getElementById('headerText').appendChild(createdHeaderDivP);
-
-    var createDivPrintVars = document.createElement('div');
-    createDivPrintVars.id = 'printVars';
-    document.body.appendChild(createDivPrintVars);
-
-    var createFlexContainer = document.createElement('div');
-    createFlexContainer.id = 'flexContainer';
-    document.body.appendChild(createFlexContainer);
-
-    var restartBtn = document.createElement('button');
-    restartBtn.id = 'restart';
-    restartBtn.disabled = true;
-    restartBtn.innerHTML = 'Restart';
-    document.getElementById('flexContainer').appendChild(restartBtn);
-
-    var checkoutBtn = document.createElement('button');
-    checkoutBtn.id = 'checkout';
-    checkoutBtn.disabled = true;
-    checkoutBtn.innerHTML = 'Checkout';
-    document.getElementById('flexContainer').appendChild(checkoutBtn);
-
-    var printResultDiv = document.createElement('div');
-    printResultDiv.id = 'printResult';
-    document.body.appendChild(printResultDiv);
-};
+    createButtons();
 
 function createButtons() {
     for(i=0; i<8;i++) {
 
         var newBtn = document.createElement('button');
         newBtn.className = 'newBtnClass';
+        newBtn.style.color = "black";
         document.getElementById('printVars').appendChild(newBtn);
         var randomVar = myVars[Math.floor(Math.random() * myVars.length)];
         addedVarsList.push(randomVar);
@@ -97,6 +56,7 @@ function checkIfWordMatchesAnswer(clickedBtn) {
     }
     else {
         onWordNotMatch(strLength);
+        clickedBtn.style.color = "gray";
     }
 };
 function comparison(str1, str2) {
@@ -115,10 +75,6 @@ function makeUnique(str) {
     var uniqueChars = String.prototype.concat(...new Set(str));
     return uniqueChars
 };
-function showInstructions() {
-    document.getElementById('printResult').innerHTML = "Click a word to see how many unique letters match the correct password. ";
-    printToPage();
-};
 function onWordNotMatch(numOfMatches) {
     document.getElementById('printResult').innerHTML = "<p class='alert alert-warning'><strong>Alert:</strong> The word has " + numOfMatches + " matching letters</p>";
     printToPage();
@@ -131,10 +87,10 @@ function onMissionSuccess() {
     document.getElementById('printResult').innerHTML = "<p class='alert alert-success'><strong>Success</strong>: You gained 10 exp and 100 bitcoins!</p>";
     disableButtons();
 
-    axios.patch('https://development.test/api/me', { quest_type: 3 })
+    axios.patch('https://' + window.location.hostname + '/api/me', { quest_type: 3 })
       .then(response => {
         globalUser = response.data.user;
-        axios.post('https://development.test/api/position', {name: localStorage.getItem("questName"), user_id:globalUser.id});
+        axios.post('https://' + window.location.hostname + '/api/position', {name: localStorage.getItem("questName"), user_id:globalUser.id});
           console.log(globalUser);
         
           localStorage.removeItem("questName");
@@ -143,7 +99,7 @@ function onMissionSuccess() {
         /* Robbin Was Here 2018/02/26 kl 16:48 */
           setTimeout(() => {
               parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
-              parent.postMessage('', 'https://development.test');          
+              parent.postMessage('', 'https://' + window.location.hostname + '');          
               window.frameElement.remove()
           }, 2000);
         /* Robbin Was Here 2018/02/26 kl 16:48 */
@@ -156,19 +112,15 @@ function onMissionSuccess() {
 function onMissionFail() {
     document.getElementById('printResult').innerHTML = "You lost the game..";
     disableButtons();
-    enableRestartBtn();
 
 
     /* Robbin Was Here 2018/02/26 kl 16:48 */
     setTimeout(function () {
         parent.document.querySelector('#questTimerMenu').classList.remove('show'); 
-        parent.postMessage('', 'https://development.test');
+        parent.postMessage('', 'https://' + window.location.hostname + '');
         window.frameElement.remove()        
     }, 2000)
     /* Robbin Was Here 2018/02/26 kl 16:48 */
-};
-function enableRestartBtn() {
-    document.getElementById("restart").disabled = false;
 };
 function randomizeAnswer() {
     var random = myVars[Math.floor(Math.random() * myVars.length)];

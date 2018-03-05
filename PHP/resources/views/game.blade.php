@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="{{ URL::asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/ui.main.css') }}">
+    <link rel="stylesheet" href="{{ URL('css/profile.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
     <script type="text/javascript">
       globalUser = {!! json_encode($user) !!}
+      globalPositions = {!! json_encode($positions) !!}
     </script>
 
     <title></title>
@@ -42,7 +44,7 @@
 
     <!-- PROFILE -->
     <div id="menu-site">
-        <object data="https://development.test/home"></object>
+        <!-- <object data="https://' + window.location.hostname + '/home"></object> -->
     </div>
 
     <!-- QUEST DIALOG POPUP -->
@@ -93,6 +95,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-asKbHoJKTtGt8rWJ35ebHT3j7sVKUBA"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="{{ mix('/js/game.js') }}"></script>
+    <script src="{{ mix('js/react-ingame-menu.js') }}"></script>
 
 </body>
 </html>

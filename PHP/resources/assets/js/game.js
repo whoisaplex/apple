@@ -33,7 +33,7 @@ const game = {
       if(this.teamplayers[teamplayer.id]) {
         this.teamplayers[teamplayer.id].marker.setMap(null);
       }
-      this.teamplayers[teamplayer.id] = new Marker(teamplayer.coords, Map.googleMap, './img/hacker.png');
+      this.teamplayers[teamplayer.id] = new Marker(teamplayer.coords, Map.googleMap, 'https://' + window.location.hostname + '/img/hacker.png');
       console.log(this.teamplayers[teamplayer.id].marker);
     },
 
@@ -57,7 +57,7 @@ const game = {
     // When a player starts a quest, receives updated questpostion from node
     onPlayerStartedQuest(startedQuest, id){
         this.questPositions[id] = startedQuest;
-        this.questMarkers[id].reRender(Map.googleMap, './img/warning.png');
+        this.questMarkers[id].reRender(Map.googleMap, 'https://' + window.location.hostname + '/img/warning.png');
         console.log('[game.onPlayerStartedQuest]: player started quest, marker was changed')
     },
 
@@ -73,7 +73,7 @@ const game = {
             const newQuestMarker = new Marker({
                 lat: this.questPositions[id].lat,
                 lng: this.questPositions[id].lng
-            }, Map.googleMap, './img/placeholder.png');
+            }, Map.googleMap, 'https://' + window.location.hostname + '/img/placeholder.png');
 
             new QuestCircle({lat: this.questPositions[id].lat, lng: this.questPositions[id].lng}, 'normal', Map.googleMap);
 
@@ -112,10 +112,10 @@ const game = {
     // When quest ends, updates marker
     onQuestEnd(questId){
         play('end quest');
-        ui.render('update-game-menu');
+        //ui.render('update-game-menu');
         this.questPositions[questId].isBeingTaken = false;
         user.inGame = false;
-        this.questMarkers[questId].reRender(Map.googleMap, './img/cooldown.png');
+        this.questMarkers[questId].reRender(Map.googleMap, 'https://' + window.location.hostname + '/img/cooldown.png');
         console.log('[game.onQuestEnd]: quest ended, cooldown started and marker changed...', questId);
 
         localStorage.removeItem("questName");
@@ -124,7 +124,7 @@ const game = {
     // When quest cooldown ends, updates marker
     onCoolDownEnd(questId){
         this.questPositions[questId].isAvailable = true;
-        this.questMarkers[questId].reRender(Map.googleMap, './img/blue.png');
+        this.questMarkers[questId].reRender(Map.googleMap, 'https://' + window.location.hostname + '/img/blue.png');
         this.questMarkers[questId].addClickEvent(()=>{
             ui.render('quest-dialog', this.questPositions[questId], questId);
         });
@@ -165,6 +165,7 @@ const game = {
 
 // Socket, user, geolocation and map initialized
 const socket = io('http://localhost:8080');
+// const socket = io('https://node1.reweb.se');
 const user = new User(socket, globalUser.id, globalUser.name, globalUser.team_id);
 
 console.log(user);
