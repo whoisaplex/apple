@@ -1,0 +1,409 @@
+    1  sudo apt update
+    2  sudo apt upgrade
+    3  ifconfig
+    4  exit
+    5  curl -sL https://deb.nodesource.com/setup_9.x -o nodesource_setup.sh
+    6  nano nodesource_setup.sh
+    7  sudo bash nodesource_setup.sh
+    8  sudo apt-get install nodejs
+    9  sudo apt-get install build-essential
+   10  npm -v
+   11  node -v
+   12  npm -v
+   13  sudo apt-get install npm
+   14  sudo apt-get install build-essential
+   15  mkdir ~/.npm-global
+   16  nano run_npm_install_witout_sudo
+   17  npm remove -g jshint
+   18  npm install pm2 -g
+   19  npm install -g express-generator
+   20  express expressproject
+   21  cd expressproject/
+   22  ls
+   23  nano app.js 
+   24  cd bin/
+   25  nano www 
+   26  cd ..
+   27  npm install
+   28  npm start
+   29  pm2 start app.js 
+   30  pm2 start app
+   31  pm2 stop app
+   32  pm2 remove 0
+   33  pm2 show
+   34  pm2 show 0
+   35  pm2 delete 0
+   36  pm2 start ~/expressproject/app.js 
+   37  pm2 delete 0
+   38  pm2 start app.js --node-args="--harmony-destructuring --harmony_rest_parameters"
+   39  nano .pm2/logs/app-err.log
+   40  sudo npm install pm2 -g
+   41  pm2 start ~/expressproject/app.js 
+   42  pm2 delete 0
+   43  pm2 start app.js 
+   44  nano bin/www 
+   45  pm2 start app.js 
+   46  pm2 delete 0
+   47  npm start
+   48  nano bin/www 
+   49  npm start
+   50  history > history
+   51  nano history 
+   52  npm remove -g jshint
+   53  nano history 
+   54  npm install pm2 -g
+   55  nano /home/kaliber/.npm/_logs/2018-02-01T19_32_37_269Z-debug.log
+   56  npm get prefix
+   57  nano ~/.bashrc
+   58  npm install pm2 -g
+   59  nano ~/.bashrc
+   60  export PATH=$PATH:prefix/bin
+   61  source ~/.bashrc
+   62  npm install pm2 -g
+   63  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv D1EA2D4C
+   64  echo "deb http://apt.pm2.io/ubuntu stable main" | sudo tee /etc/apt/sources.list.d/pm2.list
+   65  sudo apt-get update
+   66  sudo apt-get install pm2
+   67  pm2 -h
+   68  pm2 start expressproject/bin/www 
+   69  nano install pm2_as_deb
+   70  nano install_pm2_as_deb
+   71  ls
+   72  rm history 
+   73  pm2 show www
+   74  sudo shutdown -h now
+   75  pm2 show www
+   76  pm2 start expressproject/bin/www 
+   77  sudo nano expressproject/app.js 
+   78  sudo nano expressproject/bin/www 
+   79  sudo nano expressproject/app.js 
+   80  pm2 start expressproject/bin/www 
+   81  pm2 resart www
+   82  pm2 restart www
+   83  sudo nano expressproject/app.js 
+   84  pm2 restart www
+   85  sudo nano expressproject/app.js 
+   86  pm2 restart www
+   87  sudo nano expressproject/app.js 
+   88  pm2 restart www
+   89  sudo nano expressproject/app.js 
+   90  pm2 restart www
+   91  sudo nano expressproject/app.js 
+   92  cd expressproject/
+   93  ls
+   94  npm install express-session
+   95  sudo nano expressproject/app.js 
+   96  sudo nano /expressproject/app.js
+   97  sudo nano app.js 
+   98  pm2 restart www
+   99  sudo nano app.js 
+  100  exit
+  101  passwd 
+  102  sudo nano /etc/ssh/sshd_config 
+  103  sudo service ssh restart
+  104  exit
+  105  ifconfig 
+  106  exit
+  107  sudo nano /etc/ssh/sshd_config 
+  108  sudo service ssh restart
+  109  pm2 restart www
+  110  exit
+  111  history > history
+  112  nano history 
+  113  pscp
+  114  tar -cz history | ssh kaliber@10.1.10.192 -- 'tar -C/User/kaliber/Dekstop/ -xz'
+  115  ls
+  116  pscp kaliber@10.1.10.105:\home\kaliber\history c:\Users\kaliber\Dekstop\
+  117  scp -help
+  118  exit
+  119  ls
+  120  nano run_npm_install_witout_sudo 
+  121  nano install_pm2_as_deb 
+  122  ls -l
+  123  cd expressproject/
+  124  nano app.js 
+  125  Kika version för Node.js och NPM:
+  126  npm -v
+  127  sudo nano /etc/ssh/sshd_config
+  128  nano /etc/nginx/sites-enabled/.node1
+  129  exit
+  130  ls
+  131  cd apple/
+  132  ls
+  133  git branch 
+  134  git checkout modularize 
+  135  git status
+  136  git pull
+  137  pm2 remove 0
+  138  pm2 delete 0
+  139  npm start
+  140  nano server/app.js 
+  141  nano server/modules/server.js 
+  142  npm start
+  143  ls
+  144  npm install
+  145  npm start
+  146  ls
+  147  cd server/public/
+  148  ls
+  149  nano game.js 
+  150  npm start
+  151  nano game.js 
+  152  npm start
+  153  nano game.js 
+  154  npm start
+  155  nano game.js 
+  156  npm start
+  157  ls
+  158  cd img/
+  159  ls
+  160  cd ...
+  161  cd ..
+  162  ls
+  163  cd modules/
+  164  ls
+  165  nano user.js 
+  166  npm start
+  167  nano user.js 
+  168  ls
+  169  nano user.js 
+  170  c
+  171  ls
+  172  cd ..
+  173  ls
+  174  nano game.js 
+  175  cd modules/
+  176  nano user.js 
+  177  npm start
+  178  nano user.js 
+  179  npm start
+  180  git diff
+  181  npm start
+  182  nano user.js 
+  183  cd ..
+  184  nano game.js 
+  185  npm start
+  186  nano game.js 
+  187  cd ..
+  188  ls
+  189  git checkout .
+  190  git pull
+  191  cd ..
+  192  git pull
+  193  cd server/public/
+  194  ls
+  195  nano game.js 
+  196  cd ..
+  197  cd modules/
+  198  ls
+  199  nano server.js 
+  200  ls
+  201  cd ..
+  202  cd public/
+  203  ls
+  204  cd ..
+  205  ls
+  206  cd modules/
+  207  ls
+  208  cd ..
+  209  ls
+  210  cd server/
+  211  ls
+  212  cd public/
+  213  ls
+  214  cd modules/
+  215  ls
+  216  nano user.js 
+  217  npm start
+  218  ls
+  219  cd ..
+  220  cd modules/
+  221  ls
+  222  cd ..
+  223  cd modules/
+  224  nano server.js 
+  225  npm start
+  226  nano server.js 
+  227  npm start
+  228  cd ..
+  229  cd public/
+  230  cd modules/
+  231  nano user.js 
+  232  npm start
+  233  cd .. 
+  234  cd ..
+  235  cd modules/
+  236  ls
+  237  nano  server.js 
+  238  cd ..
+  239  cd public/
+  240  cd modules/
+  241  ls
+  242  cd ..
+  243  ls
+  244  nano  game.js 
+  245  npm start
+  246  nano  game.js 
+  247  npm start
+  248  nano  game.js 
+  249  npm start
+  250  cd ..
+  251  cd modules/
+  252  nano  server.js 
+  253  npm start
+  254  nano  server.js 
+  255  cd ..
+  256  ls
+  257  cd public/modules/
+  258  ls
+  259  nano user.js 
+  260  cd ..
+  261  npm start
+  262  cd ..
+  263  cd modules/
+  264  nano server.js 
+  265  npm start
+  266  cd apple/
+  267  ls
+  268  git pull
+  269  git 
+  270  git status
+  271  git checkout .
+  272  git pull
+  273  nano server/modules/server.js 
+  274  nano server/public/game.js 
+  275  npm start
+  276  nano server/public/modules/user.js
+  277  npm start
+  278  cd apple/
+  279  npm start
+  280  nano server/public/modules/user.js
+  281  cd apple/
+  282  ls
+  283  cd server/
+  284  ls
+  285  cd public/
+  286  ls
+  287  cd ..
+  288  ls
+  289  cd modules/
+  290  ls
+  291  nano server.js 
+  292  npm start
+  293  cd  apple/
+  294  npm start
+  295  npm install
+  296  npm start
+  297  ls
+  298  rm -rf PHP
+  299  ls
+  300  npm start
+  301  nano server/modules/server.js 
+  302  npm start
+  303  nano server/app.js 
+  304  nano server/modules/sockets.js 
+  305  nano server/modules/events.js 
+  306  nano server/modules/server.js 
+  307  git status 
+  308  nano server/modules/server.js 
+  309  npm start
+  310  ls -l
+  311  cd server/
+  312  ls
+  313  cd modules/
+  314  ls
+  315  nano events.js 
+  316  git branch 
+  317  git checkout development 
+  318  git checkout .
+  319  git checkout development 
+  320  cd..
+  321  cd ..
+  322  git checkout development 
+  323  git checkout .
+  324  git checkout development 
+  325  npm start
+  326  git pull
+  327  npm start
+  328  cd server/modules/
+  329  nano server.js 
+  330  npm start
+  331  cd server/modules/
+  332  ls
+  333  cd ..
+  334  npm start
+  335  sudo nano server/public/game.js
+  336  sudo reboot
+  337  cd apple/
+  338  npm start
+  339  sudo nano server/public/game.js
+  340  sudo nano server/modules/server.js 
+  341  npm start
+  342  sudo nano server/modules/server.js 
+  343  npm start
+  344  git status
+  345  git checkout -b node_production_dev
+  346  git add *
+  347  git commit -m "production node"
+  348  git push
+  349  git push --set-upstream origin node_production_dev 
+  350  npm start
+  351  exit
+  352  cd apple/
+  353  ls
+  354  nano package.json 
+  355  pm2 start server/app.js
+  356  cd apple/
+  357  git status
+  358  nano server/modules/server.js 
+  359  git pull
+  360  git add *
+  361  git commit -m "asdasd"
+  362  git config 
+  363  git pull
+  364  sudo nano server/public/game.js 
+  365  git checkout .
+  366  git pull
+  367  git stash save
+  368  git config --global user.email "robbineriksson@gmail.com"
+  369  git config --global user.name "kaliber"
+  370  git pull
+  371  git stash save
+  372  git stash drop 
+  373  git pull
+  374  sudo nano server/public/game.js 
+  375  sudo nano server/modules/server.js 
+  376  npm start
+  377  pm2 view 0
+  378  pm2 delete 0
+  379  npm start
+  380  cd server/public/img/
+  381  ls
+  382  mv playerIcon.png playericon.png
+  383  npm start
+  384  exit
+  385  sudo reboot
+  386  cd apple/
+  387  ls
+  388  cd server/
+  389  ls
+  390  cd modules/
+  391  ls
+  392  nano events.js 
+  393  ls
+  394  nano positions.js 
+  395  npm start
+  396  cd apple/
+  397  npm start
+  398  eixt
+  399  exit
+  400  ls
+  401  mv apple/ apple_OLD
+  402  git clone https://github.com/whoisaplex/apple
+  403  cd apple
+  404  ls
+  405  rm -rf PHP/
+  406  ls
+  407  npm install
+  408  npm start
+  409  history > history
