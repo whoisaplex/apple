@@ -164,7 +164,7 @@ const game = {
 
 
 // Socket, user, geolocation and map initialized
-const socket = io('http://localhost:8080' || 'https://node1.reweb.se');
+const socket = io('https://node1.reweb.se');
 const user = new User(socket, globalUser.id, globalUser.name, globalUser.team_id);
 
 console.log(user);

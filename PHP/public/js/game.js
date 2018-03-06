@@ -568,7 +568,7 @@ var game = {
 };
 
 // Socket, user, geolocation and map initialized
-var socket = io('http://localhost:8080' || 'https://node1.reweb.se');
+var socket = io('https://node1.reweb.se');
 var user = new __WEBPACK_IMPORTED_MODULE_2__modules_user_js__["a" /* default */](socket, globalUser.id, globalUser.name, globalUser.team_id);
 
 console.log(user);

@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>StreetHack</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="{{ URL::asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/font-awesome.css') }}">
