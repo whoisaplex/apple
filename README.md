@@ -1,3 +1,7 @@
+# StreetHack - Apple
+This is a online, GPS-based, team and singleplayer game. Adapted for mobileusage.
+Hack ATM's and earn experiance and bitcoints.
+
 ## Client
 
 #### Modules 
@@ -48,17 +52,33 @@ In ui.js in the initDOMEvents function.
 #### Adding new socket events: 
 Add the event in events.js in the events object. Then include it in the initConnectionAndEvents function in sockets.js and pass it the socket as a parameter. 
 
-# StreetHack - Apple
+# Get it running
+## Laravel 
 
-# Laravel
-
+### Requirments
 1. Composer
 2. PHP & MySQL or alt. Vagrient/other envirement (LAMP/MAMP etc)
+3. npm install
+4. React
 
-## Setup
-1. cd ./apple/PHP/
+### Process
+1. Env-file 
+	- ```cd ./apple/PHP/```
 	- Edit the .env-file ```sudo nano .env```
 		- Add the db-credentials
-2. Install dependencies: ```composer install```
-3. Run Laravel: ```php artisan serve```
+2. Run the command: ```php artisan key:generate```to generate a uniqe key for your envirement.
+2. Install dependencies:
+	- ```composer install```
+	- ```npm install```
+	- ```npm run dev```
+3. Create database:
+	- php artisan migrate
+4. For connecting with the Node server (Socket.io) change the url in ```resources\assets\js\game.js```
 
+## Node
+### Process
+1. To configure the port edit ```server/app.js```, currently is ```8080```
+2. Run ```npm install``` to install dependencies
+3. To start the server, run ```npm start```
+
+Visit the page with the ```https://```-protocol.
