@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Invite;
+use App\User;
 
 class HomeController extends Controller
 {
-    /**
+    /** 
      * Create a new controller instance.
      *
      * @return void
@@ -24,8 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
 
-        return view('home', ['user' => $user]);
+        $user = Auth::user();
+        $positions = User::find($user->id)->position()->orderBy('created_at', 'desc')->take(10)->get();
+        $hasInvites = $user->invite->count();
+
+
+        return view('home', ['user' => $user, 'hasInvites' => $hasInvites, 'positions' => $positions]);
     }
 }

@@ -9,7 +9,9 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="css/style.css" type="text/css">
+
+        <link rel="stylesheet" href="{{ URL::asset('css/startPageAnimation.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
     </head>
     <body>
@@ -30,10 +32,28 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    StreetHack
-                </div>
+              <video src="img/blackandwhite.mp4" autoplay loop id="video" playsinline muted>
+              </video>
+
+              <div class="title m-b-md"><a href="/">StreetHack</a></div>
+
             </div>
         </div>
+
+
+        <div class="movie">
+
+</div>
+
+<div class="workspace">
+
+  <div id="faux-terminal">
+    <div class="layer"></div>
+    <div class="overlay"></div>
+  </div>
+</div>
+
+
+
     </body>
 </html>

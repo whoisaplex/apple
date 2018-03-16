@@ -17,7 +17,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 /* Route::group(['middleware' => 'auth.basic'], function () { */
-    Route::get('users', 'UsersController@API_Users');
-    Route::get('user/{id}', 'UsersController@API_Show');
-    Route::put('user/update/{id}', 'UsersController@API_Update');
+    Route::get('/users', 'UsersController@API_Users');
+    Route::get('/users/search/', 'UsersController@API_SearchUsers');
+    Route::get('/teams', 'TeamsController@API_Teams');
+    Route::get('/me', 'UsersController@API_Show')->middleware('auth');
+    Route::patch('/me', 'UsersController@API_Update')->middleware('auth');
+    Route::post('/position', 'PositionsController@API_Create')->middleware('auth');
+    Route::post('/invite', 'InvitesController@sendInvite')->middleware('auth');
+    Route::patch('/invite', 'InvitesController@deleteInvite')->middleware('auth');
+    Route::get('/kick', 'UsersController@API_KickUser')->middleware('auth');
+    
 /* }); */

@@ -22,7 +22,7 @@
                 </div>
                 @endisset
                 <div id="user-level">
-                    <div>{{ $user->level}}</div>
+                    <div></div>
                 </div>
                 <div id="user-cash">{{ $user->currency }}
                     <i class="fa fa-bitcoin"></i>
@@ -31,8 +31,23 @@
 
 
             <div id="user-xp">
-                <progress value={{ $user->xp}} max="100"></progress>
+                <progress></progress>
             </div>
+            <div class="level-test"></div>
+
+            <script>
+                let levelCalc = function (experience) {
+
+                    let threshold = 100
+                    let level = parseInt(experience / threshold)
+                    let newEX = ((experience / threshold) - level) * 100
+
+                    document.querySelector("#user-level div").innerHTML = level
+                    document.querySelector("#user-xp progress").value = newEX
+                    document.querySelector("#user-xp progress").max = threshold
+                }
+                levelCalc({{$user->xp}})
+            </script>
 
         </section>
 
@@ -44,21 +59,13 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3>
-                                <i class="fa fa-globe" aria-hidden="true"></i> Hacked position</h3>
+                                <i class="fa fa-globe" aria-hidden="true"></i> Hacking history</h3>
                         </div>
                         <div class="panel-body">
                             <ol id="user-positions">
-                                <li>Positon #1 <span class="cooldown">11 min</span></li>
-                                <li>Positon #2 <span class="cooldown">13 min</span></li>
-                                <li>Positon #3 <span class="cooldown">7 min</span></li>
-                                <li>Positon #4 <span class="cooldown">6 min</span></li>
-                                <li>Positon #5 <span class="cooldown"><button class="btn-sm btn-danger" id="user-id">Remove deprecated</button></span></li>
-                                <li>Positon #6 <span class="cooldown">7 min</span></li>
-                                <li>Positon #7 <span class="cooldown">15 min</span></li>
-                                <li>Positon #8 <span class="cooldown">14 min</span></li>
-                                <li>Positon #9 <span class="cooldown">1 min</span></li>
-                                <li>Positon #10 <span class="cooldown"> <button class="btn-sm btn-danger" id="user-id">Remove deprecated</button></span>
-                                </li>
+                              @foreach($positions as $position)
+                                <li>{{ $position->name }} <span class="cooldown">{{ $position->created_at }}</span></li>
+                              @endforeach
                             </ol>
                         </div>
                     </div>
@@ -67,34 +74,62 @@
                 <div class="col-flex-2">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3><i class="fa fa-users" aria-hidden="true"></i>
+                                <h3><i class="fa fa-users" aria-hidden="true"></i>
                               @if($user->team)
                                 {{$user->team->name}}
                               @else
-                              Not in a Team
+                              Invites {{$hasInvites}}
                               @endif
                              </h3>
                         </div>
                         <div class="panel-body">
-                          @isset($user->team)
+                          @if($user->team)
                             <ol id="group-members">
                               @foreach($user->team->members as $member)
                                 <li>{{ $member->username }}
                                   @if($member->username != $user->username)
-                                    <span class="delete">
+                                    <!-- <span class="delete">
                                         <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
+                                    </span> -->
                                   @endif
                                 </li>
                                 @endforeach
                             </ol>
-                            @endisset
+                            @else
+                            <ul id="group-members">
+                              @foreach($user->invite as $invite)
+                              <li>
+                                {{$invite->from->username}}
+                                Has invited you to join
+                                {{$invite->team->name}}
+                                <span class="delete">
+                                    <button class="btn-sm btn-danger" id="accept">Accept</button>
+                                </span>
+                              </li>
+                              @endforeach
+                            </ul>
+                            @endif
                         </div>
                     </div>
                 </div>
+                @isset ($invite)
+                <script type="text/javascript">
+                document.querySelector('#accept').addEventListener('click', function() {
+                axios.patch('https://' + window.location.hostname + '/api/me', { team_id: {{  $invite->team->id  }} })
+                  .then(response => {
+                    axios.patch('https://' + window.location.hostname + '/api/invite', { id: {{  $invite->id  }} });
+                    console.log(response.data);
 
+                  }).catch(err => {
+                      console.log(err);
+                  });
 
+                  location.reload();
+                  
+                });
+                </script>
 
+                @endisset
         </section>
     </main>
 @endsection

@@ -1,26 +1,15 @@
 @extends('layouts.app')
 @section('content')
-    <main id="main-content">
-        <section>
+    <script type="text/javascript">
+        globalUser = {!! json_encode($auth) !!}
+    </script>
 
-            <div class="grid-flex space width-100 text-align-center">
+    <main id="main-content"></main>
+@endsection
 
-                <div class="col-flex-1">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3>
-                                <i class="fa fa-user" aria-hidden="true"></i> Top players </h3>
-                        </div>
-                        <div class="panel-body">
-                            <ol id="user-positions">
-                              @foreach($users as $user)
-                                <li><a href="http://testing.test/users/{{$user->username}}">{{$user->username}}</a><span class="cooldown"> <button class="btn-sm btn-danger" id="user-id">Invite to team</button></span>
-                                </li>
-                              @endforeach
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-        </section>
-    </main>
+@section('scripts')
+    <!-- <script>
+        let teamRelations = 
+    </script> -->
+    <script src={{ mix('js/react-leaderboard.js') }}></script>
 @endsection

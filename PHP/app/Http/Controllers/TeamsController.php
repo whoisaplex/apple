@@ -6,14 +6,10 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Team;
 use Auth;
+use App\Position;
 
 class TeamsController extends Controller
 {
-
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
 
     /**
      * Display a listing of the resource.
@@ -21,11 +17,52 @@ class TeamsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
         $user = Auth::User();
-        return view('teams.teams', compact('user'));
+        $team = $user->team;
+        $positions = [];
+
+        if($user->team_id){
+        foreach($team->members as $member){
+          $userPosition = $member->position;
+          $positions[] = $userPosition;
+        }
+
+        $positions = array_flatten($positions);
+        $positions = collect($positions)->sortByDesc('created_at');
+};
+
+
+
+        return view('teams.teams', compact('user', 'team', 'positions'));
     }
 
+
+    public function API_Teams()
+    {
+      $teams = Team::take(12)->get();
+
+      foreach($teams as $team){
+
+        $team->xp = 0;
+        $team->currency = 0;
+
+        foreach($team->members as $member ){
+
+          $team->xp += $member->xp;
+          $team->currency += $member->currency;
+      }
+      //$sortedTeams = arsort($teams->team->xp);
+      //dd($sortedTeams);
+      $teamsByXp = $teams->sortByDesc('xp')->values();
+
+
+
+    }
+    return response()->json($teamsByXp);
+
+}
     /**
      * Show the form for creating a new resource.
      *

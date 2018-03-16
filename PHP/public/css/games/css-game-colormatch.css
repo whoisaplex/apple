@@ -1,0 +1,14 @@
+.newBtn {
+    height: 60px;
+    width: 60px;
+    margin: 10px 10px;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.25s;
+    background-color: white;
+}
+#printResult {
+    margin-top: 20px;
+}
+h1.text-danger {
+    font-size: 25px;
+}

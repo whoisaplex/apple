@@ -30,8 +30,22 @@
 
 
             <div id="user-xp">
-                <progress value={{ $user->xp}} max="100"></progress>
+                <progress></progress>
             </div>
+
+            <script>
+                let levelCalc = function (experience) {
+
+                    let threshold = 100
+                    let level = parseInt(experience / threshold)
+                    let newEX = ((experience / threshold) - level) * 100
+
+                    document.querySelector("#user-level div").innerHTML = level
+                    document.querySelector("#user-xp progress").value = newEX
+                    document.querySelector("#user-xp progress").max = threshold
+                }
+                levelCalc({{$user->xp}})
+            </script>
 
         </section>
 
@@ -43,21 +57,13 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3>
-                                <i class="fa fa-globe" aria-hidden="true"></i> Hacked position</h3>
+                                <i class="fa fa-globe" aria-hidden="true"></i> Hacking history</h3>
                         </div>
                         <div class="panel-body">
                             <ol id="user-positions">
-                                <li>Positon #1 <span class="cooldown">11 min</span></li>
-                                <li>Positon #2 <span class="cooldown">13 min</span></li>
-                                <li>Positon #3 <span class="cooldown">7 min</span></li>
-                                <li>Positon #4 <span class="cooldown">6 min</span></li>
-                                <li>Positon #5 <span class="cooldown"><button class="btn-sm btn-danger" id="user-id">Remove deprecated</button></span></li>
-                                <li>Positon #6 <span class="cooldown">7 min</span></li>
-                                <li>Positon #7 <span class="cooldown">15 min</span></li>
-                                <li>Positon #8 <span class="cooldown">14 min</span></li>
-                                <li>Positon #9 <span class="cooldown">1 min</span></li>
-                                <li>Positon #10 <span class="cooldown"> <button class="btn-sm btn-danger" id="user-id">Remove deprecated</button></span>
-                                </li>
+                              @foreach($user->position as $position)
+                                <li>{{ $position->name }} <span class="cooldown">{{ $position->created_at }}</span></li>
+                              @endforeach
                             </ol>
                         </div>
                     </div>
@@ -72,26 +78,48 @@
                         <div class="panel-body">
                             <ol id="group-members">
                               @foreach($user->team->members as $member)
-                                <li>{{ $member->username }}
-                                    <span class="delete">
-                                        <button class="btn-sm btn-danger" id="user-id">Kick</button>
-                                    </span>
-                                </li>
+                                <li>{{ $member->username }}</li>
                                 @endforeach
                             </ol>
                         </div>
                         @else
-                        <h3>Riding Solo
-                          <span class="delete">
-                              <button class="btn-sm btn-danger" id="user-id">Invite</button>
-                          </span>
-                        </h3>
+                        
+                        
+                        
+
+                        <h3><i class="fa fa-users" aria-hidden="true"></i> Riding Solo</h3>
+                        </div>
+                        <div class="panel-body">
+                            <span class="delete">
+                            @if(!$auth->team_id)
+                            <button name="button" disabled class="btn-sm">Invite {{$user->username}}</button>
+                            <ul>
+                                <li><p class="waring">You have to create a team before you can invite users...</p></li>
+                                <li><a href="/teams">Create your team here</a></li>
+                            </ul>
+                            @else
+                                <button id="invite" name="button" class="btn-sm btn-danger">Invite {{$user->username}}</button>
+                            @endif
+                            </span>
+                        </div>
+
+                        
                         @endif
+
                     </div>
                 </div>
 
 
-
         </section>
+        <script type="text/javascript">
+        document.querySelector('#invite').addEventListener('click', function(){
+        axios.post('https://' + window.location.hostname + '/api/invite', { team_id:{{ $auth->team_id}},user_id:{{$user->id}}, sender_id:{{$auth->id}} })
+          .then(response => {
+            console.log(response);
+          }).catch(err => {
+              console.log(err);
+          });
+        });
+        </script>
     </main>
 @endsection
