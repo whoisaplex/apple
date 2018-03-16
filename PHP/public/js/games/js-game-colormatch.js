@@ -59,7 +59,7 @@ function questClickFunction(param) {
 
             if (isEmpty.item(0) == null) {
                 allBtns.disabled = true;
-                document.getElementById('printResult').innerHTML = "<p class='alert alert-success'>Success!: You gained 100k exp and 40 bitcoins!</p>";
+                document.getElementById('printResult').innerHTML = "<p class='alert alert-success'><strong>Success!</strong>: You gained 30 exp and 300 bitcoins!</p>";
 
                 //update user and post to positions table
                 axios.patch('https://' + window.location.hostname + '/api/me', { quest_type: 1 })
